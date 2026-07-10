@@ -1,0 +1,6 @@
+metrica,OpenCLIP ViT-B-32,baseline_aleatorio
+MRR,0.4812562240391188,0.0970354305171104
+Recall@1,0.325,0.026175
+Recall@10,0.85,0.225425
+Recall@5,0.6,0.1193
+rank_promedio_correcto,5.45,33.8198

@@ -1,1 +1,11 @@
-﻿experimento,modelo,direccion,numero_imagenes,numero_textos,metrica,resultado,interpretacion
+experimento,modelo,direccion,numero_imagenes,numero_textos,metrica,resultado,interpretacion
+E1,OpenCLIP ViT-B-32,imagen_texto,40,200,Recall@1,0.325,Resultado del modelo en recuperación imagen texto
+E1,OpenCLIP ViT-B-32,imagen_texto,40,200,Recall@5,0.6,Resultado del modelo en recuperación imagen texto
+E1,OpenCLIP ViT-B-32,imagen_texto,40,200,Recall@10,0.85,Resultado del modelo en recuperación imagen texto
+E1,OpenCLIP ViT-B-32,imagen_texto,40,200,MRR,0.4812562240391188,Resultado del modelo en recuperación imagen texto
+E1,OpenCLIP ViT-B-32,imagen_texto,40,200,rank_promedio_correcto,5.45,Resultado del modelo en recuperación imagen texto
+E2,baseline_aleatorio,imagen_texto,40,200,Recall@1,0.026175000000000004,Resultado promedio de un ranking aleatorio
+E2,baseline_aleatorio,imagen_texto,40,200,Recall@5,0.1193,Resultado promedio de un ranking aleatorio
+E2,baseline_aleatorio,imagen_texto,40,200,Recall@10,0.22542500000000001,Resultado promedio de un ranking aleatorio
+E2,baseline_aleatorio,imagen_texto,40,200,MRR,0.09703543051711043,Resultado promedio de un ranking aleatorio
+E2,baseline_aleatorio,imagen_texto,40,200,rank_promedio_correcto,33.8198,Resultado promedio de un ranking aleatorio

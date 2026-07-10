@@ -150,3 +150,39 @@ Para generar el dataset se ejecuta:
 
 ```bash
 python scripts/generar_dataset_sintetico.py
+
+## Evaluación experimental
+
+El cuaderno `notebooks/Cuaderno14_MCC225_resuelto.ipynb` ejecuta la evaluación principal del prototipo multimodal.
+
+El procedimiento general es el siguiente:
+
+1. Cargar el manifiesto de imágenes y captions.
+2. Validar la existencia de las imágenes.
+3. Construir la tabla de textos candidatos.
+4. Calcular embeddings de imágenes y textos con OpenCLIP.
+5. Calcular una matriz de similitud imagen texto.
+6. Evaluar recuperación imagen texto mediante Recall@1, Recall@5, Recall@10 y MRR.
+7. Comparar los resultados contra un baseline aleatorio.
+8. Exportar rankings, métricas y figuras.
+
+Los resultados principales se almacenan en:
+
+- `results/metricas.csv`
+- `results/rankings_imagen_texto_top10.csv`
+- `results/primer_acierto_por_imagen.csv`
+- `results/resumen_evaluacion.json`
+- `figures/matriz_similitud_agrupada.png`
+
+## Resultados cuantitativos
+
+La evaluación experimental genera una tabla de métricas en `results/metricas.csv`. También se guarda una comparación entre el modelo y el baseline en `results/comparacion_modelo_baseline.csv`.
+
+Las métricas principales son:
+
+- Recall@1.
+- Recall@5.
+- Recall@10.
+- MRR.
+
+Estas métricas permiten revisar si el modelo recupera captions correctos para cada imagen y si supera a un baseline aleatorio. La interpretación de los resultados se desarrolla en `reporte_evaluacion_responsable.md`.
