@@ -125,3 +125,28 @@ La adaptación del cuaderno no se limitará a ejecutar el modelo. También deber
 ¿Qué cambio fue necesario para adaptar el Cuaderno 14 al proyecto personal?
 
 El cambio principal fue reemplazar el dataset original por un conjunto local de imágenes generadas y descripciones construidas manualmente. Además, se ajustó la interpretación de la evaluación para que los resultados se entiendan como evidencia de alineamiento imagen texto en un escenario controlado, no como reconocimiento confiable ni clasificación real de objetos culturales.
+
+## Construcción del dataset
+
+El dataset de trabajo se construye de forma reproducible mediante el script `scripts/generar_dataset_sintetico.py`.
+
+Este script genera 40 imágenes sintéticas inspiradas en patrones textiles andinos. Las imágenes se almacenan en `data/images/` y el manifiesto se guarda en `data/manifest_textiles_generados.csv`.
+
+Cada registro del manifiesto contiene:
+
+- identificador de imagen;
+- ruta local de la imagen;
+- cinco descripciones textuales;
+- paleta cromática;
+- composición;
+- tipo de motivo;
+- simetría;
+- nivel de ambigüedad;
+- observación de uso.
+
+El objetivo de este dataset no es representar piezas reales ni clasificar objetos culturales. Su finalidad es crear un escenario controlado para evaluar alineamiento imagen texto, errores, confiabilidad y límites de uso del sistema multimodal.
+
+Para generar el dataset se ejecuta:
+
+```bash
+python scripts/generar_dataset_sintetico.py
