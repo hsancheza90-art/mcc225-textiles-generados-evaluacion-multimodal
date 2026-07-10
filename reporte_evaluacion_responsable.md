@@ -119,33 +119,39 @@ La tabla siguiente resume los principales resultados obtenidos por el modelo y p
 
 | Experimento | Modelo | Datos | Métrica | Resultado | Interpretación breve |
 |---|---|---:|---|---:|---|
-| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | Recall@1 | completar | Evalúa si un caption correcto aparece en la primera posición |
-| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | Recall@5 | completar | Evalúa si un caption correcto aparece entre los cinco primeros resultados |
-| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | MRR | completar | Evalúa qué tan arriba aparece el primer caption correcto |
-| E2 | Baseline aleatorio | 40 imágenes y 200 textos | Recall@1 | completar | Estima el desempeño esperado sin señal multimodal |
-| E2 | Baseline aleatorio | 40 imágenes y 200 textos | Recall@5 | completar | Permite comparar si el modelo mejora frente a un ordenamiento aleatorio |
-| E2 | Baseline aleatorio | 40 imágenes y 200 textos | MRR | completar | Permite comparar la posición promedio del primer acierto frente al azar |
+| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | Recall@1 | 0.325 | El modelo ubica un caption correcto en la primera posición en el 32.5% de los casos |
+| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | Recall@5 | 0.600 | El modelo recupera al menos un caption correcto entre los cinco primeros resultados en el 60.0% de los casos |
+| E1 | OpenCLIP ViT-B-32 | 40 imágenes y 200 textos | MRR | 0.481256 | El primer caption correcto aparece relativamente alto en el ranking |
+| E2 | Baseline aleatorio | 40 imágenes y 200 textos | Recall@1 | 0.026175 | El desempeño esperado por azar es bajo en la primera posición |
+| E2 | Baseline aleatorio | 40 imágenes y 200 textos | Recall@5 | 0.119300 | El baseline recupera captions correctos en el top 5 con mucha menor frecuencia que el modelo |
+| E2 | Baseline aleatorio | 40 imágenes y 200 textos | MRR | 0.097035 | El primer acierto aparece mucho más abajo cuando el ordenamiento es aleatorio |
 
 ### Interpretación general
 
-Los resultados permiten revisar si el modelo muestra una señal de alineamiento entre imágenes generadas y descripciones textuales. Si Recall@1 es superior al baseline, se puede afirmar que el modelo logra ubicar captions correctos en la primera posición con mayor frecuencia que un ordenamiento aleatorio. Si Recall@5 también mejora frente al baseline, se observa que el modelo puede recuperar descripciones relacionadas aunque no siempre las ubique en el primer lugar.
+Los resultados muestran que OpenCLIP supera claramente al baseline aleatorio en las métricas principales. En Recall@1, el modelo alcanza 0.325 frente a 0.026175 del baseline. Esto indica que el sistema logra ubicar un caption correcto en la primera posición con una frecuencia mucho mayor que la esperada por azar.
 
-Sin embargo, estos resultados deben interpretarse con cautela. Un buen desempeño en este conjunto no significa que el sistema comprenda el significado cultural de los patrones ni que pueda clasificar objetos reales. La evaluación solo mide alineamiento imagen texto en un entorno controlado, con imágenes generadas y captions construidos para el experimento.
+En Recall@5, el modelo obtiene 0.600 frente a 0.119300 del baseline. Esto muestra que, aunque el caption correcto no siempre aparece en primer lugar, en una proporción importante de los casos sí se encuentra dentro de los primeros cinco resultados. El valor de MRR también confirma esta tendencia, ya que OpenCLIP alcanza 0.481256, mientras que el baseline obtiene 0.097035.
+
+Estos resultados permiten afirmar que existe una señal de alineamiento imagen texto en el conjunto evaluado. El modelo no está ordenando los captions de manera equivalente al azar, sino que aprovecha información visual y textual para acercar algunas imágenes a sus descripciones correspondientes.
+
+Sin embargo, el resultado debe interpretarse con cautela. Un Recall@1 de 0.325 significa que el sistema solo ubica un caption correcto en la primera posición en aproximadamente un tercio de los casos. Por tanto, aunque el modelo supera al baseline, todavía presenta fallos importantes. El Recall@5 de 0.600 sugiere que el sistema puede recuperar información relacionada, pero no siempre con la precisión suficiente para seleccionar una única descripción correcta.
+
+En consecuencia, el sistema muestra funcionamiento parcial en condiciones controladas. No sería adecuado afirmar que el modelo comprende los patrones visuales ni que puede realizar identificación confiable de objetos. La evidencia obtenida solo permite sostener que OpenCLIP logra cierto alineamiento entre imágenes generadas y captions visuales controlados.
 
 ### Pregunta 1
 
 ¿Qué métrica representa mejor el objetivo de la tarea?
 
-La métrica que representa mejor el objetivo de la tarea es Recall@1, porque la tarea principal consiste en recuperar la descripción textual más adecuada para una imagen. Si el caption correcto aparece en la primera posición, el sistema logra resolver el caso de manera estricta.
+La métrica que representa mejor el objetivo de la tarea es Recall@1, porque la evaluación busca saber si el sistema puede recuperar la descripción textual más adecuada para una imagen. En este experimento, OpenCLIP obtuvo un Recall@1 de 0.325, lo que indica que en el 32.5% de los casos ubicó un caption correcto en la primera posición.
 
 ### Pregunta 2
 
 ¿Qué métrica puede ser insuficiente si se interpreta sola?
 
-Recall@5 puede ser insuficiente si se interpreta sola. Esta métrica permite saber si un caption correcto aparece entre los primeros cinco resultados, pero no indica si el sistema ubicó el texto correcto como primera opción. Un sistema podría tener buen Recall@5 y aun así presentar dudas en la selección final.
+Recall@5 puede ser insuficiente si se interpreta sola. En este experimento, el modelo obtuvo un Recall@5 de 0.600, lo cual indica que en el 60.0% de los casos algún caption correcto apareció entre los cinco primeros resultados. Sin embargo, esta métrica no indica si el sistema seleccionó correctamente la mejor respuesta en la primera posición. Por ello, debe analizarse junto con Recall@1 y MRR.
 
 ### Pregunta 3
 
 ¿El sistema supera claramente al baseline o solo muestra funcionamiento parcial?
 
-La respuesta depende de la diferencia observada entre OpenCLIP y el baseline. Si el modelo supera al baseline en Recall@1, Recall@5 y MRR, se puede afirmar que existe una señal de alineamiento multimodal. No obstante, incluso en ese caso, el resultado debe describirse como funcionamiento parcial en condiciones controladas. No sería correcto afirmar que el sistema es confiable para un uso real sin más evidencia.
+El sistema supera claramente al baseline aleatorio en Recall@1, Recall@5 y MRR. Esto permite afirmar que existe una señal de alineamiento multimodal. Sin embargo, el desempeño sigue siendo parcial. El modelo mejora frente al azar, pero todavía falla en una proporción considerable de imágenes. Por ello, el resultado debe describirse como funcionamiento parcial en un entorno controlado, no como confiabilidad para uso real.
