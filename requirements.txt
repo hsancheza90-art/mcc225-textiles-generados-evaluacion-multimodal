@@ -7,4 +7,4 @@ torchvision
 open_clip_torch
 scikit-learn
 tqdm
-jupyter
+ipykernel

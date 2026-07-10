@@ -1,0 +1,21 @@
+{
+  "modelo": "OpenCLIP ViT-B-32",
+  "pretrained": "laion2b_s34b_b79k",
+  "device": "cpu",
+  "numero_imagenes": 40,
+  "numero_textos": 200,
+  "metricas_modelo": {
+    "Recall@1": 0.325,
+    "Recall@5": 0.6,
+    "Recall@10": 0.85,
+    "MRR": 0.4812562240391188,
+    "rank_promedio_correcto": 5.45
+  },
+  "metricas_baseline": {
+    "Recall@1": 0.026175000000000004,
+    "Recall@5": 0.1193,
+    "Recall@10": 0.22542500000000001,
+    "MRR": 0.09703543051711043,
+    "rank_promedio_correcto": 33.8198
+  }
+}
