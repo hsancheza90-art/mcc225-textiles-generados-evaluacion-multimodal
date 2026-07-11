@@ -42,7 +42,7 @@ El modelo previsto para la evaluación será OpenCLIP, debido a que permite repr
 
 El dataset estará compuesto por un conjunto pequeño de imágenes generadas, acompañado por captions que describen atributos visuales observables. Entre estos atributos se incluirán paleta de colores, composición, presencia de bandas, motivos geométricos, simetría y repetición modular. Esta decisión permite evaluar el alineamiento multimodal sin asumir que el sistema realiza identificación cultural o clasificación real de objetos.
 
-Las métricas principales fueron Recall@1, Recall@5, Recall@10 y MRR. Recall@1 permitirá observar si el texto correcto aparece como primera opción. Recall@5 permitirá evaluar si el texto correcto aparece dentro de los primeros resultados. La métrica complementaria ayudará a revisar la posición relativa o la similitud promedio entre imagen y texto.
+Las métricas principales fueron Recall@1, Recall@5 y MRR. Recall@1 permitirá observar si el texto correcto aparece como primera opción. Recall@5 permitirá evaluar si el texto correcto aparece dentro de los primeros resultados. La métrica complementaria ayudará a revisar la posición relativa o la similitud promedio entre imagen y texto.
 
 También se incluirá un baseline simple. Este baseline podrá construirse mediante captions desplazados o mediante un ranking aleatorio. La comparación contra este baseline es necesaria para saber si el modelo muestra una señal real de alineamiento o si los resultados podrían explicarse por azar o por coincidencias débiles del conjunto evaluado.
 
@@ -52,7 +52,7 @@ La adaptación del cuaderno no se limitará a ejecutar el modelo. También deber
 
 | Elemento | Respuesta |
 |---|---|
-| Modelo usado | CLIP u OpenCLIP |
+| Modelo usado | OpenCLIP |
 | Dataset o subconjunto | Imágenes generadas de inspiración textil andina con descripciones textuales controladas |
 | Número de ejemplos | 40 imágenes generadas, cada una con cinco descripciones textuales |
 | Métricas usadas | Recall@1, Recall@5 y MRR |
