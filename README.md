@@ -284,3 +284,12 @@ Los resultados se almacenan en:
 El uso recomendado del sistema es limitado. Puede utilizarse como ejercicio académico para explorar alineamiento imagen texto en condiciones controladas.
 
 No se recomienda usarlo para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
+
+## Conclusión técnica
+
+La conclusión técnica del trabajo se encuentra en:
+
+- `results/conclusion_tecnica.md`
+- `reporte_evaluacion_responsable.md`
+
+El resultado principal es que OpenCLIP muestra una señal de alineamiento imagen texto superior al baseline aleatorio. Sin embargo, el sistema solo debe considerarse confiable en condiciones controladas. No se recomienda su uso para identificación cultural, clasificación real de objetos ni validación patrimonial.
