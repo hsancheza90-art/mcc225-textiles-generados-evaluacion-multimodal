@@ -105,7 +105,7 @@ El procedimiento consistió en cargar las imágenes, preprocesarlas, calcular su
 
 La tarea principal evaluada fue recuperación imagen texto. En esta tarea, una consulta visual debe recuperar la descripción textual correspondiente. Debido a que cada imagen cuenta con cinco captions válidos, se consideró correcto el resultado cuando cualquiera de esos captions aparecía dentro de las primeras posiciones del ranking.
 
-Las métricas utilizadas fueron Recall@1, Recall@5, Recall@10 y MRR. Recall@1 mide si el sistema ubica un caption correcto en la primera posición. Recall@5 y Recall@10 permiten observar si el sistema recupera algún texto correcto dentro de los primeros resultados. MRR permite revisar la posición promedio del primer resultado correcto.
+Las métricas utilizadas fueron Recall@1, Recall@5 y MRR. Recall@1 mide si el sistema ubica un caption correcto en la primera posición. Recall@5 permite observar si el sistema recupera algún texto correcto dentro de los primeros resultados. MRR permite revisar la posición promedio del primer resultado correcto.
 
 También se calculó un baseline aleatorio. Este baseline permite estimar qué desempeño se obtendría si los textos se ordenaran sin utilizar información visual ni textual significativa. La comparación contra este baseline ayuda a distinguir si el modelo muestra una señal de alineamiento o si el resultado podría explicarse por azar.
 
