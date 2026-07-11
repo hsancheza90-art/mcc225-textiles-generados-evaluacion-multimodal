@@ -210,18 +210,11 @@ El uso recomendado del sistema es limitado. Puede utilizarse como ejercicio acad
 
 No se recomienda usarlo para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
 
-## 16. Estado actual
+## 16. Estado del proyecto
 
-El repositorio contiene la estructura inicial del proyecto, el dataset generado, el cuaderno experimental, los primeros resultados cuantitativos y el reporte en desarrollo.
+El repositorio contiene el dataset generado, el cuaderno experimental, los resultados cuantitativos, el análisis cualitativo de cinco casos, las pruebas de confiabilidad, la tabla de explicabilidad, la ficha de uso responsable y la conclusión técnica.
 
-Los siguientes pasos son:
-
-1. Seleccionar cinco casos reales del experimento.
-2. Analizar dos aciertos claros, dos errores claros y un caso ambiguo.
-3. Ejecutar dos pruebas de confiabilidad.
-4. Completar la tabla de explicabilidad.
-5. Completar la ficha de uso responsable.
-6. Redactar la conclusión técnica final.
+El trabajo se encuentra en estado de cierre para revisión académica.
 
 ## Análisis cualitativo
 
@@ -293,3 +286,15 @@ La conclusión técnica del trabajo se encuentra en:
 - `reporte_evaluacion_responsable.md`
 
 El resultado principal es que OpenCLIP muestra una señal de alineamiento imagen texto superior al baseline aleatorio. Sin embargo, el sistema solo debe considerarse confiable en condiciones controladas. No se recomienda su uso para identificación cultural, clasificación real de objetos ni validación patrimonial.
+
+## Cumplimiento de entregables
+
+| Entregable | Archivo |
+|---|---|
+| Cuaderno adaptado | `notebooks/Cuaderno14_MCC225_resuelto.ipynb` |
+| Reporte breve | `reporte_evaluacion_responsable.md` |
+| Tabla de métricas | `results/metricas.csv` |
+| Tabla de cinco casos | `results/casos_analizados.csv` |
+| Ficha de uso responsable | `results/ficha_uso_responsable.csv` |
+| Figura de ejemplos | `figures/ejemplos_evaluados.png` |
+| Repositorio actualizado | `README.md` y archivos del proyecto |
