@@ -236,3 +236,35 @@ La clasificación final adoptada es: **confiable solo en condiciones controladas
 Esta clasificación se justifica porque el sistema supera claramente al baseline aleatorio en las métricas cuantitativas, pero todavía presenta limitaciones importantes. El Recall@1 de 0.325 indica que el caption correcto aparece en la primera posición solo en una parte de los casos. Además, las pruebas de confiabilidad permiten observar que cambios en el texto o en la calidad visual pueden modificar el ranking.
 
 Por ello, el sistema puede utilizarse como herramienta exploratoria dentro de un experimento académico controlado, pero no debería usarse como sistema autónomo ni como mecanismo confiable para tomar decisiones sin revisión humana.
+
+## 8. Explicabilidad
+
+La explicabilidad se trabajó a partir de dos casos reales del experimento. Se seleccionó un caso de acierto y un caso de error o ambigüedad. El objetivo fue revisar si la salida del modelo podía relacionarse con evidencia observable en la imagen y en los textos candidatos.
+
+La explicación propuesta no debe entenderse como una explicación interna completa del modelo. OpenCLIP no entrega directamente una justificación semántica ni una región exacta de atención para cada decisión. Por ello, la explicación se construye como una revisión cualitativa basada en atributos visibles, captions recuperados, resultado esperado y posición del ranking.
+
+La tabla siguiente resume los dos casos explicados.
+
+| caso_id | image_id | tipo_caso | evidencia_visual | explicacion_propuesta | limite_explicacion |
+| --- | --- | --- | --- | --- | --- |
+| C01 | T037 | acierto | Imagen con composición horizontal, motivo bandas geometricas, paleta azul_crema_marron y simetría repetitiva. | El caso puede explicarse porque la salida del modelo coincide con atributos visuales registrados en el manifiesto, como la composición, el motivo y la paleta. La coincidencia sugiere alineamiento entre la imagen y el texto recuperado. | La explicación se basa en atributos observables y en los resultados del ranking. No permite afirmar qué regiones exactas de la imagen usó el modelo ni demuestra comprensión del significado del patrón. |
+| C03 | T010 | error | Imagen con composición modular, motivo grecas escalonadas, paleta multicolor_tierra y simetría repetitiva. | El error puede explicarse porque el modelo recuperó primero un caption asociado a otra imagen. Esto indica que algunos rasgos generales, como geometría, color o repetición, pueden haber sido más influyentes que la correspondencia específica con la imagen evaluada. | La explicación se basa en atributos observables y en los resultados del ranking. No permite afirmar qué regiones exactas de la imagen usó el modelo ni demuestra comprensión del significado del patrón. |
+
+### Pregunta 1
+
+¿La explicación se basa en evidencia observable o solo racionaliza la salida después de verla?
+
+La explicación se basa en evidencia observable, porque utiliza atributos registrados en el manifiesto, la imagen evaluada, la salida del modelo y el resultado esperado. No obstante, debe interpretarse con cautela, porque no muestra directamente qué regiones de la imagen fueron usadas por el modelo ni permite reconstruir su proceso interno completo.
+
+### Pregunta 2
+
+¿La explicación ayuda a detectar un error del sistema?
+
+Sí. La explicación ayuda a detectar errores cuando permite observar que el modelo recuperó un caption asociado a otra imagen o confundió atributos visuales generales con una correspondencia específica. En particular, permite distinguir entre un acierto claro, un error de alineamiento imagen texto y un caso ambiguo que requiere revisión cualitativa.
+
+### Interpretación
+
+Los casos explicados muestran que la evidencia observable puede ayudar a interpretar los resultados, pero no elimina la necesidad de supervisión humana. En los aciertos, la explicación permite identificar coincidencias entre composición, color, motivo y texto recuperado. En los errores o casos ambiguos, permite reconocer que el modelo puede responder a similitudes visuales generales sin garantizar una correspondencia correcta.
+
+Por tanto, la explicabilidad en este proyecto debe entenderse como una herramienta de revisión cualitativa. No demuestra comprensión del modelo, pero sí ayuda a documentar por qué una salida puede considerarse aceptable, incorrecta o ambigua.
+

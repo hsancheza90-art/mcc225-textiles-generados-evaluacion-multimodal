@@ -251,3 +251,23 @@ Los resultados se almacenan en:
 - `results/clasificacion_confiabilidad.json`
 
 La clasificación final adoptada es: confiable solo en condiciones controladas.
+
+## Explicabilidad
+
+El proyecto incluye una revisión de explicabilidad sobre dos casos reales del experimento. Se analiza un caso de acierto y un caso de error o ambigüedad.
+
+La explicación se basa en evidencia observable:
+
+- atributos visuales de la imagen;
+- caption recuperado por el modelo;
+- resultado esperado;
+- tipo de caso;
+- límite de la explicación.
+
+Los resultados se almacenan en:
+
+- `results/explicabilidad.csv`
+- `results/respuestas_explicabilidad.json`
+- `figures/explicabilidad_casos.png`
+
+La explicación no pretende describir el funcionamiento interno completo del modelo. Su finalidad es apoyar la revisión cualitativa de aciertos, errores y casos ambiguos.

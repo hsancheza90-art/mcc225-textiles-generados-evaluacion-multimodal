@@ -1,0 +1,6 @@
+{
+  "pregunta_1": "¿La explicación se basa en evidencia observable o solo racionaliza la salida después de verla?",
+  "respuesta_1": "La explicación se basa en evidencia observable, porque utiliza atributos registrados en el manifiesto, la imagen evaluada, la salida del modelo y el resultado esperado. Sin embargo, sigue siendo una explicación limitada, ya que no muestra las regiones exactas de atención del modelo.",
+  "pregunta_2": "¿La explicación ayuda a detectar un error del sistema?",
+  "respuesta_2": "Sí. En los casos de error o ambigüedad, la explicación permite observar si el modelo confundió atributos visuales generales, como color, composición o repetición geométrica, con una correspondencia correcta entre imagen y texto."
+}
