@@ -195,3 +195,44 @@ Este caso es importante porque muestra que no todos los desaciertos tienen la mi
 ¿Cuál fue el error más importante y por qué sería problemático en un uso real?
 
 El error más importante es el error de alineamiento imagen texto, especialmente cuando el modelo entrega como primera opción un caption asociado a otra imagen. Este error sería problemático en un uso real porque puede presentar una asociación visual como si fuera correcta, aunque no corresponda al caso evaluado. En contextos donde se requiere interpretación cuidadosa, este tipo de salida puede inducir conclusiones equivocadas si no existe revisión humana.
+
+## 7. Confiabilidad
+
+La confiabilidad del sistema se evaluó mediante dos pruebas breves. La primera prueba revisó la sensibilidad del modelo ante cambios en la redacción del texto. La segunda prueba revisó el comportamiento del modelo ante imágenes degradadas visualmente.
+
+Estas pruebas no buscan demostrar robustez completa. Su objetivo es observar si el sistema mantiene un comportamiento razonable cuando se modifican condiciones pequeñas pero relevantes del experimento.
+
+### Prueba 1: sensibilidad al texto
+
+En esta prueba se tomó un conjunto de captions originales y se construyeron variantes con una redacción distinta, pero con significado visual similar. Luego se evaluó si la imagen esperada seguía apareciendo en una posición cercana dentro del ranking.
+
+Esta prueba permite revisar si el modelo depende excesivamente de una formulación textual específica. Si una reformulación simple produce cambios grandes en el ranking, el sistema sería sensible al prompt y requeriría mayor control en la construcción de consultas.
+
+### Prueba 2: degradación visual
+
+En esta prueba se generaron variantes degradadas de algunas imágenes. La degradación incluyó reducción de resolución, conversión a escala de grises y desenfoque ligero. Luego se comparó el ranking del primer caption correcto antes y después de la degradación.
+
+Esta prueba permite observar si el sistema mantiene la recuperación cuando la imagen pierde información visual. Si el cambio de ranking es alto, el modelo puede ser poco estable ante imágenes de menor calidad.
+
+### Resultados de las pruebas
+
+| prueba | image_id | entrada_original | variante | cambio_observado | interpretacion |
+| --- | --- | --- | --- | --- | --- |
+| sensibilidad_al_texto | T001 | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta rojo, negro, crema. | Imagen generada con motivo bandas geometricas, composición horizontal y paleta rojo_negro_crema. | bajo | Evalúa si una reformulación textual con significado similar cambia de forma importante la posición de la imagen esperada. |
+| sensibilidad_al_texto | T002 | Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron. | Imagen generada con motivo bandas geometricas, composición vertical y paleta azul_crema_marron. | medio | Evalúa si una reformulación textual con significado similar cambia de forma importante la posición de la imagen esperada. |
+| sensibilidad_al_texto | T003 | Patron textil generado con composicion central, motivos de rombos y paleta ocre, marron, negro. | Imagen generada con motivo rombos, composición central y paleta ocre_marron_negro. | alto | Evalúa si una reformulación textual con significado similar cambia de forma importante la posición de la imagen esperada. |
+| sensibilidad_al_texto | T004 | Patron textil generado con composicion modular, motivos de grecas escalonadas y paleta blanco, negro, gris. | Imagen generada con motivo grecas escalonadas, composición modular y paleta blanco_negro_gris. | medio | Evalúa si una reformulación textual con significado similar cambia de forma importante la posición de la imagen esperada. |
+| sensibilidad_al_texto | T005 | Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra. | Imagen generada con motivo cuadricula geometrica, composición reticular y paleta multicolor_tierra. | medio | Evalúa si una reformulación textual con significado similar cambia de forma importante la posición de la imagen esperada. |
+| degradacion_visual | T010 | data/images/T010.png | imagen en baja resolución, escala de grises y desenfoque ligero | medio | Evalúa si la recuperación imagen texto se mantiene cuando la imagen pierde calidad visual. |
+| degradacion_visual | T024 | data/images/T024.png | imagen en baja resolución, escala de grises y desenfoque ligero | medio | Evalúa si la recuperación imagen texto se mantiene cuando la imagen pierde calidad visual. |
+| degradacion_visual | T032 | data/images/T032.png | imagen en baja resolución, escala de grises y desenfoque ligero | alto | Evalúa si la recuperación imagen texto se mantiene cuando la imagen pierde calidad visual. |
+| degradacion_visual | T037 | data/images/T037.png | imagen en baja resolución, escala de grises y desenfoque ligero | alto | Evalúa si la recuperación imagen texto se mantiene cuando la imagen pierde calidad visual. |
+| degradacion_visual | T040 | data/images/T040.png | imagen en baja resolución, escala de grises y desenfoque ligero | medio | Evalúa si la recuperación imagen texto se mantiene cuando la imagen pierde calidad visual. |
+
+### Clasificación final de confiabilidad
+
+La clasificación final adoptada es: **confiable solo en condiciones controladas**.
+
+Esta clasificación se justifica porque el sistema supera claramente al baseline aleatorio en las métricas cuantitativas, pero todavía presenta limitaciones importantes. El Recall@1 de 0.325 indica que el caption correcto aparece en la primera posición solo en una parte de los casos. Además, las pruebas de confiabilidad permiten observar que cambios en el texto o en la calidad visual pueden modificar el ranking.
+
+Por ello, el sistema puede utilizarse como herramienta exploratoria dentro de un experimento académico controlado, pero no debería usarse como sistema autónomo ni como mecanismo confiable para tomar decisiones sin revisión humana.

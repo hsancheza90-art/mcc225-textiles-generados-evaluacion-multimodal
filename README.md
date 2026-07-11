@@ -234,3 +234,20 @@ Además de las métricas, el proyecto incluye una revisión de cinco casos reale
 La tabla se almacena en `results/casos_analizados.csv` y la figura resumen en `figures/ejemplos_evaluados.png`.
 
 Este análisis permite revisar errores de alineamiento imagen texto, casos de ambigüedad y límites de interpretación del modelo.
+
+## Pruebas de confiabilidad
+
+El proyecto incluye dos pruebas breves de confiabilidad:
+
+- sensibilidad al texto;
+- degradación visual.
+
+La primera prueba revisa si cambios en la redacción del caption modifican de forma importante el ranking. La segunda prueba revisa si el sistema mantiene su comportamiento cuando la imagen pierde calidad visual.
+
+Los resultados se almacenan en:
+
+- `results/pruebas_confiabilidad.csv`
+- `results/resumen_confiabilidad.csv`
+- `results/clasificacion_confiabilidad.json`
+
+La clasificación final adoptada es: confiable solo en condiciones controladas.
