@@ -268,3 +268,44 @@ Los casos explicados muestran que la evidencia observable puede ayudar a interpr
 
 Por tanto, la explicabilidad en este proyecto debe entenderse como una herramienta de revisión cualitativa. No demuestra comprensión del modelo, pero sí ayuda a documentar por qué una salida puede considerarse aceptable, incorrecta o ambigua.
 
+## 9. Sesgo y uso responsable
+
+La evaluación responsable del sistema requiere reconocer que el experimento se realiza sobre imágenes generadas y descripciones textuales controladas. Por ello, los resultados no deben interpretarse como evidencia de reconocimiento real, clasificación cultural ni validación patrimonial.
+
+El conjunto de evaluación permite revisar alineamiento imagen texto en un escenario controlado, pero no permite demostrar que el sistema comprenda el significado de los patrones visuales. Tampoco permite afirmar que el modelo sea robusto ante datos reales, imágenes de baja calidad, descripciones incompletas o categorías culturales complejas.
+
+La tabla siguiente resume los principales riesgos y condiciones de uso identificadas.
+
+| aspecto | respuesta |
+| --- | --- |
+| posible_sesgo_visual | Las imágenes generadas pueden reproducir una estética simplificada de patrones textiles andinos. Esto puede hacer que el modelo aprenda o refuerce asociaciones visuales generales, sin distinguir variaciones reales, técnicas específicas ni contexto cultural. |
+| posible_sesgo_linguistico | Los captions fueron construidos manualmente y pueden favorecer ciertos términos descriptivos, como bandas, rombos, grecas, simetría o composición. El modelo puede responder mejor a esas palabras que a descripciones alternativas o menos estructuradas. |
+| posible_sesgo_cultural_o_dominio | El sistema trabaja con imágenes generadas y no con piezas documentadas. Por ello, puede confundir rasgos visuales inspirados en lo andino con una identificación cultural real. Esta es una limitación importante del experimento. |
+| riesgo_principal_si_se_usa_mal | El riesgo principal es interpretar una similitud visual como si fuera una clasificación confiable. Esto podría llevar a conclusiones incorrectas sobre una imagen si se usa el modelo sin revisión humana. |
+| supervision_humana_necesaria | Sí. La salida del modelo debe ser revisada por una persona, especialmente cuando se analizan errores, casos ambiguos o posibles interpretaciones del patrón visual. |
+| uso_recomendado | Limitado. |
+| justificacion_del_uso_recomendado | El sistema puede usarse como herramienta exploratoria en un entorno académico controlado. No debe usarse como mecanismo autónomo de identificación, clasificación cultural o validación patrimonial. |
+| afirmacion_irresponsable | Sería irresponsable afirmar que el sistema reconoce correctamente patrones textiles andinos reales o que puede clasificar objetos culturales de manera confiable. |
+| afirmacion_prudente | Una afirmación prudente sería indicar que el sistema muestra alineamiento parcial entre imágenes generadas y descripciones visuales controladas en un entorno experimental. |
+
+### Discusión de sesgos posibles
+
+El primer riesgo es visual. Las imágenes generadas pueden simplificar ciertos rasgos de inspiración textil andina y repetir una estética relativamente homogénea. Esto puede favorecer que el modelo aprenda asociaciones generales, como bandas, rombos, grecas o composiciones repetitivas, sin distinguir matices reales.
+
+El segundo riesgo es lingüístico. Los captions fueron construidos manualmente y utilizan un vocabulario controlado. Esto puede favorecer el desempeño del modelo cuando las consultas tienen una forma parecida a las descripciones del manifiesto, pero no garantiza estabilidad ante descripciones más libres o ambiguas.
+
+El tercer riesgo es cultural o de dominio. El sistema no trabaja con piezas reales documentadas, sino con imágenes generadas. Por ello, cualquier interpretación cultural debe evitarse. El modelo solo evalúa similitud entre imágenes y textos dentro del experimento.
+
+### Uso recomendado
+
+El uso recomendado del sistema es limitado. Puede utilizarse como herramienta académica para explorar recuperación imagen texto y analizar errores de modelos multimodales en un conjunto controlado.
+
+No se recomienda usar el sistema para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
+
+### Pregunta breve
+
+¿Qué afirmación sería irresponsable hacer sobre este sistema?
+
+Sería irresponsable afirmar que el sistema reconoce correctamente patrones textiles andinos reales o que puede clasificar objetos culturales de manera confiable. Los resultados obtenidos solo permiten afirmar que existe alineamiento parcial entre imágenes generadas y descripciones visuales controladas en un entorno experimental.
+
+Una afirmación más prudente sería la siguiente: el sistema muestra una señal de alineamiento imagen texto superior al baseline aleatorio, pero su desempeño sigue siendo parcial y requiere revisión humana.

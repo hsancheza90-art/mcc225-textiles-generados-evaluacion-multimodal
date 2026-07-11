@@ -1,0 +1,13 @@
+{
+  "uso_recomendado": "Limitado",
+  "requiere_supervision_humana": true,
+  "no_recomendado_para": [
+    "identificación cultural",
+    "clasificación real de objetos",
+    "validación patrimonial",
+    "toma de decisiones sin revisión humana"
+  ],
+  "riesgo_principal": "Confundir similitud visual con identificación confiable o clasificación real.",
+  "afirmacion_irresponsable": "El sistema reconoce correctamente patrones textiles andinos reales.",
+  "afirmacion_prudente": "El sistema muestra alineamiento parcial entre imágenes generadas y descripciones visuales controladas."
+}

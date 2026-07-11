@@ -271,3 +271,16 @@ Los resultados se almacenan en:
 - `figures/explicabilidad_casos.png`
 
 La explicación no pretende describir el funcionamiento interno completo del modelo. Su finalidad es apoyar la revisión cualitativa de aciertos, errores y casos ambiguos.
+
+## Sesgo y uso responsable
+
+El proyecto incluye una ficha de uso responsable del sistema. Esta ficha identifica riesgos visuales, lingüísticos, culturales y de uso.
+
+Los resultados se almacenan en:
+
+- `results/ficha_uso_responsable.csv`
+- `results/uso_responsable_resumen.json`
+
+El uso recomendado del sistema es limitado. Puede utilizarse como ejercicio académico para explorar alineamiento imagen texto en condiciones controladas.
+
+No se recomienda usarlo para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
