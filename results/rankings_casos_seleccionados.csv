@@ -1,0 +1,51 @@
+image_id,rank,text_id,candidate_image_id,caption_col,caption,score,is_correct
+T010,1,T025_caption_1,T025,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta multicolor, tierra.",0.3135227262973785,False
+T010,2,T020_caption_1,T020,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta multicolor, tierra.",0.3073100745677948,False
+T010,3,T035_caption_1,T035,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra.",0.2936236262321472,False
+T010,4,T005_caption_1,T005,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra.",0.2936236262321472,False
+T010,5,T015_caption_1,T015,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta multicolor, tierra.",0.292924553155899,False
+T010,6,T013_caption_1,T013,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2920363545417785,False
+T010,7,T007_caption_1,T007,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.2882238924503326,False
+T010,8,T037_caption_1,T037,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.2882238924503326,False
+T010,9,T038_caption_1,T038,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2867938876152038,False
+T010,10,T008_caption_1,T008,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2867938876152038,False
+T024,1,T019_caption_1,T019,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta blanco, negro, gris.",0.3468204140663147,False
+T024,2,T014_caption_1,T014,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta blanco, negro, gris.",0.3322376012802124,False
+T024,3,T019_caption_3,T019,caption_3,"Diseno geometrico generado con paleta blanco, negro, gris, estructura horizontal y repeticion visual.",0.322868287563324,False
+T024,4,T024_caption_1,T024,caption_1,"Patron textil generado con composicion mixta, motivos de motivos geometricos combinados y paleta blanco, negro, gris.",0.3170833885669708,True
+T024,5,T029_caption_1,T029,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta blanco, negro, gris.",0.3061326742172241,False
+T024,6,T031_caption_1,T031,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta rojo, negro, crema.",0.302984744310379,False
+T024,7,T001_caption_1,T001,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta rojo, negro, crema.",0.302984744310379,False
+T024,8,T039_caption_1,T039,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta blanco, negro, gris.",0.3001809120178222,False
+T024,9,T009_caption_1,T009,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta blanco, negro, gris.",0.3001809120178222,False
+T024,10,T014_caption_3,T014,caption_3,"Diseno geometrico generado con paleta blanco, negro, gris, estructura vertical y repeticion visual.",0.2956154346466064,False
+T032,1,T032_caption_1,T032,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron.",0.3695981204509735,True
+T032,2,T002_caption_1,T002,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron.",0.3695981204509735,False
+T032,3,T007_caption_1,T007,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.3597531020641327,False
+T032,4,T037_caption_1,T037,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.3597531020641327,False
+T032,5,T032_caption_3,T032,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura vertical y repeticion visual.",0.3396110534667969,True
+T032,6,T002_caption_3,T002,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura vertical y repeticion visual.",0.3396110534667969,False
+T032,7,T007_caption_3,T007,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura horizontal y repeticion visual.",0.3308424949645996,False
+T032,8,T037_caption_3,T037,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura horizontal y repeticion visual.",0.3308424949645996,False
+T032,9,T027_caption_1,T027,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta azul, crema, marron.",0.3246048390865326,False
+T032,10,T017_caption_1,T017,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta azul, crema, marron.",0.3238990604877472,False
+T037,1,T037_caption_1,T037,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.371223509311676,True
+T037,2,T007_caption_1,T007,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.371223509311676,False
+T037,3,T002_caption_1,T002,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron.",0.3569765090942383,False
+T037,4,T032_caption_1,T032,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron.",0.3569765090942383,False
+T037,5,T037_caption_3,T037,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura horizontal y repeticion visual.",0.3277150690555572,True
+T037,6,T007_caption_3,T007,caption_3,"Diseno geometrico generado con paleta azul, crema, marron, estructura horizontal y repeticion visual.",0.3277150690555572,False
+T037,7,T027_caption_1,T027,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta azul, crema, marron.",0.3251916468143463,False
+T037,8,T012_caption_1,T012,caption_1,"Patron textil generado con composicion mixta, motivos de motivos geometricos combinados y paleta azul, crema, marron.",0.3202177286148071,False
+T037,9,T022_caption_1,T022,caption_1,"Patron textil generado con composicion modular, motivos de grecas escalonadas y paleta azul, crema, marron.",0.3155160248279571,False
+T037,10,T017_caption_1,T017,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta azul, crema, marron.",0.3148969411849975,False
+T040,1,T025_caption_1,T025,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta multicolor, tierra.",0.3135227262973785,False
+T040,2,T020_caption_1,T020,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta multicolor, tierra.",0.3073100745677948,False
+T040,3,T035_caption_1,T035,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra.",0.2936236262321472,False
+T040,4,T005_caption_1,T005,caption_1,"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra.",0.2936236262321472,False
+T040,5,T015_caption_1,T015,caption_1,"Patron textil generado con composicion central, motivos de rombos y paleta multicolor, tierra.",0.292924553155899,False
+T040,6,T013_caption_1,T013,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2920363545417785,False
+T040,7,T007_caption_1,T007,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.2882238924503326,False
+T040,8,T037_caption_1,T037,caption_1,"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",0.2882238924503326,False
+T040,9,T038_caption_1,T038,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2867938876152038,False
+T040,10,T008_caption_1,T008,caption_1,"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta ocre, marron, negro.",0.2867938876152038,False

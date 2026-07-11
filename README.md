@@ -222,3 +222,15 @@ Los siguientes pasos son:
 4. Completar la tabla de explicabilidad.
 5. Completar la ficha de uso responsable.
 6. Redactar la conclusión técnica final.
+
+## Análisis cualitativo
+
+Además de las métricas, el proyecto incluye una revisión de cinco casos reales del experimento:
+
+- dos aciertos claros;
+- dos errores claros;
+- un caso ambiguo.
+
+La tabla se almacena en `results/casos_analizados.csv` y la figura resumen en `figures/ejemplos_evaluados.png`.
+
+Este análisis permite revisar errores de alineamiento imagen texto, casos de ambigüedad y límites de interpretación del modelo.

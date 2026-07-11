@@ -155,3 +155,43 @@ Recall@5 puede ser insuficiente si se interpreta sola. En este experimento, el m
 ¿El sistema supera claramente al baseline o solo muestra funcionamiento parcial?
 
 El sistema supera claramente al baseline aleatorio en Recall@1, Recall@5 y MRR. Esto permite afirmar que existe una señal de alineamiento multimodal. Sin embargo, el desempeño sigue siendo parcial. El modelo mejora frente al azar, pero todavía falla en una proporción considerable de imágenes. Por ello, el resultado debe describirse como funcionamiento parcial en un entorno controlado, no como confiabilidad para uso real.
+
+## 6. Análisis de cinco casos
+
+Además de las métricas cuantitativas, se realizó una revisión cualitativa de cinco casos reales obtenidos del experimento. Esta revisión permite observar en qué situaciones el modelo acierta, dónde falla y qué casos requieren una interpretación más cuidadosa.
+
+Los casos fueron seleccionados a partir de los rankings generados por OpenCLIP. No se construyeron manualmente después de observar el resultado. Se seleccionaron dos aciertos claros, dos errores claros y un caso ambiguo.
+
+La tabla siguiente resume los casos analizados.
+
+| caso_id | image_id | tipo_caso | salida_modelo | resultado_esperado | rank_correcto | tipo_error | explicacion_breve |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| C01 | T037 | acierto | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron. | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron. | 1 | no_aplica | El modelo ubicó un caption correcto en la primera posición. La salida coincide con atributos visibles como composición horizontal, motivo bandas geometricas y paleta azul_crema_marron. |
+| C02 | T032 | acierto | Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron. | Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron. | 1 | no_aplica | El modelo ubicó un caption correcto en la primera posición. La salida coincide con atributos visibles como composición vertical, motivo bandas geometricas y paleta azul_crema_marron. |
+| C03 | T010 | error | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta multicolor, tierra. | Diseno geometrico generado con paleta multicolor, tierra, estructura modular y repeticion visual. | 26 | error_de_alineamiento_imagen_texto | El modelo ubicó como primera opción un caption asociado a otra imagen. El primer caption correcto apareció en la posición 26. Esto sugiere una confusión entre patrones visualmente parecidos o una asociación insuficiente entre los atributos de la imagen y el texto correspondiente. |
+| C04 | T040 | error | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta multicolor, tierra. | Diseno geometrico generado con paleta multicolor, tierra, estructura modular y repeticion visual. | 25 | error_de_alineamiento_imagen_texto | El modelo ubicó como primera opción un caption asociado a otra imagen. El primer caption correcto apareció en la posición 25. Esto sugiere una confusión entre patrones visualmente parecidos o una asociación insuficiente entre los atributos de la imagen y el texto correspondiente. |
+| C05 | T024 | ambiguo | Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta blanco, negro, gris. | Patron textil generado con composicion mixta, motivos de motivos geometricos combinados y paleta blanco, negro, gris. | 4 | error_por_ambiguedad_visual | El caso se considera ambiguo porque la imagen presenta una lectura visual menos directa. El nivel de ambigüedad registrado es alto. La salida del modelo puede estar parcialmente relacionada con la imagen, pero no permite una decisión estricta sin revisión cualitativa. |
+
+### Interpretación de los aciertos
+
+Los aciertos claros corresponden a casos en los que el modelo ubicó un caption correcto en la primera posición. En estos casos, la coincidencia se explica principalmente por atributos visuales observables, como composición, paleta cromática, presencia de bandas, motivos geométricos o repetición modular.
+
+Estos aciertos muestran que el modelo puede capturar señales generales de alineamiento imagen texto. Sin embargo, no deben interpretarse como comprensión completa del patrón ni como capacidad de clasificación real.
+
+### Interpretación de los errores
+
+Los errores claros corresponden a imágenes donde el primer resultado del modelo pertenece a otra imagen o donde el primer caption correcto aparece en una posición baja del ranking. Estos errores indican que el modelo puede confundir patrones que comparten rasgos visuales generales, como geometría repetitiva, contraste cromático o composición modular.
+
+Este tipo de error sería problemático en un uso real porque podría generar una asociación aparentemente plausible, pero incorrecta. Por ello, la salida del modelo requiere revisión humana y no debería utilizarse como decisión final.
+
+### Caso ambiguo
+
+El caso ambiguo muestra una situación en la que la imagen no tiene una lectura visual única o comparte rasgos con varios grupos de captions. En este caso, la salida del modelo puede ser parcialmente razonable, aunque no necesariamente sea la mejor respuesta.
+
+Este caso es importante porque muestra que no todos los desaciertos tienen la misma gravedad. Algunos resultados pueden ser incorrectos de forma clara, mientras que otros reflejan ambigüedad del dato o limitaciones en la forma en que se construyeron los captions.
+
+### Pregunta breve
+
+¿Cuál fue el error más importante y por qué sería problemático en un uso real?
+
+El error más importante es el error de alineamiento imagen texto, especialmente cuando el modelo entrega como primera opción un caption asociado a otra imagen. Este error sería problemático en un uso real porque puede presentar una asociación visual como si fuera correcta, aunque no corresponda al caso evaluado. En contextos donde se requiere interpretación cuidadosa, este tipo de salida puede inducir conclusiones equivocadas si no existe revisión humana.
