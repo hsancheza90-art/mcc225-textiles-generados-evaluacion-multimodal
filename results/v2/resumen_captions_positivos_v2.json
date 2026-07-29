@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "stage": "positive_caption_generation",
+  "config_sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5",
+  "vocabulary_sha256": "93c8f9c33c4d1562b77d9bfadb8b925e4f28ee4a8ec1117a149c5d097e3129e6",
+  "plan_sha256": "a51676d4f699c943540a422e3d6a83cc8667ba78fcafcff16dee4cae372bde56",
+  "image_manifest_sha256": "755fc6d6163c1a77ca8556667995d17af978333a7a7abd1c9dc77848ec5591f3",
+  "image_count": 56,
+  "positive_caption_count": 280,
+  "unique_positive_caption_count": 280,
+  "colorless_caption_count": 40,
+  "unique_colorless_caption_count": 40,
+  "structure_count": 8,
+  "counts_by_template": {
+    "TPL_01": 56,
+    "TPL_02": 56,
+    "TPL_03": 56,
+    "TPL_04": 56,
+    "TPL_05": 56
+  },
+  "counts_by_split": {
+    "id": 150,
+    "ood_palette": 60,
+    "ood_pattern": 50,
+    "ood_both": 20
+  },
+  "captions_per_semantic_id": [
+    5
+  ],
+  "colorless_per_pattern": {
+    "bands_horizontal": 5,
+    "bands_vertical": 5,
+    "chevrons_diagonal": 5,
+    "circles_concentric": 5,
+    "diamonds_central": 5,
+    "grecas_modular": 5,
+    "grid_reticular": 5,
+    "mixed_asymmetric": 5
+  },
+  "canonical_template_id": "TPL_01",
+  "captions_path": "data/v2/captions_positivos_v2.csv",
+  "colorless_path": "data/v2/captions_sin_color_v2.csv",
+  "multimodal_manifest_path": "data/v2/manifest_multimodal_v2.csv",
+  "captions_sha256": "1d4362450126f6998df56a40f7e4ef2b3634392ea2c43cc7925c7459981435eb",
+  "colorless_sha256": "513b9f163c3f88040076b6c84e946e9097d3577d6abea006015ce1b62cc7a7da",
+  "multimodal_manifest_sha256": "fb2628c48423f05108c469b1e1547ac664c766d8d222c52431c0606f41afbb47",
+  "caption_inventory_sha256": "418cd0fefe0f45e62efb38792e620799dc87295e704625dbfa7e282c0fc2b2dd",
+  "generation_valid": true
+}
