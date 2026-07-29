@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "stage": "cpu_environment_audit",
+  "python": {
+    "version": "3.11.9",
+    "implementation": "CPython",
+    "executable": "D:\\venvs\\mcc225-cpu\\Scripts\\python.exe",
+    "virtual_environment": true
+  },
+  "platform": {
+    "system": "Windows",
+    "release": "10",
+    "version": "10.0.19045",
+    "machine": "AMD64",
+    "processor": "AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD",
+    "logical_cpu_count": 12
+  },
+  "runtime": {
+    "canonical_device": "cpu",
+    "torch_version": "2.13.0+cpu",
+    "torchvision_version": "0.28.0+cpu",
+    "cuda_compiled": null,
+    "cuda_available": false,
+    "cuda_device_count": 0,
+    "torch_num_threads": 6
+  },
+  "model": {
+    "library": "open_clip",
+    "architecture": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "embedding_dimension": 512,
+    "context_length": 77
+  },
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "matplotlib": "3.9.2",
+    "Pillow": "10.4.0",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu",
+    "open-clip-torch": "3.3.0",
+    "scikit-learn": "1.5.1",
+    "tqdm": "4.66.5",
+    "ipykernel": "6.29.5"
+  },
+  "tokenizer_audit": {
+    "text_count": 600,
+    "unique_text_count": 494,
+    "duplicate_occurrence_count": 106,
+    "token_tensor_shape": [
+      600,
+      77
+    ],
+    "fully_occupied_sequence_count": 0,
+    "by_source": {
+      "positivos": {
+        "count": 280,
+        "minimum_nonzero_tokens": 34,
+        "maximum_nonzero_tokens": 76
+      },
+      "sin_color": {
+        "count": 40,
+        "minimum_nonzero_tokens": 25,
+        "maximum_nonzero_tokens": 57
+      },
+      "negativos_dificiles": {
+        "count": 280,
+        "minimum_nonzero_tokens": 52,
+        "maximum_nonzero_tokens": 76
+      }
+    },
+    "source_counts": {
+      "positivos": 280,
+      "sin_color": 40,
+      "negativos_dificiles": 280
+    },
+    "truncation_evidence": false
+  },
+  "inputs": {
+    "experiment_config_path": "config/experimento_v2.json",
+    "experiment_config_sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5",
+    "requirements_path": "requirements.txt",
+    "requirements_sha256": "b234f66e9c53fe75d351820b3bf898e8262c108957c2736666e008932cf0ec3d",
+    "requirements_validated": true,
+    "requirements_line_count": 11,
+    "direct_dependency_count": 10,
+    "text_source_paths": {
+      "positivos": "data/v2/captions_positivos_v2.csv",
+      "sin_color": "data/v2/captions_sin_color_v2.csv",
+      "negativos_dificiles": "data/v2/candidatos_negativos_dificiles_v2.csv"
+    },
+    "text_source_sha256": {
+      "positivos": "1d4362450126f6998df56a40f7e4ef2b3634392ea2c43cc7925c7459981435eb",
+      "sin_color": "513b9f163c3f88040076b6c84e946e9097d3577d6abea006015ce1b62cc7a7da",
+      "negativos_dificiles": "a49abc4e33624be4988451148e65135c05033a302e9a280f32e8b28826de5b6c"
+    }
+  },
+  "pip_freeze": {
+    "path": "results/v2/entorno_cpu_pip_freeze.txt",
+    "sha256": "3dba63f75e0f5b4f4dff5cf46d53914e854d449c2aa5710cfa412bc714bbccb7",
+    "package_line_count": 72
+  },
+  "environment_valid": true
+}

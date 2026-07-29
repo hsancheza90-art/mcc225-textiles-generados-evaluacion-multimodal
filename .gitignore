@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -21,3 +21,5 @@ Thumbs.db
 # Archivos temporales
 *.tmp
 *.bak
+
+.venv/
