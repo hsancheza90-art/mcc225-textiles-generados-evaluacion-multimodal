@@ -53,16 +53,24 @@
     "relevance": "binary_structural_relevance",
     "metrics": {
       "primary": [
-        "structural_recall_at_1",
+        "structural_hit_at_1",
         "structural_mrr",
         "structural_ndcg_at_10"
       ],
       "supplementary": [
-        "structural_recall_at_5",
+        "structural_hit_at_5",
+        "structural_fractional_recall_at_5",
         "best_relevant_margin"
       ],
       "best_relevant_margin_definition": "maximum_relevant_score_minus_maximum_nonrelevant_score",
-      "ndcg_cutoff": 10
+      "ndcg_cutoff": 10,
+      "legacy_metric_mapping": {
+        "metricas_retrieval_v2.recall_at_1": "structural_hit_at_1",
+        "metricas_retrieval_v2.recall_at_5": "structural_hit_at_5"
+      },
+      "hit_at_k_definition": "one_if_at_least_one_relevant_image_appears_in_top_k_else_zero",
+      "fractional_recall_at_5_definition": "number_of_relevant_images_in_top_5_divided_by_total_relevant_images",
+      "fractional_recall_at_5_denominator": 7
     },
     "raw_query_condition_rows": 640,
     "group_condition_rows": 160
@@ -130,6 +138,8 @@
     "full_caption_group_metrics_average_seven_palette_specific_queries",
     "caption_without_color_group_metrics_use_one_colorless_query",
     "secondary_exact_evaluation_does_not_include_colorless_captions",
-    "group_regime_results_have_unequal_sample_sizes_30_and_10"
+    "group_regime_results_have_unequal_sample_sizes_30_and_10",
+    "legacy_recall_at_k_function_is_interpreted_as_hit_at_k_for_multiple_relevance",
+    "best_relevant_margin_is_computed_independently_from_positive_margin"
   ]
 }

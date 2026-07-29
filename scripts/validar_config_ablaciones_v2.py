@@ -11,6 +11,8 @@ from typing import Any
 
 import numpy as np
 
+from metricas_retrieval_v2 import evaluate_query
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -396,26 +398,51 @@ def main() -> None:
 
     metric_config = primary["metrics"]
 
-    assert set(
-        metric_config["primary"]
-    ) == {
-        "structural_recall_at_1",
+    assert metric_config["primary"] == [
+        "structural_hit_at_1",
         "structural_mrr",
         "structural_ndcg_at_10",
-    }
+    ]
 
-    assert set(
-        metric_config[
-            "supplementary"
-        ]
-    ) == {
-        "structural_recall_at_5",
+    assert metric_config[
+        "supplementary"
+    ] == [
+        "structural_hit_at_5",
+        "structural_fractional_recall_at_5",
         "best_relevant_margin",
-    }
+    ]
 
     assert (
         metric_config["ndcg_cutoff"]
         == 10
+    )
+
+    assert (
+        metric_config[
+            "hit_at_k_definition"
+        ]
+        == (
+            "one_if_at_least_one_relevant_"
+            "image_appears_in_top_k_else_zero"
+        )
+    )
+
+    assert (
+        metric_config[
+            "fractional_recall_at_5_definition"
+        ]
+        == (
+            "number_of_relevant_images_in_"
+            "top_5_divided_by_total_relevant_"
+            "images"
+        )
+    )
+
+    assert (
+        metric_config[
+            "fractional_recall_at_5_denominator"
+        ]
+        == 7
     )
 
     assert (
@@ -427,6 +454,141 @@ def main() -> None:
             "maximum_nonrelevant_score"
         )
     )
+
+    assert metric_config[
+        "legacy_metric_mapping"
+    ] == {
+        "metricas_retrieval_v2.recall_at_1": (
+            "structural_hit_at_1"
+        ),
+        "metricas_retrieval_v2.recall_at_5": (
+            "structural_hit_at_5"
+        ),
+    }
+
+    synthetic_scores = np.asarray(
+        [
+            12.0,
+            11.0,
+            10.0,
+            9.0,
+            8.0,
+            7.0,
+            6.0,
+            5.0,
+            4.0,
+            3.0,
+            2.0,
+            1.0,
+        ],
+        dtype=np.float64,
+    )
+
+    synthetic_relevant = {
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        11,
+    }
+
+    synthetic_keys = [
+        f"IMG_{index:02d}"
+        for index in range(12)
+    ]
+
+    synthetic_result = evaluate_query(
+        scores=synthetic_scores,
+        relevant_indices=synthetic_relevant,
+        candidate_keys=synthetic_keys,
+    )
+
+    synthetic_ranking = [
+        int(index)
+        for index in synthetic_result[
+            "ranking_indices"
+        ]
+    ]
+
+    assert synthetic_ranking == list(
+        range(12)
+    )
+
+    assert (
+        synthetic_result["recall_at_1"]
+        == 1.0
+    )
+
+    assert (
+        synthetic_result["recall_at_5"]
+        == 1.0
+    )
+
+    assert (
+        synthetic_result["mrr"]
+        == 1.0
+    )
+
+    assert (
+        "positive_margin"
+        not in synthetic_result
+    )
+
+    relevant_in_top_5 = sum(
+        candidate_index
+        in synthetic_relevant
+        for candidate_index
+        in synthetic_ranking[:5]
+    )
+
+    synthetic_fractional_recall_at_5 = (
+        relevant_in_top_5
+        / len(synthetic_relevant)
+    )
+
+    assert abs(
+        synthetic_fractional_recall_at_5
+        - (3.0 / 7.0)
+    ) < 1e-12
+
+    relevant_scores = [
+        float(
+            synthetic_scores[index]
+        )
+        for index in synthetic_relevant
+    ]
+
+    nonrelevant_scores = [
+        float(
+            synthetic_scores[index]
+        )
+        for index in range(
+            synthetic_scores.size
+        )
+        if index
+        not in synthetic_relevant
+    ]
+
+    synthetic_best_relevant_margin = (
+        max(relevant_scores)
+        - max(nonrelevant_scores)
+    )
+
+    assert abs(
+        synthetic_best_relevant_margin
+        - 1.0
+    ) < 1e-12
+
+    assert abs(
+        float(
+            synthetic_result[
+                "ndcg_at_10"
+            ]
+        )
+        - 0.6930226460117498
+    ) < 1e-12
 
     secondary = contract[
         "secondary_exact_evaluation"
@@ -1203,6 +1365,30 @@ def main() -> None:
         ),
     )
     print("E1 disponible como ancla exacta: True")
+    print(
+        "Semántica legacy recall_at_k = Hit@K:",
+        True,
+    )
+    print(
+        "Recall fraccional@5 sintético:",
+        format(
+            synthetic_fractional_recall_at_5,
+            ".12f",
+        ),
+    )
+    print(
+        "Best relevant margin sintético:",
+        format(
+            synthetic_best_relevant_margin,
+            ".12f",
+        ),
+    )
+    print(
+        "positive_margin ausente con "
+        "relevancia múltiple:",
+        "positive_margin"
+        not in synthetic_result,
+    )
     print("No se generaron resultados experimentales.")
     print("Contrato E4 válido: True")
 
