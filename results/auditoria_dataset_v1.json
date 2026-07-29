@@ -1,0 +1,87 @@
+{
+  "dataset_version": "v1",
+  "manifest_path": "data/manifest_textiles_generados.csv",
+  "manifest_rows": 40,
+  "image_ids_unique": 40,
+  "duplicate_image_ids": [],
+  "caption_columns": [
+    "caption_1",
+    "caption_2",
+    "caption_3",
+    "caption_4",
+    "caption_5"
+  ],
+  "captions_expected_per_image": 5,
+  "missing_caption_count": 0,
+  "missing_image_count": 0,
+  "caption_slots_total": 200,
+  "caption_texts_unique_global": 76,
+  "caption_slots_repeated": 124,
+  "caption_unique_by_column": {
+    "caption_1": 30,
+    "caption_2": 6,
+    "caption_3": 30,
+    "caption_4": 6,
+    "caption_5": 4
+  },
+  "shared_caption_text_count": 36,
+  "shared_caption_cross_signature_count": 16,
+  "semantic_signatures_unique": 30,
+  "semantic_signatures_repeated": 10,
+  "queries_affected_by_semantic_duplicates": 20,
+  "positive_captions_current_per_query": 5,
+  "positive_captions_semantic_duplicate_group": 10,
+  "image_files_hashed": 40,
+  "image_hashes_unique": 31,
+  "exact_duplicate_image_groups": 9,
+  "exact_duplicate_image_pairs": [
+    [
+      "T001",
+      "T031"
+    ],
+    [
+      "T002",
+      "T032"
+    ],
+    [
+      "T003",
+      "T033"
+    ],
+    [
+      "T004",
+      "T034"
+    ],
+    [
+      "T005",
+      "T035"
+    ],
+    [
+      "T007",
+      "T037"
+    ],
+    [
+      "T008",
+      "T038"
+    ],
+    [
+      "T009",
+      "T039"
+    ],
+    [
+      "T010",
+      "T040"
+    ]
+  ],
+  "palette_count": 5,
+  "configuration_count": 6,
+  "expected_joint_cycle_length": 30,
+  "records_after_first_complete_cycle": 10,
+  "structural_integrity_ok": true,
+  "methodological_validity_ok": false,
+  "methodological_warnings": [
+    "Se detectaron im?genes exactamente duplicadas.",
+    "Se detectaron firmas sem?nticas repetidas.",
+    "Existen captions id?nticos que describen varias firmas sem?nticas.",
+    "El n?mero de registros supera la longitud del ciclo conjunto de configuraciones y paletas."
+  ]
+}
