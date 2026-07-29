@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0",
+  "protocol_version": "2.0",
+  "project": {
+    "student": "Henry Sánchez Alvarado",
+    "course": "MCC225",
+    "title": "Evaluación controlada de OpenCLIP para recuperación imagen-texto con patrones textiles sintéticos",
+    "task": "cross_modal_image_to_text_retrieval",
+    "scope": "synthetic_geometric_patterns",
+    "cultural_identification": false,
+    "fine_tuning": false
+  },
+  "reproducibility": {
+    "seed": 225,
+    "python_target": "3.11",
+    "deterministic_generation": true,
+    "relative_paths_only": true,
+    "bootstrap_iterations": 2000,
+    "confidence_level": 0.95
+  },
+  "model": {
+    "library": "open_clip",
+    "architecture": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "mode": "zero_shot",
+    "frozen": true,
+    "embedding_normalization": "l2",
+    "similarity": "dot_product_of_normalized_embeddings"
+  },
+  "dataset_v2": {
+    "image_width": 512,
+    "image_height": 512,
+    "expected_images": 56,
+    "positive_captions_per_image": 5,
+    "hard_negatives_per_query": 4,
+    "semantic_id_fields": [
+      "palette_id",
+      "motif",
+      "orientation",
+      "composition",
+      "symmetry"
+    ],
+    "derived_fields": [
+      "ambiguity_level"
+    ],
+    "hard_negative_attributes": [
+      "palette_id",
+      "motif",
+      "orientation",
+      "composition",
+      "symmetry"
+    ],
+    "base_patterns": [
+      {
+        "pattern_id": "bands_horizontal",
+        "motif": "bandas geométricas",
+        "orientation": "horizontal",
+        "composition": "bandas",
+        "symmetry": "repetitiva",
+        "ambiguity_level": "bajo"
+      },
+      {
+        "pattern_id": "bands_vertical",
+        "motif": "bandas geométricas",
+        "orientation": "vertical",
+        "composition": "bandas",
+        "symmetry": "repetitiva",
+        "ambiguity_level": "bajo"
+      },
+      {
+        "pattern_id": "diamonds_central",
+        "motif": "rombos",
+        "orientation": "diagonal",
+        "composition": "central",
+        "symmetry": "bilateral",
+        "ambiguity_level": "medio"
+      },
+      {
+        "pattern_id": "grecas_modular",
+        "motif": "grecas escalonadas",
+        "orientation": "horizontal",
+        "composition": "modular",
+        "symmetry": "repetitiva",
+        "ambiguity_level": "medio"
+      },
+      {
+        "pattern_id": "grid_reticular",
+        "motif": "cuadrícula geométrica",
+        "orientation": "bidireccional",
+        "composition": "reticular",
+        "symmetry": "repetitiva",
+        "ambiguity_level": "bajo"
+      },
+      {
+        "pattern_id": "mixed_asymmetric",
+        "motif": "motivos geométricos combinados",
+        "orientation": "mixta",
+        "composition": "mixta",
+        "symmetry": "asimétrica",
+        "ambiguity_level": "alto"
+      }
+    ],
+    "heldout_patterns": [
+      {
+        "pattern_id": "chevrons_diagonal",
+        "motif": "chevrones",
+        "orientation": "diagonal",
+        "composition": "bandas",
+        "symmetry": "repetitiva",
+        "ambiguity_level": "medio"
+      },
+      {
+        "pattern_id": "circles_concentric",
+        "motif": "círculos concéntricos",
+        "orientation": "radial",
+        "composition": "central",
+        "symmetry": "radial",
+        "ambiguity_level": "bajo"
+      }
+    ],
+    "base_palettes": {
+      "rojo_negro_crema": [
+        [120, 35, 30],
+        [30, 25, 25],
+        [225, 205, 165]
+      ],
+      "azul_crema_marron": [
+        [35, 70, 120],
+        [230, 210, 170],
+        [95, 60, 40]
+      ],
+      "ocre_marron_negro": [
+        [180, 120, 55],
+        [95, 55, 30],
+        [25, 25, 25]
+      ],
+      "blanco_negro_gris": [
+        [235, 235, 225],
+        [30, 30, 30],
+        [130, 130, 130]
+      ],
+      "multicolor_tierra": [
+        [150, 55, 45],
+        [220, 160, 65],
+        [45, 95, 80],
+        [35, 45, 100]
+      ]
+    },
+    "heldout_palettes": {
+      "verde_ocre_crema": [
+        [45, 110, 70],
+        [190, 135, 55],
+        [235, 220, 175]
+      ],
+      "morado_gris_rosa": [
+        [95, 55, 125],
+        [145, 145, 155],
+        [210, 145, 160]
+      ]
+    },
+    "splits": {
+      "id": {
+        "pattern_source": "base_patterns",
+        "palette_source": "base_palettes",
+        "expected_images": 30
+      },
+      "ood_palette": {
+        "pattern_source": "base_patterns",
+        "palette_source": "heldout_palettes",
+        "expected_images": 12
+      },
+      "ood_pattern": {
+        "pattern_source": "heldout_patterns",
+        "palette_source": "base_palettes",
+        "expected_images": 10
+      },
+      "ood_both": {
+        "pattern_source": "heldout_patterns",
+        "palette_source": "heldout_palettes",
+        "expected_images": 4
+      }
+    }
+  },
+  "experiments": [
+    {
+      "experiment_id": "E0",
+      "name": "reproduce_v1",
+      "dataset": "v1"
+    },
+    {
+      "experiment_id": "E1",
+      "name": "global_retrieval_v2",
+      "dataset": "v2"
+    },
+    {
+      "experiment_id": "E2",
+      "name": "hard_negative_forced_choice",
+      "dataset": "v2"
+    },
+    {
+      "experiment_id": "E3",
+      "name": "baseline_comparison",
+      "conditions": [
+        "openclip",
+        "random",
+        "color_histogram"
+      ]
+    },
+    {
+      "experiment_id": "E4",
+      "name": "color_ablations",
+      "conditions": [
+        "original_image_full_caption",
+        "grayscale_image_full_caption",
+        "original_image_caption_without_color",
+        "grayscale_image_caption_without_color"
+      ]
+    },
+    {
+      "experiment_id": "E5",
+      "name": "id_ood_comparison",
+      "conditions": [
+        "id",
+        "ood_palette",
+        "ood_pattern",
+        "ood_both"
+      ]
+    },
+    {
+      "experiment_id": "E6",
+      "name": "bootstrap_and_stratified_analysis",
+      "strata": [
+        "pattern_id",
+        "ambiguity_level",
+        "split",
+        "changed_attribute"
+      ]
+    }
+  ],
+  "metrics": {
+    "primary": [
+      "recall_at_1",
+      "mrr",
+      "ndcg_at_10"
+    ],
+    "supplementary": [
+      "recall_at_5",
+      "hard_negative_accuracy",
+      "positive_margin",
+      "paired_difference"
+    ],
+    "hard_negative_chance_level": 0.2
+  },
+  "baselines": [
+    {
+      "baseline_id": "random",
+      "uses_image": false,
+      "uses_text": false,
+      "seed": 225
+    },
+    {
+      "baseline_id": "color_histogram",
+      "uses_image": true,
+      "uses_text": true,
+      "uses_only_attribute": "palette_id",
+      "color_space": "HSV"
+    }
+  ],
+  "prohibited_claims": [
+    "cultural_identification",
+    "heritage_authentication",
+    "geographic_origin_inference",
+    "symbolic_interpretation",
+    "generalization_to_real_textiles"
+  ]
+}
