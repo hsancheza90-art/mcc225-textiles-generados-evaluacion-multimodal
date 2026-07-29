@@ -109,11 +109,68 @@ def word_count(text: str) -> int:
 
 
 
+def validate_unicode_integrity(
+    text: str,
+    context: str,
+) -> None:
+    """Rechaza signos asociados con corrupción textual."""
+
+    if "\ufffd" in text:
+        raise AssertionError(
+            f"{context}: contiene el carácter Unicode "
+            "de reemplazo U+FFFD."
+        )
+
+    damaged_positions = [
+        index
+        for index, character in enumerate(text)
+        if (
+            character == "?"
+            and index > 0
+            and index + 1 < len(text)
+            and text[index - 1].isalpha()
+            and text[index + 1].isalpha()
+        )
+    ]
+
+    if not damaged_positions:
+        return
+
+    damaged_words: set[str] = set()
+
+    for position in damaged_positions:
+        start = position
+        end = position + 1
+
+        while (
+            start > 0
+            and text[start - 1].isalpha()
+        ):
+            start -= 1
+
+        while (
+            end < len(text)
+            and text[end].isalpha()
+        ):
+            end += 1
+
+        damaged_words.add(
+            text[start:end]
+        )
+
+    raise AssertionError(
+        f"{context}: contiene signos ? dentro "
+        "de palabras, posible corrupción UTF-8: "
+        f"{sorted(damaged_words)}."
+    )
+
 def validate_typography(
     caption: str,
     context: str,
 ) -> None:
-    """Comprueba reglas editoriales b?sicas del caption."""
+    """Comprueba reglas editoriales básicas del caption."""
+    validate_unicode_integrity(caption, context)
+
 
     if caption != caption.strip():
         raise AssertionError(
@@ -129,20 +186,20 @@ def validate_typography(
 
     if re.search(r";(?=\S)", caption):
         raise AssertionError(
-            f"{context}: falta un espacio despu?s de "
+            f"{context}: falta un espacio después de "
             f"punto y coma. Caption: {caption}"
         )
 
     if re.search(r",(?=\S)", caption):
         raise AssertionError(
-            f"{context}: falta un espacio despu?s de "
+            f"{context}: falta un espacio después de "
             f"coma. Caption: {caption}"
         )
 
     if re.search(r"\s+[;,.]", caption):
         raise AssertionError(
             f"{context}: contiene un espacio antes de "
-            f"un signo de puntuaci?n. Caption: {caption}"
+            f"un signo de puntuación. Caption: {caption}"
         )
 
     normalized = normalize_text(caption)

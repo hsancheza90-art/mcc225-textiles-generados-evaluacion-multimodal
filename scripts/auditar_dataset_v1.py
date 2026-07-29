@@ -405,7 +405,7 @@ def build_audit() -> dict[str, Any]:
 
     if exact_duplicate_groups:
         methodological_warnings.append(
-            "Se detectaron im?genes exactamente duplicadas."
+            "Se detectaron imágenes exactamente duplicadas."
         )
 
     if any(
@@ -413,7 +413,7 @@ def build_audit() -> dict[str, Any]:
         for group in signature_groups.values()
     ):
         methodological_warnings.append(
-            "Se detectaron firmas sem?nticas repetidas."
+            "Se detectaron firmas semánticas repetidas."
         )
 
     if any(
@@ -421,13 +421,13 @@ def build_audit() -> dict[str, Any]:
         for row in shared_caption_rows
     ):
         methodological_warnings.append(
-            "Existen captions id?nticos que describen "
-            "varias firmas sem?nticas."
+            "Existen captions idénticos que describen "
+            "varias firmas semánticas."
         )
 
     if len(rows) > expected_cycle_length:
         methodological_warnings.append(
-            "El n?mero de registros supera la longitud "
+            "El número de registros supera la longitud "
             "del ciclo conjunto de configuraciones y paletas."
         )
 

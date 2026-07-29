@@ -3,7 +3,7 @@
   "dataset_version": "v2",
   "stage": "positive_caption_generation",
   "config_sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5",
-  "vocabulary_sha256": "93c8f9c33c4d1562b77d9bfadb8b925e4f28ee4a8ec1117a149c5d097e3129e6",
+  "vocabulary_sha256": "0d95fa5f5dea139462cc58cf6f2e7bed8e6e66c0a49e2394e45ecd28bd347fc9",
   "plan_sha256": "a51676d4f699c943540a422e3d6a83cc8667ba78fcafcff16dee4cae372bde56",
   "image_manifest_sha256": "755fc6d6163c1a77ca8556667995d17af978333a7a7abd1c9dc77848ec5591f3",
   "image_count": 56,
@@ -42,9 +42,9 @@
   "captions_path": "data/v2/captions_positivos_v2.csv",
   "colorless_path": "data/v2/captions_sin_color_v2.csv",
   "multimodal_manifest_path": "data/v2/manifest_multimodal_v2.csv",
-  "captions_sha256": "1d4362450126f6998df56a40f7e4ef2b3634392ea2c43cc7925c7459981435eb",
-  "colorless_sha256": "513b9f163c3f88040076b6c84e946e9097d3577d6abea006015ce1b62cc7a7da",
-  "multimodal_manifest_sha256": "fb2628c48423f05108c469b1e1547ac664c766d8d222c52431c0606f41afbb47",
-  "caption_inventory_sha256": "418cd0fefe0f45e62efb38792e620799dc87295e704625dbfa7e282c0fc2b2dd",
+  "captions_sha256": "eb47bbe4e1ee08aabcce018bc7b142e717134e6faef4f4d9e7ae472a1141f9ba",
+  "colorless_sha256": "cb6a8138c6329055623e140107fb45bc0d11bcedbe80dc9630bc6d04452e950e",
+  "multimodal_manifest_sha256": "7a93172352ed11a73369663a82f54be330c626d204038333465e5752392fcfd6",
+  "caption_inventory_sha256": "65484e57b6fbdc6382c67b3d6db10ca13442ad48378b52db84db7083ff15ae3d",
   "generation_valid": true
 }

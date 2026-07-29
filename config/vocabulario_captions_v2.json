@@ -48,7 +48,7 @@
   "full_templates": [
     {
       "template_id": "TPL_01",
-      "text": "Patr?n geom?trico sint?tico con paleta {palette}; con {motif} como motivo principal; orientaci?n {orientation}; composici?n {composition}; simetr?a {symmetry}."
+      "text": "Patrón geométrico sintético con paleta {palette}; con {motif} como motivo principal; orientación {orientation}; composición {composition}; simetría {symmetry}."
     },
     {
       "template_id": "TPL_02",
@@ -70,7 +70,7 @@
   "colorless_templates": [
     {
       "template_id": "TPL_01",
-      "text": "Patr?n geom?trico sint?tico con {motif} como motivo principal; orientaci?n {orientation}; composici?n {composition}; simetr?a {symmetry}."
+      "text": "Patrón geométrico sintético con {motif} como motivo principal; orientación {orientation}; composición {composition}; simetría {symmetry}."
     },
     {
       "template_id": "TPL_02",
@@ -86,7 +86,7 @@
     },
     {
       "template_id": "TPL_05",
-      "text": "Textura geom?trica sint?tica con {motif}, orientaci?n {orientation}, composici?n {composition} y simetr?a {symmetry}."
+      "text": "Textura geométrica sintética con {motif}, orientación {orientation}, composición {composition} y simetría {symmetry}."
     }
   ],
   "validation": {

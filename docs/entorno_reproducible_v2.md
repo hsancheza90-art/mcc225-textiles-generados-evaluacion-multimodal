@@ -216,9 +216,9 @@ La salida esperada tiene forma:
 
 En la auditoría realizada:
 
-- los captions positivos ocuparon entre 34 y 76 tokens no nulos;
-- los captions sin color ocuparon entre 25 y 57 tokens no nulos;
-- los candidatos difíciles ocuparon entre 52 y 76 tokens no nulos;
+- los captions positivos ocuparon entre 34 y 68 tokens no nulos;
+- los captions sin color ocuparon entre 25 y 49 tokens no nulos;
+- los candidatos difíciles ocuparon entre 44 y 68 tokens no nulos;
 - ninguna secuencia ocupó completamente los 77 tokens.
 
 Por tanto, no se encontró evidencia de truncamiento.
