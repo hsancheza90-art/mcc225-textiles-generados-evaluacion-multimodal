@@ -1,0 +1,29 @@
+# Normalización reproducible de archivos de texto
+* text=auto eol=lf
+
+# Código y configuración
+*.py text eol=lf
+*.ps1 text eol=lf
+*.json text eol=lf
+*.csv text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+
+# Notebooks
+*.ipynb text eol=lf
+
+# Formatos binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pdf binary
+*.pptx binary
+*.xlsx binary
+*.parquet binary
