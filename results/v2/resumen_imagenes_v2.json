@@ -37,7 +37,7 @@
   "image_height": 512,
   "images_directory": "data/v2/images",
   "manifest_path": "data/v2/manifest_imagenes_v2.csv",
-  "manifest_sha256": "755fc6d6163c1a77ca8556667995d17af978333a7a7abd1c9dc77848ec5591f3",
+  "manifest_sha256": "e26af45230257367219ad0700fe8a14f207e41428f9dd5928e6973f213405b81",
   "inventory_sha256": "5af6e8fad7cfbed880641cc638ca294cd141641833bac8b6c36a6451fc383be2",
   "generation_valid": true
 }

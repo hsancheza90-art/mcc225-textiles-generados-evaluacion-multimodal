@@ -78,6 +78,18 @@ def load_csv(path: Path) -> list[dict[str, Any]]:
             f"No existe el archivo: {path}"
         )
 
+    raw = path.read_bytes()
+
+    assert not raw.startswith(
+        b"\xef\xbb\xbf"
+    ), f"{path}: contiene BOM UTF-8."
+
+    assert b"\r\n" not in raw, (
+        f"{path}: contiene finales CRLF."
+    )
+
+    raw.decode("utf-8")
+
     with path.open(
         "r",
         encoding="utf-8",

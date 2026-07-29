@@ -160,6 +160,7 @@ def write_csv(
         writer = csv.DictWriter(
             file,
             fieldnames=list(MANIFEST_FIELDS),
+            lineterminator="\n",
         )
         writer.writeheader()
         writer.writerows(records)
@@ -181,6 +182,7 @@ def write_json(
         )
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
 
 
