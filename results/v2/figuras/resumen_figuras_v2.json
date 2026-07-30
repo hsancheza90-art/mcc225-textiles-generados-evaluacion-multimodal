@@ -1,0 +1,445 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "FG1",
+  "dataset_version": "v2",
+  "generation_valid": true,
+  "counts": {
+    "figures": 5,
+    "graphic_files": 10,
+    "manifest_rows": 10,
+    "total_files": 12
+  },
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "matplotlib": "3.9.2",
+  "style": {
+    "backend": "Agg",
+    "font_family": "DejaVu Sans",
+    "color_strategy": "matplotlib_default_cycle",
+    "figure_facecolor": "white",
+    "axes_facecolor": "white",
+    "dpi_png": 300,
+    "svg_fonttype": "none",
+    "bbox_inches": "tight",
+    "grid_axis": "y",
+    "grid_alpha": 0.25,
+    "title_fontsize": 13,
+    "label_fontsize": 10,
+    "tick_fontsize": 9,
+    "legend_fontsize": 9,
+    "annotation_fontsize": 9,
+    "annotation_decimals": 3,
+    "close_after_save": true,
+    "language": "es"
+  },
+  "protected_path": {
+    "path": "figures",
+    "file_count": 5,
+    "inventory_sha256_before": "7b0e1c5b0313a9d14b62b6e60452503dcc4d92d6c3931bf54aa361a618e41550",
+    "inventory_sha256_after": "7b0e1c5b0313a9d14b62b6e60452503dcc4d92d6c3931bf54aa361a618e41550",
+    "unchanged": true
+  },
+  "input_artifacts": {
+    "master_metrics": {
+      "path": "results/v2/tablas_maestras/metricas_maestras_v2.csv",
+      "sha256": "a349632f00b61a62ec06f3f303100a1533ee5141da96de52e46c3692b75d49a3"
+    },
+    "master_comparisons": {
+      "path": "results/v2/tablas_maestras/comparaciones_maestras_v2.csv",
+      "sha256": "902199eea222169656186ca00c8f28183c48cc2419e6fb81c0a4e2b76939a8d7"
+    },
+    "master_summary": {
+      "path": "results/v2/tablas_maestras/resumen_tablas_maestras_v2.json",
+      "sha256": "b9546e645b3a465456b198499e2f902c323b249cab34f9002d89416a2c306cea"
+    }
+  },
+  "figures": [
+    {
+      "figure_id": "F1",
+      "filename_stem": "f1_recuperacion_exacta_v2",
+      "comparability_family": "global_exact_retrieval",
+      "chart_type": "grouped_bar",
+      "title": "Recuperación exacta en la galería global",
+      "data": {
+        "records": [
+          {
+            "experiment_id": "E3",
+            "source_section": "overall_metrics",
+            "condition": "random",
+            "values": {
+              "recall_at_1": 0.014285714286,
+              "recall_at_5": 0.089285714286,
+              "mrr": 0.081401334995,
+              "ndcg_at_10": 0.081923479212
+            }
+          },
+          {
+            "experiment_id": "E3",
+            "source_section": "overall_metrics",
+            "condition": "color_histogram",
+            "values": {
+              "recall_at_1": 0.125,
+              "recall_at_5": 0.625,
+              "mrr": 0.339732142857,
+              "ndcg_at_10": 0.494183064513
+            }
+          },
+          {
+            "experiment_id": "E3",
+            "source_section": "overall_metrics",
+            "condition": "openclip",
+            "values": {
+              "recall_at_1": 0.235714285714,
+              "recall_at_5": 0.825,
+              "mrr": 0.462076240384,
+              "ndcg_at_10": 0.58130847073
+            }
+          },
+          {
+            "experiment_id": "E4",
+            "source_section": "exact_overall_metrics",
+            "condition": "grayscale_image_full_caption",
+            "values": {
+              "recall_at_1": 0.085714285714,
+              "recall_at_5": 0.314285714286,
+              "mrr": 0.207080297046,
+              "ndcg_at_10": 0.251120969549
+            }
+          }
+        ],
+        "metrics": [
+          "recall_at_1",
+          "recall_at_5",
+          "mrr",
+          "ndcg_at_10"
+        ],
+        "data_point_count": 16
+      },
+      "files": [
+        {
+          "figure_id": "F1",
+          "filename_stem": "f1_recuperacion_exacta_v2",
+          "file_format": "png",
+          "relative_path": "results/v2/figuras/f1_recuperacion_exacta_v2.png",
+          "sha256": "719b71b1451fba5b9148942e0d497096875e5f345e8c9a31f19885f5bf454dcf",
+          "size_bytes": 184899
+        },
+        {
+          "figure_id": "F1",
+          "filename_stem": "f1_recuperacion_exacta_v2",
+          "file_format": "svg",
+          "relative_path": "results/v2/figuras/f1_recuperacion_exacta_v2.svg",
+          "sha256": "536b8476a58cda7abd8b5758733cca63a1d1d857e794d02883ebf3472c65812b",
+          "size_bytes": 17887
+        }
+      ]
+    },
+    {
+      "figure_id": "F2",
+      "filename_stem": "f2_negativos_dificiles_v2",
+      "comparability_family": "hard_negative_forced_choice",
+      "chart_type": "horizontal_bar",
+      "title": "Desempeño ante negativos difíciles",
+      "data": {
+        "record": {
+          "experiment_id": "E2",
+          "source_section": "overall_metrics",
+          "condition": "openclip_hard_negatives"
+        },
+        "bar_values": {
+          "hard_negative_accuracy": 0.517857142857,
+          "mrr": 0.729166666667,
+          "ndcg_at_10": 0.798675103763,
+          "pairwise_win_rate": 0.834821428571
+        },
+        "annotation_values": {
+          "mean_paired_difference": 0.025734035431
+        },
+        "bar_count": 4
+      },
+      "files": [
+        {
+          "figure_id": "F2",
+          "filename_stem": "f2_negativos_dificiles_v2",
+          "file_format": "png",
+          "relative_path": "results/v2/figuras/f2_negativos_dificiles_v2.png",
+          "sha256": "529c38012c9644d1b4c52ea14b29ce1edd521078da4e2f22fe9c73cbd03b3b84",
+          "size_bytes": 134276
+        },
+        {
+          "figure_id": "F2",
+          "filename_stem": "f2_negativos_dificiles_v2",
+          "file_format": "svg",
+          "relative_path": "results/v2/figuras/f2_negativos_dificiles_v2.svg",
+          "sha256": "ee427e8d2dc2ea24542554a6b270a11f54b08f3ba9d827a4309706280bab0547",
+          "size_bytes": 10232
+        }
+      ]
+    },
+    {
+      "figure_id": "F3",
+      "filename_stem": "f3_ablaciones_estructurales_v2",
+      "comparability_family": "structural_multi_relevance",
+      "chart_type": "grouped_bar",
+      "title": "Ablaciones cromáticas en la recuperación estructural",
+      "data": {
+        "records": [
+          {
+            "experiment_id": "E4",
+            "source_section": "structural_overall_metrics",
+            "condition": "original_image_full_caption",
+            "values": {
+              "structural_hit_at_1": 0.239285714286,
+              "structural_hit_at_5": 0.832142857143,
+              "structural_fractional_recall_at_5": 0.143367346939,
+              "structural_mrr": 0.467428945063,
+              "structural_ndcg_at_10": 0.244898991783
+            }
+          },
+          {
+            "experiment_id": "E4",
+            "source_section": "structural_overall_metrics",
+            "condition": "grayscale_image_full_caption",
+            "values": {
+              "structural_hit_at_1": 0.292857142857,
+              "structural_hit_at_5": 0.510714285714,
+              "structural_fractional_recall_at_5": 0.20306122449,
+              "structural_mrr": 0.411211185169,
+              "structural_ndcg_at_10": 0.327758534686
+            }
+          },
+          {
+            "experiment_id": "E4",
+            "source_section": "structural_overall_metrics",
+            "condition": "original_image_caption_without_color",
+            "values": {
+              "structural_hit_at_1": 0.275,
+              "structural_hit_at_5": 0.5,
+              "structural_fractional_recall_at_5": 0.235714285714,
+              "structural_mrr": 0.410266386358,
+              "structural_ndcg_at_10": 0.370366867973
+            }
+          },
+          {
+            "experiment_id": "E4",
+            "source_section": "structural_overall_metrics",
+            "condition": "grayscale_image_caption_without_color",
+            "values": {
+              "structural_hit_at_1": 0.425,
+              "structural_hit_at_5": 0.525,
+              "structural_fractional_recall_at_5": 0.242857142857,
+              "structural_mrr": 0.490930804384,
+              "structural_ndcg_at_10": 0.379457452697
+            }
+          }
+        ],
+        "metrics": [
+          "structural_hit_at_1",
+          "structural_hit_at_5",
+          "structural_fractional_recall_at_5",
+          "structural_mrr",
+          "structural_ndcg_at_10"
+        ],
+        "data_point_count": 20
+      },
+      "files": [
+        {
+          "figure_id": "F3",
+          "filename_stem": "f3_ablaciones_estructurales_v2",
+          "file_format": "png",
+          "relative_path": "results/v2/figuras/f3_ablaciones_estructurales_v2.png",
+          "sha256": "88bcaa9c707ebad73ac817822060d627a4245b33f0229a56ebffd5dcb7380a7b",
+          "size_bytes": 220117
+        },
+        {
+          "figure_id": "F3",
+          "filename_stem": "f3_ablaciones_estructurales_v2",
+          "file_format": "svg",
+          "relative_path": "results/v2/figuras/f3_ablaciones_estructurales_v2.svg",
+          "sha256": "35c945ac76d855eadfa1979eeff9f4a715a5f9fd13c8411ad6e45db21fbc8f04",
+          "size_bytes": 19930
+        }
+      ]
+    },
+    {
+      "figure_id": "F4",
+      "filename_stem": "f4_efecto_grises_exacto_v2",
+      "comparability_family": "global_exact_retrieval",
+      "chart_type": "delta_bar",
+      "title": "Efecto de la escala de grises en la recuperación exacta",
+      "data": {
+        "minuend": {
+          "experiment_id": "E4",
+          "source_section": "exact_overall_metrics",
+          "condition": "grayscale_image_full_caption"
+        },
+        "subtrahend": {
+          "experiment_id": "E4",
+          "source_section": "exact_overall_metrics",
+          "condition": "original_image_full_caption"
+        },
+        "bar_deltas": {
+          "recall_at_1": -0.15,
+          "recall_at_5": -0.5107142857139999,
+          "mrr": -0.254995943338,
+          "ndcg_at_10": -0.33018750118100004
+        },
+        "annotation_deltas": {
+          "positive_margin": -0.009412784076999997
+        },
+        "bar_count": 4
+      },
+      "files": [
+        {
+          "figure_id": "F4",
+          "filename_stem": "f4_efecto_grises_exacto_v2",
+          "file_format": "png",
+          "relative_path": "results/v2/figuras/f4_efecto_grises_exacto_v2.png",
+          "sha256": "74a52397555d0987b281e2b6a1ca174ae3498d493aef9c11418177e2d650199e",
+          "size_bytes": 140782
+        },
+        {
+          "figure_id": "F4",
+          "filename_stem": "f4_efecto_grises_exacto_v2",
+          "file_format": "svg",
+          "relative_path": "results/v2/figuras/f4_efecto_grises_exacto_v2.svg",
+          "sha256": "02c715e3f08e20be84bb37484a9a1f7eb519b28c0e6fbfb640d664cdd412b0b8",
+          "size_bytes": 10663
+        }
+      ]
+    },
+    {
+      "figure_id": "F5",
+      "filename_stem": "f5_compromiso_hit1_hit5_v2",
+      "comparability_family": "structural_multi_relevance",
+      "chart_type": "scatter",
+      "title": "Compromiso entre Hit@1 y Hit@5 estructurales",
+      "data": {
+        "x_metric": "structural_hit_at_1",
+        "y_metric": "structural_hit_at_5",
+        "points": [
+          {
+            "condition": "original_image_full_caption",
+            "x": 0.239285714286,
+            "y": 0.832142857143
+          },
+          {
+            "condition": "grayscale_image_full_caption",
+            "x": 0.292857142857,
+            "y": 0.510714285714
+          },
+          {
+            "condition": "original_image_caption_without_color",
+            "x": 0.275,
+            "y": 0.5
+          },
+          {
+            "condition": "grayscale_image_caption_without_color",
+            "x": 0.425,
+            "y": 0.525
+          }
+        ],
+        "point_count": 4
+      },
+      "files": [
+        {
+          "figure_id": "F5",
+          "filename_stem": "f5_compromiso_hit1_hit5_v2",
+          "file_format": "png",
+          "relative_path": "results/v2/figuras/f5_compromiso_hit1_hit5_v2.png",
+          "sha256": "3448bd3394acddf1b0603e607b263a2cdd17d59148b1895ca5d3ea3d1b52a44e",
+          "size_bytes": 151600
+        },
+        {
+          "figure_id": "F5",
+          "filename_stem": "f5_compromiso_hit1_hit5_v2",
+          "file_format": "svg",
+          "relative_path": "results/v2/figuras/f5_compromiso_hit1_hit5_v2.svg",
+          "sha256": "bb958e88252667d7ba8de28d0f0b443212892b5393d8d1894bd8907d1eeb243e",
+          "size_bytes": 16681
+        }
+      ]
+    }
+  ],
+  "output_artifacts": {
+    "manifest": {
+      "path": "results/v2/figuras/manifiesto_figuras_v2.csv",
+      "rows": 10,
+      "sha256": "0597fc6a3844752315b24cb4d4c86dd2621e139e783e8db92a6744018ade1fd0"
+    },
+    "graphic_files": [
+      {
+        "figure_id": "F1",
+        "file_format": "png",
+        "path": "results/v2/figuras/f1_recuperacion_exacta_v2.png",
+        "sha256": "719b71b1451fba5b9148942e0d497096875e5f345e8c9a31f19885f5bf454dcf",
+        "size_bytes": 184899
+      },
+      {
+        "figure_id": "F1",
+        "file_format": "svg",
+        "path": "results/v2/figuras/f1_recuperacion_exacta_v2.svg",
+        "sha256": "536b8476a58cda7abd8b5758733cca63a1d1d857e794d02883ebf3472c65812b",
+        "size_bytes": 17887
+      },
+      {
+        "figure_id": "F2",
+        "file_format": "png",
+        "path": "results/v2/figuras/f2_negativos_dificiles_v2.png",
+        "sha256": "529c38012c9644d1b4c52ea14b29ce1edd521078da4e2f22fe9c73cbd03b3b84",
+        "size_bytes": 134276
+      },
+      {
+        "figure_id": "F2",
+        "file_format": "svg",
+        "path": "results/v2/figuras/f2_negativos_dificiles_v2.svg",
+        "sha256": "ee427e8d2dc2ea24542554a6b270a11f54b08f3ba9d827a4309706280bab0547",
+        "size_bytes": 10232
+      },
+      {
+        "figure_id": "F3",
+        "file_format": "png",
+        "path": "results/v2/figuras/f3_ablaciones_estructurales_v2.png",
+        "sha256": "88bcaa9c707ebad73ac817822060d627a4245b33f0229a56ebffd5dcb7380a7b",
+        "size_bytes": 220117
+      },
+      {
+        "figure_id": "F3",
+        "file_format": "svg",
+        "path": "results/v2/figuras/f3_ablaciones_estructurales_v2.svg",
+        "sha256": "35c945ac76d855eadfa1979eeff9f4a715a5f9fd13c8411ad6e45db21fbc8f04",
+        "size_bytes": 19930
+      },
+      {
+        "figure_id": "F4",
+        "file_format": "png",
+        "path": "results/v2/figuras/f4_efecto_grises_exacto_v2.png",
+        "sha256": "74a52397555d0987b281e2b6a1ca174ae3498d493aef9c11418177e2d650199e",
+        "size_bytes": 140782
+      },
+      {
+        "figure_id": "F4",
+        "file_format": "svg",
+        "path": "results/v2/figuras/f4_efecto_grises_exacto_v2.svg",
+        "sha256": "02c715e3f08e20be84bb37484a9a1f7eb519b28c0e6fbfb640d664cdd412b0b8",
+        "size_bytes": 10663
+      },
+      {
+        "figure_id": "F5",
+        "file_format": "png",
+        "path": "results/v2/figuras/f5_compromiso_hit1_hit5_v2.png",
+        "sha256": "3448bd3394acddf1b0603e607b263a2cdd17d59148b1895ca5d3ea3d1b52a44e",
+        "size_bytes": 151600
+      },
+      {
+        "figure_id": "F5",
+        "file_format": "svg",
+        "path": "results/v2/figuras/f5_compromiso_hit1_hit5_v2.svg",
+        "sha256": "bb958e88252667d7ba8de28d0f0b443212892b5393d8d1894bd8907d1eeb243e",
+        "size_bytes": 16681
+      }
+    ]
+  }
+}
