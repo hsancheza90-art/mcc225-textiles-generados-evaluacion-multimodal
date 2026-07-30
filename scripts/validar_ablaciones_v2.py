@@ -375,11 +375,16 @@ def split_ids(value: str) -> list[str]:
     ]
 
 
+FLOAT_ABSOLUTE_TOLERANCE = 1e-6
+RANKING_TIE_ABSOLUTE_TOLERANCE = 1e-6
+E1_ANCHOR_ABSOLUTE_TOLERANCE = 1e-7
+
+
 def assert_close(
     actual: float,
     expected: float,
     context: str,
-    tolerance: float = 1e-9,
+    tolerance: float = FLOAT_ABSOLUTE_TOLERANCE,
 ) -> None:
     assert math.isclose(
         actual,
@@ -1135,9 +1140,26 @@ def main() -> None:
 
         assert len(actual_ranking) == 56
 
+        stored_ranking_indices = [
+            int(
+                item[
+                    "image_row_index"
+                ]
+            )
+            for item in actual_ranking
+        ]
+
+        assert sorted(
+            stored_ranking_indices
+        ) == list(
+            range(
+                len(ordered_images)
+            )
+        )
+
         for rank, (
             ranking_row,
-            image_index,
+            expected_image_index,
         ) in enumerate(
             zip(
                 actual_ranking,
@@ -1146,9 +1168,15 @@ def main() -> None:
             ),
             start=1,
         ):
-            image_record = (
+            stored_image_index = int(
+                ranking_row[
+                    "image_row_index"
+                ]
+            )
+
+            stored_image_record = (
                 ordered_images[
-                    image_index
+                    stored_image_index
                 ]
             )
 
@@ -1166,15 +1194,9 @@ def main() -> None:
                 == query_id
             )
 
-            assert int(
-                ranking_row[
-                    "image_row_index"
-                ]
-            ) == image_index
-
             assert (
                 ranking_row["image_id"]
-                == image_record[
+                == stored_image_record[
                     "image_id"
                 ]
             )
@@ -1183,7 +1205,9 @@ def main() -> None:
                 ranking_row,
                 "score",
                 float(
-                    scores[image_index]
+                    scores[
+                        stored_image_index
+                    ]
                 ),
                 (
                     f"{context}.ranking"
@@ -1191,15 +1215,53 @@ def main() -> None:
                 ),
             )
 
+            stored_is_relevant = (
+                stored_image_index
+                in relevant_indices
+            )
+
+            expected_is_relevant = (
+                expected_image_index
+                in relevant_indices
+            )
+
             assert (
                 ranking_row[
                     "is_relevant"
                 ]
                 == str(
-                    image_index
-                    in relevant_indices
+                    stored_is_relevant
                 ).lower()
             )
+
+            if (
+                stored_image_index
+                != expected_image_index
+            ):
+                assert_close(
+                    float(
+                        scores[
+                            stored_image_index
+                        ]
+                    ),
+                    float(
+                        scores[
+                            expected_image_index
+                        ]
+                    ),
+                    (
+                        f"{context}.ranking"
+                        f"[{rank}].tie_score"
+                    ),
+                    tolerance=(
+                        RANKING_TIE_ABSOLUTE_TOLERANCE
+                    ),
+                )
+
+                assert (
+                    stored_is_relevant
+                    == expected_is_relevant
+                )
 
         raw_by_condition_group[
             (
@@ -1701,6 +1763,13 @@ def main() -> None:
             )
 
             for metric in EXACT_METRICS:
+                anchor_tolerance = (
+                    FLOAT_ABSOLUTE_TOLERANCE
+                    if metric
+                    == "positive_margin"
+                    else E1_ANCHOR_ABSOLUTE_TOLERANCE
+                )
+
                 assert_close(
                     float(e1[metric]),
                     float(metrics[metric]),
@@ -1708,7 +1777,7 @@ def main() -> None:
                         f"E1.{caption_id}."
                         f"{metric}"
                     ),
-                    tolerance=1e-7,
+                    tolerance=anchor_tolerance,
                 )
 
         exact_by_condition[

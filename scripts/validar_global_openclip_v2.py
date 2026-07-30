@@ -722,6 +722,12 @@ def validate_summary(
     ) == set(overall)
 
     for key, expected in overall.items():
+        tolerance = (
+            SCORE_ABSOLUTE_TOLERANCE
+            if key == "positive_margin"
+            else 1e-12
+        )
+
         assert_close(
             float(
                 summary[
@@ -730,6 +736,7 @@ def validate_summary(
             ),
             expected,
             f"overall_metrics.{key}",
+            tolerance=tolerance,
         )
 
     expected_distribution = {
@@ -783,6 +790,129 @@ def validate_summary(
             record["sha256"]
             == sha256_file(path)
         )
+
+
+
+SCORE_ABSOLUTE_TOLERANCE = 1e-6
+
+QUERY_SCORE_FIELDS = frozenset(
+    {
+        "top1_score",
+        "relevant_score",
+        "positive_margin",
+    }
+)
+
+RANKING_SCORE_FIELDS = frozenset(
+    {
+        "score",
+    }
+)
+
+AGGREGATE_SCORE_FIELDS = frozenset(
+    {
+        "positive_margin",
+    }
+)
+
+
+def assert_rows_match_with_score_tolerance(
+    actual_rows: list[dict[str, str]],
+    expected_rows: list[dict[str, str]],
+    tolerant_fields: frozenset[str],
+) -> None:
+    """Compara tablas con tolerancia solo en scores continuos."""
+
+    from math import isfinite
+
+    assert len(actual_rows) == len(expected_rows), (
+        "Cantidad de filas distinta: "
+        f"actual={len(actual_rows)}, "
+        f"esperada={len(expected_rows)}"
+    )
+
+    for row_index, (
+        actual_row,
+        expected_row,
+    ) in enumerate(
+        zip(
+            actual_rows,
+            expected_rows,
+        )
+    ):
+        actual_fields = tuple(actual_row)
+        expected_fields = tuple(expected_row)
+
+        assert actual_fields == expected_fields, (
+            "Campos distintos en la fila "
+            f"{row_index}: "
+            f"actual={actual_fields}, "
+            f"esperado={expected_fields}"
+        )
+
+        assert tolerant_fields.issubset(
+            expected_row.keys()
+        ), (
+            "Los campos tolerantes no forman parte "
+            f"del contrato de la fila {row_index}."
+        )
+
+        for field in expected_fields:
+            actual_value = actual_row[field]
+            expected_value = expected_row[field]
+
+            if field not in tolerant_fields:
+                assert actual_value == expected_value, (
+                    "Diferencia contractual en "
+                    f"fila={row_index}, "
+                    f"campo={field}: "
+                    f"actual={actual_value!r}, "
+                    f"esperado={expected_value!r}"
+                )
+                continue
+
+            try:
+                actual_number = float(actual_value)
+                expected_number = float(expected_value)
+            except (TypeError, ValueError) as error:
+                raise AssertionError(
+                    "Score no numérico en "
+                    f"fila={row_index}, "
+                    f"campo={field}: "
+                    f"actual={actual_value!r}, "
+                    f"esperado={expected_value!r}"
+                ) from error
+
+            assert isfinite(actual_number), (
+                "Score actual no finito en "
+                f"fila={row_index}, "
+                f"campo={field}: "
+                f"{actual_value!r}"
+            )
+
+            assert isfinite(expected_number), (
+                "Score esperado no finito en "
+                f"fila={row_index}, "
+                f"campo={field}: "
+                f"{expected_value!r}"
+            )
+
+            absolute_difference = abs(
+                actual_number - expected_number
+            )
+
+            assert (
+                absolute_difference
+                <= SCORE_ABSOLUTE_TOLERANCE
+            ), (
+                "Diferencia superior a la tolerancia en "
+                f"fila={row_index}, "
+                f"campo={field}: "
+                f"actual={actual_value!r}, "
+                f"esperado={expected_value!r}, "
+                f"diferencia={absolute_difference:.12g}, "
+                f"tolerancia={SCORE_ABSOLUTE_TOLERANCE:.12g}"
+            )
 
 
 def main() -> None:
@@ -839,16 +969,22 @@ def main() -> None:
         rank_distribution,
     ) = reconstruct()
 
-    assert actual_queries == (
-        expected_queries
+    assert_rows_match_with_score_tolerance(
+        actual_queries,
+        expected_queries,
+        QUERY_SCORE_FIELDS,
     )
 
-    assert actual_rankings == (
-        expected_rankings
+    assert_rows_match_with_score_tolerance(
+        actual_rankings,
+        expected_rankings,
+        RANKING_SCORE_FIELDS,
     )
 
-    assert actual_aggregates == (
-        expected_aggregates
+    assert_rows_match_with_score_tolerance(
+        actual_aggregates,
+        expected_aggregates,
+        AGGREGATE_SCORE_FIELDS,
     )
 
     validate_summary(

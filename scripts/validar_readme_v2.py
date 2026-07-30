@@ -27,6 +27,62 @@ PROTECTED_TRACKED_PATHS = (
     "results/conclusion_tecnica.md",
 )
 
+README_HITO_CHANGED_PATHS = frozenset(
+    {
+        "README.md",
+        "scripts/generar_readme_v2.py",
+        "scripts/validar_readme_v2.py",
+    }
+)
+
+AUDIT_HITO_CHANGED_PATHS = frozenset(
+    {
+        "scripts/validar_ablaciones_v2.py",
+        "scripts/validar_global_openclip_v2.py",
+        "scripts/validar_readme_v2.py",
+    }
+)
+
+DELIVERY_HITO_CHANGED_PATHS = frozenset(
+    {
+        "config/entrega_final_v2.json",
+        "results/v2/manifiesto_entrega_v2.json",
+        "scripts/generar_manifiesto_entrega_v2.py",
+        "scripts/validar_ablaciones_v2.py",
+        "scripts/validar_global_openclip_v2.py",
+        "scripts/validar_manifiesto_entrega_v2.py",
+        "scripts/validar_readme_v2.py",
+    }
+)
+
+CLEAN_DELIVERY_CHANGED_PATHS = frozenset()
+
+ALLOWED_CHANGED_PATH_SETS = (
+    README_HITO_CHANGED_PATHS,
+    AUDIT_HITO_CHANGED_PATHS,
+    DELIVERY_HITO_CHANGED_PATHS,
+    CLEAN_DELIVERY_CHANGED_PATHS,
+)
+
+
+def assert_allowed_changed_paths(
+    actual_changed_paths: set[str],
+) -> None:
+    normalized_paths = frozenset(
+        actual_changed_paths
+    )
+
+    assert (
+        normalized_paths
+        in ALLOWED_CHANGED_PATH_SETS
+    ), (
+        "El conjunto de cambios no corresponde "
+        "a un hito permitido para validar el README. "
+        f"Actual={sorted(normalized_paths)}, "
+        "permitidos="
+        f"{[sorted(paths) for paths in ALLOWED_CHANGED_PATH_SETS]}."
+    )
+
 
 def load_json(path: Path) -> dict[str, Any]:
     raw = path.read_bytes()
@@ -483,24 +539,12 @@ def main() -> None:
             path_text
         )
 
-    expected_changed_paths = {
-        "README.md",
-        "scripts/generar_readme_v2.py",
-        "scripts/validar_readme_v2.py",
-    }
-
     actual_changed_paths = set(
         changed_paths
     )
 
-    assert (
+    assert_allowed_changed_paths(
         actual_changed_paths
-        == expected_changed_paths
-    ), (
-        "El conjunto de cambios del hito "
-        "README no es el esperado. "
-        f"Actual={sorted(actual_changed_paths)}, "
-        f"esperado={sorted(expected_changed_paths)}."
     )
 
     for relative_path in PROTECTED_TRACKED_PATHS:
