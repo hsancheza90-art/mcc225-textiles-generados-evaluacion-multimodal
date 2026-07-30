@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "TM1",
+  "dataset_version": "v2",
+  "purpose": "consolidate_E1_E2_E3_E4_without_mixing_non_comparable_protocols",
+  "input_summaries": {
+    "E1": "results/v2/evaluacion/global_openclip_v2/resumen_global_openclip_v2.json",
+    "E2": "results/v2/evaluacion/hard_negatives_openclip_v2/resumen_hard_negatives_openclip_v2.json",
+    "E3": "results/v2/evaluacion/baselines_v2/resumen_baselines_v2.json",
+    "E4": "results/v2/evaluacion/ablaciones_v2/resumen_ablaciones_v2.json"
+  },
+  "input_comparison_tables": {
+    "E3": "results/v2/evaluacion/baselines_v2/comparacion_baselines_v2.csv",
+    "E4": "results/v2/evaluacion/ablaciones_v2/agregados_comparaciones_estructurales_v2.csv"
+  },
+  "comparability_families": [
+    {
+      "family_id": "global_exact_retrieval",
+      "directly_comparable_within_family": true,
+      "evaluation_unit": "caption_query",
+      "relevance_type": "single_exact_image",
+      "gallery_size": 56,
+      "members": [
+        {
+          "experiment_id": "E1",
+          "metric_section": "overall_metrics",
+          "conditions": [
+            "openclip"
+          ]
+        },
+        {
+          "experiment_id": "E3",
+          "metric_section": "overall_metrics",
+          "conditions": [
+            "openclip",
+            "random",
+            "color_histogram"
+          ]
+        },
+        {
+          "experiment_id": "E4",
+          "metric_section": "exact_overall_metrics",
+          "conditions": [
+            "original_image_full_caption",
+            "grayscale_image_full_caption"
+          ]
+        }
+      ],
+      "metrics": [
+        "recall_at_1",
+        "recall_at_5",
+        "mrr",
+        "ndcg_at_10",
+        "positive_margin"
+      ]
+    },
+    {
+      "family_id": "hard_negative_forced_choice",
+      "directly_comparable_within_family": true,
+      "evaluation_unit": "image_query",
+      "relevance_type": "one_positive_among_five_candidates",
+      "candidate_count": 5,
+      "members": [
+        {
+          "experiment_id": "E2",
+          "metric_section": "overall_metrics",
+          "conditions": [
+            "openclip_hard_negatives"
+          ]
+        }
+      ],
+      "metrics": [
+        "recall_at_1",
+        "recall_at_5",
+        "mrr",
+        "ndcg_at_10",
+        "positive_margin",
+        "hard_negative_accuracy",
+        "mean_paired_difference",
+        "pairwise_win_rate"
+      ]
+    },
+    {
+      "family_id": "structural_multi_relevance",
+      "directly_comparable_within_family": true,
+      "evaluation_unit": "structural_caption_group",
+      "relevance_type": "seven_structurally_relevant_images",
+      "gallery_size": 56,
+      "relevant_count": 7,
+      "members": [
+        {
+          "experiment_id": "E4",
+          "metric_section": "structural_overall_metrics",
+          "conditions": [
+            "original_image_full_caption",
+            "grayscale_image_full_caption",
+            "original_image_caption_without_color",
+            "grayscale_image_caption_without_color"
+          ]
+        }
+      ],
+      "metrics": [
+        "structural_hit_at_1",
+        "structural_hit_at_5",
+        "structural_fractional_recall_at_5",
+        "structural_mrr",
+        "structural_ndcg_at_10",
+        "best_relevant_margin"
+      ]
+    }
+  ],
+  "anchor_equivalences": [
+    {
+      "anchor_id": "original_openclip_exact",
+      "records": [
+        {
+          "experiment_id": "E1",
+          "section": "overall_metrics",
+          "condition": "openclip"
+        },
+        {
+          "experiment_id": "E3",
+          "section": "overall_metrics",
+          "condition": "openclip"
+        },
+        {
+          "experiment_id": "E4",
+          "section": "exact_overall_metrics",
+          "condition": "original_image_full_caption"
+        }
+      ],
+      "metrics": [
+        "recall_at_1",
+        "recall_at_5",
+        "mrr",
+        "ndcg_at_10",
+        "positive_margin"
+      ],
+      "absolute_tolerance": 1e-12
+    }
+  ],
+  "master_metric_rows": {
+    "global_exact_retrieval": 30,
+    "hard_negative_forced_choice": 8,
+    "structural_multi_relevance": 24,
+    "total": 62
+  },
+  "master_comparison_rows": {
+    "E3": {
+      "comparisons": [
+        "openclip_minus_random",
+        "color_histogram_minus_random",
+        "openclip_minus_color_histogram"
+      ],
+      "metrics_per_comparison": 4,
+      "rows": 12
+    },
+    "E2": {
+      "comparison": "positive_vs_hard_negatives",
+      "metrics": [
+        "mean_paired_difference",
+        "pairwise_win_rate"
+      ],
+      "rows": 2
+    },
+    "E4": {
+      "comparison_count": 4,
+      "metrics_per_comparison": 6,
+      "rows": 24
+    },
+    "total": 38
+  },
+  "output_artifacts": {
+    "directory": "results/v2/tablas_maestras",
+    "experiment_catalog": {
+      "filename": "catalogo_experimentos_v2.csv",
+      "rows": 4
+    },
+    "master_metrics": {
+      "filename": "metricas_maestras_v2.csv",
+      "rows": 62,
+      "format": "long"
+    },
+    "master_comparisons": {
+      "filename": "comparaciones_maestras_v2.csv",
+      "rows": 38,
+      "format": "long"
+    },
+    "summary": {
+      "filename": "resumen_tablas_maestras_v2.json"
+    }
+  },
+  "presentation_rules": [
+    "do_not_average_metrics_across_comparability_families",
+    "retain_original_metric_names_and_protocol_semantics",
+    "identify_E1_E3_E4_original_openclip_exact_as_same_anchor",
+    "treat_recall_at_k_as_hit_at_k_where_the_source_protocol_defines_success_at_k",
+    "store_counts_as_sample_count_rather_than_metric_rows"
+  ]
+}
