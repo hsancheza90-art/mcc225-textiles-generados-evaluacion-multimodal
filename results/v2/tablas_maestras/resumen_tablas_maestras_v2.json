@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "TM1",
+  "dataset_version": "v2",
+  "generation_valid": true,
+  "counts": {
+    "experiment_catalog_rows": 4,
+    "master_metric_rows": 62,
+    "master_comparison_rows": 38
+  },
+  "metric_rows_by_family": {
+    "global_exact_retrieval": 30,
+    "hard_negative_forced_choice": 8,
+    "structural_multi_relevance": 24
+  },
+  "metric_rows_by_experiment": {
+    "E1": 5,
+    "E2": 8,
+    "E3": 15,
+    "E4": 34
+  },
+  "comparison_rows_by_experiment": {
+    "E2": 2,
+    "E3": 12,
+    "E4": 24
+  },
+  "anchor_equivalence": {
+    "anchor_id": "original_openclip_exact",
+    "records": 3,
+    "metrics": {
+      "recall_at_1": 0.235714285714,
+      "recall_at_5": 0.825,
+      "mrr": 0.462076240385,
+      "ndcg_at_10": 0.58130847073,
+      "positive_margin": -0.019934443651
+    },
+    "valid": true
+  },
+  "comparability_families": [
+    "global_exact_retrieval",
+    "hard_negative_forced_choice",
+    "structural_multi_relevance"
+  ],
+  "presentation_rules": [
+    "do_not_average_metrics_across_comparability_families",
+    "retain_original_metric_names_and_protocol_semantics",
+    "identify_E1_E3_E4_original_openclip_exact_as_same_anchor",
+    "treat_recall_at_k_as_hit_at_k_where_the_source_protocol_defines_success_at_k",
+    "store_counts_as_sample_count_rather_than_metric_rows"
+  ],
+  "input_artifacts": {
+    "contract": {
+      "path": "config/tablas_maestras_v2.json",
+      "sha256": "46403cc8d72b02e9242ea08b00c7af4187a131d4f891937806e0a1a3ed804932"
+    },
+    "E1_summary": {
+      "path": "results/v2/evaluacion/global_openclip_v2/resumen_global_openclip_v2.json",
+      "sha256": "a37c5145ad0c474a506816a1aff92ab46963c4fe760131dd94949ebc456121c9"
+    },
+    "E2_summary": {
+      "path": "results/v2/evaluacion/hard_negatives_openclip_v2/resumen_hard_negatives_openclip_v2.json",
+      "sha256": "a0e0ea42bc06b6abc943e1a112d9e874b678cdc91c1be8e47376a4c510ce803c"
+    },
+    "E3_summary": {
+      "path": "results/v2/evaluacion/baselines_v2/resumen_baselines_v2.json",
+      "sha256": "ceabada800501015dd485ad995724f9490c15375a3b475861bacb33d5f761b61"
+    },
+    "E4_summary": {
+      "path": "results/v2/evaluacion/ablaciones_v2/resumen_ablaciones_v2.json",
+      "sha256": "e1a4b4460905f59948736c8520a04adcab85e7f2a32a921ae67b0eaf6caaddb1"
+    },
+    "E3_comparison_table": {
+      "path": "results/v2/evaluacion/baselines_v2/comparacion_baselines_v2.csv",
+      "sha256": "7c9aba993540c148692fd57d6119c42ba2bf15040080f15b9e392a54d0b56e51"
+    },
+    "E4_comparison_table": {
+      "path": "results/v2/evaluacion/ablaciones_v2/agregados_comparaciones_estructurales_v2.csv",
+      "sha256": "ea1eb7eaa988bc00d887a731a385502778b564328df381a27bf0feb70cb8d9c8"
+    }
+  },
+  "output_artifacts": {
+    "experiment_catalog": {
+      "path": "results/v2/tablas_maestras/catalogo_experimentos_v2.csv",
+      "rows": 4,
+      "sha256": "21a201c04af06ad256e0064fdc1db6773d10a673b262b8d5a170f7f9853b4141"
+    },
+    "master_metrics": {
+      "path": "results/v2/tablas_maestras/metricas_maestras_v2.csv",
+      "rows": 62,
+      "sha256": "a349632f00b61a62ec06f3f303100a1533ee5141da96de52e46c3692b75d49a3"
+    },
+    "master_comparisons": {
+      "path": "results/v2/tablas_maestras/comparaciones_maestras_v2.csv",
+      "rows": 38,
+      "sha256": "902199eea222169656186ca00c8f28183c48cc2419e6fb81c0a4e2b76939a8d7"
+    }
+  }
+}

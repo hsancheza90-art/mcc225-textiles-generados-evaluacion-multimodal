@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "artifact_version": "embeddings-v2",
+  "stage": "openclip_embeddings_generation",
+  "model": {
+    "library": "open_clip",
+    "architecture": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "mode": "zero_shot",
+    "frozen": true,
+    "embedding_dimension": 512,
+    "normalization": "l2",
+    "similarity": "dot_product_of_normalized_embeddings",
+    "total_parameters": 151277313,
+    "trainable_parameters": 0
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "torch": "2.13.0+cpu",
+    "open_clip": "3.3.0",
+    "numpy": "1.26.4",
+    "device": "cpu",
+    "torch_num_threads": 8
+  },
+  "reproducibility": {
+    "seed": 225,
+    "canonical_device": "cpu",
+    "dtype": "float32",
+    "torch_num_threads": 8,
+    "image_batch_size": 8,
+    "text_batch_size": 64
+  },
+  "input_artifacts": {
+    "embeddings_config": {
+      "path": "config/embeddings_v2.json",
+      "sha256": "dafd4d73ba0473e2b49e2c21b919f1606c629f76687e339838a1f0c2dfe01f5b"
+    },
+    "experiment_config": {
+      "path": "config/experimento_v2.json",
+      "sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5"
+    },
+    "environment_audit": {
+      "path": "results/v2/entorno_cpu_v2.json",
+      "sha256": "4b8581cb9e0ae8d9a87b24af44922d765139b42977e9640da47405be5e52be9c"
+    },
+    "image_manifest": {
+      "path": "data/v2/manifest_imagenes_v2.csv",
+      "records": 56,
+      "sha256": "e26af45230257367219ad0700fe8a14f207e41428f9dd5928e6973f213405b81"
+    },
+    "text_sources": {
+      "positivos": {
+        "path": "data/v2/captions_positivos_v2.csv",
+        "records": 280,
+        "sha256": "eb47bbe4e1ee08aabcce018bc7b142e717134e6faef4f4d9e7ae472a1141f9ba"
+      },
+      "sin_color": {
+        "path": "data/v2/captions_sin_color_v2.csv",
+        "records": 40,
+        "sha256": "cb6a8138c6329055623e140107fb45bc0d11bcedbe80dc9630bc6d04452e950e"
+      },
+      "negativos_dificiles": {
+        "path": "data/v2/candidatos_negativos_dificiles_v2.csv",
+        "records": 280,
+        "sha256": "20bef8365a10a2579c0ec8ca62d5beab70a0045a96129136c466a674a23b5116"
+      }
+    }
+  },
+  "counts": {
+    "images": 56,
+    "image_variants": 2,
+    "text_usages": 600,
+    "unique_texts": 494,
+    "deduplicated_usages": 106,
+    "text_sources": {
+      "positivos": 280,
+      "sin_color": 40,
+      "negativos_dificiles": 280
+    }
+  },
+  "matrices": {
+    "image_original": {
+      "path": "results/v2/embeddings/embeddings_imagen_original_v2.npy",
+      "shape": [
+        56,
+        512
+      ],
+      "dtype": "float32",
+      "finite": true,
+      "norm_min": 0.9999999403953552,
+      "norm_max": 1.0000001192092896,
+      "norm_mean": 1.0,
+      "maximum_norm_error": 1.1920928955078125e-07,
+      "sha256": "1c6e11cc60523faf09431a486507c06b96a91e88b8428bce907a7ed3ee405680"
+    },
+    "image_grayscale": {
+      "path": "results/v2/embeddings/embeddings_imagen_grayscale_v2.npy",
+      "shape": [
+        56,
+        512
+      ],
+      "dtype": "float32",
+      "finite": true,
+      "norm_min": 0.9999998807907104,
+      "norm_max": 1.0000001192092896,
+      "norm_mean": 1.0,
+      "maximum_norm_error": 1.1920928955078125e-07,
+      "sha256": "e2ddcd4ede730f1072d615c4d6ae3df7a2e5a5c2724832fecc09fa98cc97f6f6"
+    },
+    "text_unique": {
+      "path": "results/v2/embeddings/embeddings_textos_unicos_v2.npy",
+      "shape": [
+        494,
+        512
+      ],
+      "dtype": "float32",
+      "finite": true,
+      "norm_min": 0.9999998807907104,
+      "norm_max": 1.0000001192092896,
+      "norm_mean": 1.0,
+      "maximum_norm_error": 1.1920928955078125e-07,
+      "sha256": "98d22491c23c550565605d26f3426bb6d5e03b07ab71ec426ba4bc79fd9a9508"
+    }
+  },
+  "indices": {
+    "images": {
+      "path": "results/v2/embeddings/index_images_v2.csv",
+      "rows": 56,
+      "sha256": "ea5fed8228c43ee2cf4816ed273ff2b168a5b2826dbfbabd87d1ea5e6e186c17"
+    },
+    "unique_texts": {
+      "path": "results/v2/embeddings/index_textos_unicos_v2.csv",
+      "rows": 494,
+      "sha256": "d94850e86c5d83472f989e6a6f94ec26abd22a7cf5c1fc80b91bdb75eedf992d"
+    },
+    "text_usages": {
+      "path": "results/v2/embeddings/usos_textos_v2.csv",
+      "rows": 600,
+      "sha256": "c386526e38d21f317a868b5f876495dd1c4852dc9c9a4814d406dd2f0e48a339"
+    }
+  },
+  "visual_ablation_check": {
+    "original_and_grayscale_differ": true,
+    "rowwise_cosine_min": 0.7258204221725464,
+    "rowwise_cosine_max": 0.9696899652481079,
+    "rowwise_cosine_mean": 0.8427576422691345
+  },
+  "row_order": {
+    "images": "manifest_imagenes_v2.csv row order",
+    "texts": "first exact occurrence using source_order and csv_row_order",
+    "text_usages": "source_order followed by csv_row_order"
+  },
+  "generation_valid": true
+}

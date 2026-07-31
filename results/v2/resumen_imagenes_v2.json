@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "stage": "final_image_generation",
+  "config_sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5",
+  "plan_sha256": "a51676d4f699c943540a422e3d6a83cc8667ba78fcafcff16dee4cae372bde56",
+  "image_count": 56,
+  "counts_by_split": {
+    "id": 30,
+    "ood_palette": 12,
+    "ood_pattern": 10,
+    "ood_both": 4
+  },
+  "counts_by_pattern": {
+    "bands_horizontal": 7,
+    "bands_vertical": 7,
+    "chevrons_diagonal": 7,
+    "circles_concentric": 7,
+    "diamonds_central": 7,
+    "grecas_modular": 7,
+    "grid_reticular": 7,
+    "mixed_asymmetric": 7
+  },
+  "counts_by_palette": {
+    "azul_crema_marron": 8,
+    "blanco_negro_gris": 8,
+    "morado_gris_rosa": 8,
+    "multicolor_tierra": 8,
+    "ocre_marron_negro": 8,
+    "rojo_negro_crema": 8,
+    "verde_ocre_crema": 8
+  },
+  "all_file_hashes_unique": true,
+  "all_pixel_hashes_unique": true,
+  "all_images_have_at_least_three_colors": true,
+  "image_width": 512,
+  "image_height": 512,
+  "images_directory": "data/v2/images",
+  "manifest_path": "data/v2/manifest_imagenes_v2.csv",
+  "manifest_sha256": "e26af45230257367219ad0700fe8a14f207e41428f9dd5928e6973f213405b81",
+  "inventory_sha256": "5af6e8fad7cfbed880641cc638ca294cd141641833bac8b6c36a6451fc383be2",
+  "generation_valid": true
+}

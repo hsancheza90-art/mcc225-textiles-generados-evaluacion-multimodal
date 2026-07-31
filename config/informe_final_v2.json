@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "RF2",
+  "dataset_version": "v2",
+  "canonical_report": "reporte_evaluacion_responsable.md",
+  "readme_path": "README.md",
+  "legacy_conclusion_path": "results/conclusion_tecnica.md",
+  "narrative_strategy": "quantitative_v2_with_legacy_qualitative_v1",
+  "primary_task": {
+    "direction": "text_to_image",
+    "query_unit": "positive_caption",
+    "gallery_unit": "synthetic_image",
+    "image_count": 56,
+    "positive_query_count": 280,
+    "model": "OpenCLIP ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "evaluation_mode": "frozen_zero_shot"
+  },
+  "legacy_qualitative_block": {
+    "dataset_version": "v1",
+    "direction": "image_to_text",
+    "image_count": 40,
+    "status": "retained_as_historical_qualitative_evidence",
+    "must_not_be_presented_as_v2": true,
+    "artifacts": [
+      "results/casos_analizados.csv",
+      "results/pruebas_confiabilidad.csv",
+      "results/explicabilidad.csv",
+      "results/ficha_uso_responsable.csv",
+      "results/respuestas_explicabilidad.json",
+      "results/uso_responsable_resumen.json",
+      "figures/ejemplos_evaluados.png",
+      "figures/explicabilidad_casos.png"
+    ]
+  },
+  "sections": [
+    {
+      "section_number": 1,
+      "title": "Proyecto personal y alcance",
+      "evidence_version": "v2"
+    },
+    {
+      "section_number": 2,
+      "title": "Evolución del prototipo y adaptación experimental",
+      "evidence_version": "v1_to_v2"
+    },
+    {
+      "section_number": 3,
+      "title": "Construcción del dataset sintético v2",
+      "evidence_version": "v2"
+    },
+    {
+      "section_number": 4,
+      "title": "Modelo, líneas base y reproducibilidad",
+      "evidence_version": "v2"
+    },
+    {
+      "section_number": 5,
+      "title": "Resultados cuantitativos v2",
+      "evidence_version": "v2"
+    },
+    {
+      "section_number": 6,
+      "title": "Negativos difíciles, ablaciones y generalización",
+      "evidence_version": "v2"
+    },
+    {
+      "section_number": 7,
+      "title": "Evaluación cualitativa heredada del protocolo v1",
+      "evidence_version": "v1_legacy"
+    },
+    {
+      "section_number": 8,
+      "title": "Confiabilidad y explicabilidad",
+      "evidence_version": "v1_legacy_with_v2_limitations"
+    },
+    {
+      "section_number": 9,
+      "title": "Sesgo, uso responsable y amenazas a la validez",
+      "evidence_version": "v1_and_v2"
+    },
+    {
+      "section_number": 10,
+      "title": "Conclusiones",
+      "evidence_version": "v2"
+    }
+  ],
+  "required_v2_figures": [
+    {
+      "figure_id": "F1",
+      "path": "results/v2/figuras/f1_recuperacion_exacta_v2.png",
+      "section_number": 5
+    },
+    {
+      "figure_id": "F2",
+      "path": "results/v2/figuras/f2_negativos_dificiles_v2.png",
+      "section_number": 6
+    },
+    {
+      "figure_id": "F3",
+      "path": "results/v2/figuras/f3_ablaciones_estructurales_v2.png",
+      "section_number": 6
+    },
+    {
+      "figure_id": "F4",
+      "path": "results/v2/figuras/f4_efecto_grises_exacto_v2.png",
+      "section_number": 6
+    },
+    {
+      "figure_id": "F5",
+      "path": "results/v2/figuras/f5_compromiso_hit1_hit5_v2.png",
+      "section_number": 6
+    }
+  ],
+  "required_source_artifacts": [
+    "docs/especificacion_experimental_v2.md",
+    "docs/auditoria_dataset_v1.md",
+    "docs/auditoria_visual_patrones_v2.md",
+    "docs/diseno_captions_positivos_v2.md",
+    "docs/diseno_negativos_dificiles_v2.md",
+    "docs/entorno_reproducible_v2.md",
+    "results/v2/tablas_maestras/catalogo_experimentos_v2.csv",
+    "results/v2/tablas_maestras/metricas_maestras_v2.csv",
+    "results/v2/tablas_maestras/comparaciones_maestras_v2.csv",
+    "results/v2/tablas_maestras/resumen_tablas_maestras_v2.json",
+    "results/v2/figuras/manifiesto_figuras_v2.csv",
+    "results/v2/figuras/resumen_figuras_v2.json"
+  ],
+  "required_metric_anchors": [
+    {
+      "experiment_id": "E1",
+      "source_section": "overall_metrics",
+      "condition": "openclip",
+      "metric_name": "recall_at_1",
+      "expected_value": 0.235714285714
+    },
+    {
+      "experiment_id": "E1",
+      "source_section": "overall_metrics",
+      "condition": "openclip",
+      "metric_name": "recall_at_5",
+      "expected_value": 0.825
+    },
+    {
+      "experiment_id": "E1",
+      "source_section": "overall_metrics",
+      "condition": "openclip",
+      "metric_name": "mrr",
+      "expected_value": 0.462076240384
+    },
+    {
+      "experiment_id": "E1",
+      "source_section": "overall_metrics",
+      "condition": "openclip",
+      "metric_name": "ndcg_at_10",
+      "expected_value": 0.58130847073
+    },
+    {
+      "experiment_id": "E2",
+      "source_section": "overall_metrics",
+      "condition": "openclip_hard_negatives",
+      "metric_name": "hard_negative_accuracy",
+      "expected_value": 0.517857142857
+    },
+    {
+      "experiment_id": "E2",
+      "source_section": "overall_metrics",
+      "condition": "openclip_hard_negatives",
+      "metric_name": "pairwise_win_rate",
+      "expected_value": 0.834821428571
+    },
+    {
+      "experiment_id": "E3",
+      "source_section": "overall_metrics",
+      "condition": "random",
+      "metric_name": "recall_at_1",
+      "expected_value": 0.014285714286
+    },
+    {
+      "experiment_id": "E3",
+      "source_section": "overall_metrics",
+      "condition": "color_histogram",
+      "metric_name": "recall_at_1",
+      "expected_value": 0.125
+    },
+    {
+      "experiment_id": "E3",
+      "source_section": "overall_metrics",
+      "condition": "openclip",
+      "metric_name": "recall_at_1",
+      "expected_value": 0.235714285714
+    },
+    {
+      "experiment_id": "E4",
+      "source_section": "exact_overall_metrics",
+      "condition": "grayscale_image_full_caption",
+      "metric_name": "recall_at_1",
+      "expected_value": 0.085714285714
+    },
+    {
+      "experiment_id": "E4",
+      "source_section": "structural_overall_metrics",
+      "condition": "grayscale_image_caption_without_color",
+      "metric_name": "structural_hit_at_1",
+      "expected_value": 0.425
+    }
+  ],
+  "required_interpretations": [
+    "OpenCLIP supera los baselines de azar y color en la recuperación exacta global.",
+    "La evaluación con negativos difíciles mide discriminación local entre alternativas controladas.",
+    "La eliminación del color visual perjudica claramente la recuperación exacta.",
+    "Las métricas estructurales y las métricas exactas responden preguntas distintas.",
+    "La condición sin color no puede describirse como universalmente superior.",
+    "La evaluación cualitativa v1 no constituye evidencia directa de desempeño cuantitativo v2."
+  ],
+  "required_limitations": [
+    "El dataset contiene imágenes generadas y no piezas textiles documentadas.",
+    "El sistema no autentica origen, cultura, periodo, técnica ni significado.",
+    "Los resultados no demuestran comprensión cultural.",
+    "No se realizaron pruebas de significancia estadística para todas las comparaciones.",
+    "Los resultados se limitan al modelo, prompts, galerías y protocolo evaluados.",
+    "Las condiciones ID y OOD son particiones sintéticas controladas."
+  ],
+  "forbidden_unqualified_claims": [
+    "el modelo comprende la cultura andina",
+    "el modelo identifica textiles andinos reales",
+    "el sistema autentica textiles",
+    "la condición sin color es siempre mejor",
+    "la mejora es estadísticamente significativa",
+    "los resultados demuestran generalización cultural"
+  ],
+  "encoding_policy": {
+    "canonical_encoding": "utf-8",
+    "allow_bom": false,
+    "line_endings": "lf",
+    "normalize_readme_when_updated": true
+  },
+  "report_image_policy": {
+    "embed_all_v2_figures": true,
+    "use_png_in_markdown": true,
+    "retain_svg_as_publication_artifact": true,
+    "embed_legacy_qualitative_figures": true
+  },
+  "update_order": [
+    "validate_contract",
+    "rewrite_canonical_report",
+    "validate_report",
+    "update_readme",
+    "validate_readme",
+    "commit_and_push"
+  ]
+}

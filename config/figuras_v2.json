@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "FG1",
+  "dataset_version": "v2",
+  "purpose": "generate_report_figures_from_auditable_master_tables_without_mixing_incompatible_protocols",
+  "input_artifacts": {
+    "master_metrics": {
+      "path": "results/v2/tablas_maestras/metricas_maestras_v2.csv",
+      "rows": 62
+    },
+    "master_comparisons": {
+      "path": "results/v2/tablas_maestras/comparaciones_maestras_v2.csv",
+      "rows": 38
+    },
+    "master_summary": {
+      "path": "results/v2/tablas_maestras/resumen_tablas_maestras_v2.json"
+    }
+  },
+  "protected_paths": [
+    {
+      "path": "figures",
+      "rule": "do_not_modify"
+    }
+  ],
+  "output": {
+    "directory": "results/v2/figuras",
+    "formats": [
+      "png",
+      "svg"
+    ],
+    "figure_count": 5,
+    "figure_file_count": 10,
+    "manifest": {
+      "filename": "manifiesto_figuras_v2.csv",
+      "rows": 10
+    },
+    "summary": {
+      "filename": "resumen_figuras_v2.json"
+    },
+    "total_file_count": 12
+  },
+  "global_style": {
+    "backend": "Agg",
+    "font_family": "DejaVu Sans",
+    "color_strategy": "matplotlib_default_cycle",
+    "figure_facecolor": "white",
+    "axes_facecolor": "white",
+    "dpi_png": 300,
+    "svg_fonttype": "none",
+    "bbox_inches": "tight",
+    "grid_axis": "y",
+    "grid_alpha": 0.25,
+    "title_fontsize": 13,
+    "label_fontsize": 10,
+    "tick_fontsize": 9,
+    "legend_fontsize": 9,
+    "annotation_fontsize": 9,
+    "annotation_decimals": 3,
+    "close_after_save": true,
+    "language": "es"
+  },
+  "metric_labels": {
+    "recall_at_1": "Recall@1",
+    "recall_at_5": "Recall@5",
+    "mrr": "MRR",
+    "ndcg_at_10": "nDCG@10",
+    "positive_margin": "Margen positivo",
+    "hard_negative_accuracy": "Exactitud con negativos difíciles",
+    "pairwise_win_rate": "Tasa de victoria pareada",
+    "mean_paired_difference": "Diferencia pareada media",
+    "structural_hit_at_1": "Hit estructural@1",
+    "structural_hit_at_5": "Hit estructural@5",
+    "structural_fractional_recall_at_5": "Recall estructural fraccional@5",
+    "structural_mrr": "MRR estructural",
+    "structural_ndcg_at_10": "nDCG estructural@10",
+    "best_relevant_margin": "Mejor margen relevante"
+  },
+  "figures": [
+    {
+      "figure_id": "F1",
+      "filename_stem": "f1_recuperacion_exacta_v2",
+      "comparability_family": "global_exact_retrieval",
+      "chart_type": "grouped_bar",
+      "title": "Recuperación exacta en la galería global",
+      "subtitle": "280 consultas y 56 imágenes",
+      "x_label": "Condición",
+      "y_label": "Valor de la métrica",
+      "figure_size_inches": [
+        9.0,
+        5.4
+      ],
+      "y_limits": [
+        0.0,
+        0.9
+      ],
+      "show_value_labels": true,
+      "records": [
+        {
+          "experiment_id": "E3",
+          "source_section": "overall_metrics",
+          "condition": "random"
+        },
+        {
+          "experiment_id": "E3",
+          "source_section": "overall_metrics",
+          "condition": "color_histogram"
+        },
+        {
+          "experiment_id": "E3",
+          "source_section": "overall_metrics",
+          "condition": "openclip"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "exact_overall_metrics",
+          "condition": "grayscale_image_full_caption"
+        }
+      ],
+      "metrics": [
+        "recall_at_1",
+        "recall_at_5",
+        "mrr",
+        "ndcg_at_10"
+      ],
+      "expected_data_points": 16,
+      "interpretation_rule": "the_original_openclip_anchor_is_displayed_only_once"
+    },
+    {
+      "figure_id": "F2",
+      "filename_stem": "f2_negativos_dificiles_v2",
+      "comparability_family": "hard_negative_forced_choice",
+      "chart_type": "horizontal_bar",
+      "title": "Desempeño ante negativos difíciles",
+      "subtitle": "56 consultas, cinco candidatos por consulta",
+      "x_label": "Valor de la métrica",
+      "y_label": "",
+      "figure_size_inches": [
+        8.0,
+        4.8
+      ],
+      "x_limits": [
+        0.0,
+        1.0
+      ],
+      "show_value_labels": true,
+      "record": {
+        "experiment_id": "E2",
+        "source_section": "overall_metrics",
+        "condition": "openclip_hard_negatives"
+      },
+      "bar_metrics": [
+        "hard_negative_accuracy",
+        "mrr",
+        "ndcg_at_10",
+        "pairwise_win_rate"
+      ],
+      "annotation_metrics": [
+        "mean_paired_difference"
+      ],
+      "expected_bar_count": 4,
+      "interpretation_rule": "mean_paired_difference_is_annotated_but_not_plotted_on_the_zero_to_one_axis"
+    },
+    {
+      "figure_id": "F3",
+      "filename_stem": "f3_ablaciones_estructurales_v2",
+      "comparability_family": "structural_multi_relevance",
+      "chart_type": "grouped_bar",
+      "title": "Ablaciones cromáticas en la recuperación estructural",
+      "subtitle": "40 grupos y siete imágenes relevantes por grupo",
+      "x_label": "Condición",
+      "y_label": "Valor de la métrica",
+      "figure_size_inches": [
+        10.0,
+        5.8
+      ],
+      "y_limits": [
+        0.0,
+        0.9
+      ],
+      "show_value_labels": true,
+      "records": [
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "original_image_full_caption"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "grayscale_image_full_caption"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "original_image_caption_without_color"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "grayscale_image_caption_without_color"
+        }
+      ],
+      "metrics": [
+        "structural_hit_at_1",
+        "structural_hit_at_5",
+        "structural_fractional_recall_at_5",
+        "structural_mrr",
+        "structural_ndcg_at_10"
+      ],
+      "expected_data_points": 20
+    },
+    {
+      "figure_id": "F4",
+      "filename_stem": "f4_efecto_grises_exacto_v2",
+      "comparability_family": "global_exact_retrieval",
+      "chart_type": "delta_bar",
+      "title": "Efecto de la escala de grises en la recuperación exacta",
+      "subtitle": "Diferencia: imagen gris menos imagen original",
+      "x_label": "Métrica",
+      "y_label": "Cambio respecto a la condición original",
+      "figure_size_inches": [
+        8.0,
+        4.8
+      ],
+      "y_limits": [
+        -0.55,
+        0.05
+      ],
+      "zero_reference_line": true,
+      "show_value_labels": true,
+      "minuend": {
+        "experiment_id": "E4",
+        "source_section": "exact_overall_metrics",
+        "condition": "grayscale_image_full_caption"
+      },
+      "subtrahend": {
+        "experiment_id": "E4",
+        "source_section": "exact_overall_metrics",
+        "condition": "original_image_full_caption"
+      },
+      "bar_metrics": [
+        "recall_at_1",
+        "recall_at_5",
+        "mrr",
+        "ndcg_at_10"
+      ],
+      "annotation_metrics": [
+        "positive_margin"
+      ],
+      "expected_bar_count": 4,
+      "interpretation_rule": "delta_positive_margin_is_annotated_separately_because_its_scale_differs"
+    },
+    {
+      "figure_id": "F5",
+      "filename_stem": "f5_compromiso_hit1_hit5_v2",
+      "comparability_family": "structural_multi_relevance",
+      "chart_type": "scatter",
+      "title": "Compromiso entre Hit@1 y Hit@5 estructurales",
+      "subtitle": "Cada punto representa una condición de ablación",
+      "x_label": "Hit estructural@1",
+      "y_label": "Hit estructural@5",
+      "figure_size_inches": [
+        7.0,
+        5.5
+      ],
+      "x_limits": [
+        0.2,
+        0.46
+      ],
+      "y_limits": [
+        0.45,
+        0.88
+      ],
+      "show_point_labels": true,
+      "records": [
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "original_image_full_caption"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "grayscale_image_full_caption"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "original_image_caption_without_color"
+        },
+        {
+          "experiment_id": "E4",
+          "source_section": "structural_overall_metrics",
+          "condition": "grayscale_image_caption_without_color"
+        }
+      ],
+      "x_metric": "structural_hit_at_1",
+      "y_metric": "structural_hit_at_5",
+      "expected_point_count": 4
+    }
+  ],
+  "manifest_fields": [
+    "manifest_row_index",
+    "figure_id",
+    "filename_stem",
+    "file_format",
+    "relative_path",
+    "sha256",
+    "size_bytes"
+  ],
+  "validation_rules": [
+    "each_figure_uses_exactly_one_comparability_family",
+    "do_not_average_or_compare_values_across_families",
+    "do_not_duplicate_the_original_openclip_anchor_in_F1",
+    "do_not_plot_mean_paired_difference_on_a_probability_axis",
+    "do_not_plot_positive_margin_delta_on_the_normalized_delta_axis",
+    "all_plotted_values_must_be_recoverable_from_master_tables",
+    "all_png_and_svg_outputs_must_be_deterministic"
+  ]
+}

@@ -1,0 +1,37 @@
+caption,occurrences,image_count,semantic_signature_count,crosses_semantic_signatures,caption_columns,image_ids
+"Imagen de patron ornamental generado con rasgos geometricos, simetria repetitiva y nivel de ambiguedad bajo.",20,20,15,True,caption_5,T001|T002|T005|T007|T008|T011|T013|T014|T017|T019|T020|T023|T025|T026|T029|T031|T032|T035|T037|T038
+"Imagen de patron ornamental generado con rasgos geometricos, simetria bilateral y nivel de ambiguedad medio.",7,7,5,True,caption_5,T003|T009|T015|T021|T027|T033|T039
+"Imagen de patron ornamental generado con rasgos geometricos, simetria repetitiva y nivel de ambiguedad medio.",7,7,5,True,caption_5,T004|T010|T016|T022|T028|T034|T040
+"Imagen generada de inspiracion textil con bandas geometricas, organizacion horizontal y simetria repetitiva.",7,7,5,True,caption_2,T001|T007|T013|T019|T025|T031|T037
+"Imagen generada de inspiracion textil con bandas geometricas, organizacion vertical y simetria repetitiva.",7,7,5,True,caption_2,T002|T008|T014|T020|T026|T032|T038
+"Imagen generada de inspiracion textil con grecas escalonadas, organizacion modular y simetria repetitiva.",7,7,5,True,caption_2,T004|T010|T016|T022|T028|T034|T040
+"Imagen generada de inspiracion textil con rombos, organizacion central y simetria bilateral.",7,7,5,True,caption_2,T003|T009|T015|T021|T027|T033|T039
+"Patron sintetico con elementos de bandas geometricas, distribucion horizontal y contraste cromatico visible.",7,7,5,True,caption_4,T001|T007|T013|T019|T025|T031|T037
+"Patron sintetico con elementos de bandas geometricas, distribucion vertical y contraste cromatico visible.",7,7,5,True,caption_4,T002|T008|T014|T020|T026|T032|T038
+"Patron sintetico con elementos de grecas escalonadas, distribucion modular y contraste cromatico visible.",7,7,5,True,caption_4,T004|T010|T016|T022|T028|T034|T040
+"Patron sintetico con elementos de rombos, distribucion central y contraste cromatico visible.",7,7,5,True,caption_4,T003|T009|T015|T021|T027|T033|T039
+"Imagen de patron ornamental generado con rasgos geometricos, simetria asimetrica y nivel de ambiguedad alto.",6,6,5,True,caption_5,T006|T012|T018|T024|T030|T036
+"Imagen generada de inspiracion textil con cuadricula geometrica, organizacion reticular y simetria repetitiva.",6,6,5,True,caption_2,T005|T011|T017|T023|T029|T035
+"Imagen generada de inspiracion textil con motivos geometricos combinados, organizacion mixta y simetria asimetrica.",6,6,5,True,caption_2,T006|T012|T018|T024|T030|T036
+"Patron sintetico con elementos de cuadricula geometrica, distribucion reticular y contraste cromatico visible.",6,6,5,True,caption_4,T005|T011|T017|T023|T029|T035
+"Patron sintetico con elementos de motivos geometricos combinados, distribucion mixta y contraste cromatico visible.",6,6,5,True,caption_4,T006|T012|T018|T024|T030|T036
+"Diseno geometrico generado con paleta azul, crema, marron, estructura horizontal y repeticion visual.",2,2,1,False,caption_3,T007|T037
+"Diseno geometrico generado con paleta azul, crema, marron, estructura vertical y repeticion visual.",2,2,1,False,caption_3,T002|T032
+"Diseno geometrico generado con paleta blanco, negro, gris, estructura central y repeticion visual.",2,2,1,False,caption_3,T009|T039
+"Diseno geometrico generado con paleta blanco, negro, gris, estructura modular y repeticion visual.",2,2,1,False,caption_3,T004|T034
+"Diseno geometrico generado con paleta multicolor, tierra, estructura modular y repeticion visual.",2,2,1,False,caption_3,T010|T040
+"Diseno geometrico generado con paleta multicolor, tierra, estructura reticular y repeticion visual.",2,2,1,False,caption_3,T005|T035
+"Diseno geometrico generado con paleta ocre, marron, negro, estructura central y repeticion visual.",2,2,1,False,caption_3,T003|T033
+"Diseno geometrico generado con paleta ocre, marron, negro, estructura vertical y repeticion visual.",2,2,1,False,caption_3,T008|T038
+"Diseno geometrico generado con paleta rojo, negro, crema, estructura horizontal y repeticion visual.",2,2,1,False,caption_3,T001|T031
+"Diseno geometrico generado con paleta rojo, negro, crema, estructura mixta y repeticion visual.",2,2,1,False,caption_3,T006|T036
+"Patron textil generado con composicion central, motivos de rombos y paleta blanco, negro, gris.",2,2,1,False,caption_1,T009|T039
+"Patron textil generado con composicion central, motivos de rombos y paleta ocre, marron, negro.",2,2,1,False,caption_1,T003|T033
+"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta azul, crema, marron.",2,2,1,False,caption_1,T007|T037
+"Patron textil generado con composicion horizontal, motivos de bandas geometricas y paleta rojo, negro, crema.",2,2,1,False,caption_1,T001|T031
+"Patron textil generado con composicion mixta, motivos de motivos geometricos combinados y paleta rojo, negro, crema.",2,2,1,False,caption_1,T006|T036
+"Patron textil generado con composicion modular, motivos de grecas escalonadas y paleta blanco, negro, gris.",2,2,1,False,caption_1,T004|T034
+"Patron textil generado con composicion modular, motivos de grecas escalonadas y paleta multicolor, tierra.",2,2,1,False,caption_1,T010|T040
+"Patron textil generado con composicion reticular, motivos de cuadricula geometrica y paleta multicolor, tierra.",2,2,1,False,caption_1,T005|T035
+"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta azul, crema, marron.",2,2,1,False,caption_1,T002|T032
+"Patron textil generado con composicion vertical, motivos de bandas geometricas y paleta ocre, marron, negro.",2,2,1,False,caption_1,T008|T038

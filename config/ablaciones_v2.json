@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "experiment_id": "E4",
+  "experiment_name": "color_ablations",
+  "conditions": [
+    {
+      "condition_id": "original_image_full_caption",
+      "image_variant": "original",
+      "text_variant": "full_caption",
+      "raw_queries_per_group": 7
+    },
+    {
+      "condition_id": "grayscale_image_full_caption",
+      "image_variant": "grayscale",
+      "text_variant": "full_caption",
+      "raw_queries_per_group": 7
+    },
+    {
+      "condition_id": "original_image_caption_without_color",
+      "image_variant": "original",
+      "text_variant": "caption_without_color",
+      "raw_queries_per_group": 1
+    },
+    {
+      "condition_id": "grayscale_image_caption_without_color",
+      "image_variant": "grayscale",
+      "text_variant": "caption_without_color",
+      "raw_queries_per_group": 1
+    }
+  ],
+  "primary_structural_evaluation": {
+    "unit_of_analysis": "colorless_caption_group",
+    "group_id_field": "colorless_caption_id",
+    "group_count": 40,
+    "gallery_count": 56,
+    "relevant_images_per_group": 7,
+    "structural_signature_fields": [
+      "pattern_id",
+      "motif",
+      "orientation",
+      "composition",
+      "symmetry"
+    ],
+    "full_caption_queries_per_group": 7,
+    "caption_without_color_queries_per_group": 1,
+    "full_caption_group_aggregation": "arithmetic_mean_of_seven_query_metrics",
+    "caption_without_color_group_aggregation": "single_query_metrics",
+    "overall_aggregation": "arithmetic_mean_of_forty_group_metrics",
+    "equal_weight_per_group": true,
+    "similarity": "dot_product_of_l2_normalized_embeddings",
+    "tie_breaker": "image_id_ascending",
+    "relevance": "binary_structural_relevance",
+    "metrics": {
+      "primary": [
+        "structural_hit_at_1",
+        "structural_mrr",
+        "structural_ndcg_at_10"
+      ],
+      "supplementary": [
+        "structural_hit_at_5",
+        "structural_fractional_recall_at_5",
+        "best_relevant_margin"
+      ],
+      "best_relevant_margin_definition": "maximum_relevant_score_minus_maximum_nonrelevant_score",
+      "ndcg_cutoff": 10,
+      "legacy_metric_mapping": {
+        "metricas_retrieval_v2.recall_at_1": "structural_hit_at_1",
+        "metricas_retrieval_v2.recall_at_5": "structural_hit_at_5"
+      },
+      "hit_at_k_definition": "one_if_at_least_one_relevant_image_appears_in_top_k_else_zero",
+      "fractional_recall_at_5_definition": "number_of_relevant_images_in_top_5_divided_by_total_relevant_images",
+      "fractional_recall_at_5_denominator": 7
+    },
+    "raw_query_condition_rows": 640,
+    "group_condition_rows": 160
+  },
+  "group_regimes": {
+    "base_pattern": {
+      "group_count": 30,
+      "relevant_split_composition": {
+        "id": 5,
+        "ood_palette": 2
+      }
+    },
+    "heldout_pattern": {
+      "group_count": 10,
+      "relevant_split_composition": {
+        "ood_pattern": 5,
+        "ood_both": 2
+      }
+    }
+  },
+  "secondary_exact_evaluation": {
+    "purpose": "measure_grayscale_effect_under_exact_image_relevance",
+    "conditions": [
+      "original_image_full_caption",
+      "grayscale_image_full_caption"
+    ],
+    "query_count_per_condition": 280,
+    "gallery_count": 56,
+    "relevant_images_per_query": 1,
+    "original_condition_source": "validated_E1_results",
+    "grayscale_condition_source": "computed_from_existing_embeddings",
+    "query_condition_rows": 560,
+    "metrics": [
+      "recall_at_1",
+      "recall_at_5",
+      "mrr",
+      "ndcg_at_10",
+      "positive_margin"
+    ]
+  },
+  "paired_comparisons": [
+    {
+      "comparison_id": "grayscale_effect_with_full_caption",
+      "minuend": "grayscale_image_full_caption",
+      "subtrahend": "original_image_full_caption"
+    },
+    {
+      "comparison_id": "remove_text_color_with_original_image",
+      "minuend": "original_image_caption_without_color",
+      "subtrahend": "original_image_full_caption"
+    },
+    {
+      "comparison_id": "remove_text_color_with_grayscale_image",
+      "minuend": "grayscale_image_caption_without_color",
+      "subtrahend": "grayscale_image_full_caption"
+    },
+    {
+      "comparison_id": "remove_visual_and_text_color",
+      "minuend": "grayscale_image_caption_without_color",
+      "subtrahend": "original_image_full_caption"
+    }
+  ],
+  "interpretation_limits": [
+    "primary_comparisons_are_structural_not_exact_image_retrieval",
+    "full_caption_group_metrics_average_seven_palette_specific_queries",
+    "caption_without_color_group_metrics_use_one_colorless_query",
+    "secondary_exact_evaluation_does_not_include_colorless_captions",
+    "group_regime_results_have_unequal_sample_sizes_30_and_10",
+    "legacy_recall_at_k_function_is_interpreted_as_hit_at_k_for_multiple_relevance",
+    "best_relevant_margin_is_computed_independently_from_positive_margin"
+  ]
+}

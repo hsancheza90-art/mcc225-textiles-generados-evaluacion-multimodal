@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "contract_id": "DELIVERY-V2",
+  "dataset_version": "v2",
+  "stage": "final_delivery_freeze",
+  "project": {
+    "project_id": "mcc225-textiles-generados-evaluacion-multimodal",
+    "title": "Evaluación multimodal de patrones textiles generados",
+    "scope": "synthetic_textile_inspired_geometric_patterns",
+    "primary_direction": "text_to_image",
+    "real_textile_identification": false,
+    "authentication_or_provenance": false,
+    "cultural_inference": false
+  },
+  "git_contract": {
+    "branch": "henry/examen-final-mcc225",
+    "upstream": "origin/henry/examen-final-mcc225",
+    "origin_url": "https://github.com/hsancheza90-art/mcc225-textiles-generados-evaluacion-multimodal.git",
+    "expected_release_tag": "mcc225-examen-final-v2.1",
+    "release_tag_type": "annotated",
+    "source_head_recorded_in_manifest": true,
+    "final_commit_recorded_by_tag": true,
+    "manifest_sha256_required_in_tag_message": true,
+    "clean_worktree_required_after_commit": true,
+    "binding_rule": "El manifiesto inventaría el contenido final excepto su propio archivo. La etiqueta anotada debe apuntar al commit que contiene el manifiesto y registrar su SHA-256."
+  },
+  "delivery_paths": {
+    "contract": "config/entrega_final_v2.json",
+    "generator": "scripts/generar_manifiesto_entrega_v2.py",
+    "validator": "scripts/validar_manifiesto_entrega_v2.py",
+    "manifest": "results/v2/manifiesto_entrega_v2.json",
+    "preexisting_modified_paths": [
+      "config/entrega_final_v2.json",
+      "scripts/generar_manifiesto_entrega_v2.py",
+      "scripts/validar_manifiesto_entrega_v2.py",
+      "scripts/validar_readme_v2.py"
+    ],
+    "delivery_source_paths": [],
+    "allowed_final_worktree_paths": [
+      "config/entrega_final_v2.json",
+      "results/v2/manifiesto_entrega_v2.json",
+      "scripts/generar_manifiesto_entrega_v2.py",
+      "scripts/validar_manifiesto_entrega_v2.py",
+      "scripts/validar_readme_v2.py"
+    ]
+  },
+  "inventory_contract": {
+    "input_mode": "git_worktree_tracked_revision",
+    "self_excluded": true,
+    "self_excluded_path": "results/v2/manifiesto_entrega_v2.json",
+    "expected_final_tracked_files": 259,
+    "expected_inventory_entries": 258,
+    "path_order": "unicode_codepoint_ascending",
+    "required_fields": [
+      "path",
+      "family",
+      "size_bytes",
+      "sha256",
+      "git_blob_worktree",
+      "git_blob_index",
+      "git_state",
+      "encoding",
+      "bom",
+      "line_endings"
+    ],
+    "hash_algorithm": "sha256",
+    "git_blob_algorithm": "sha1",
+    "physical_bytes_recorded": true,
+    "git_normalized_blob_recorded": true,
+    "duplicate_paths_forbidden": true,
+    "missing_files_forbidden": true
+  },
+  "artifact_family_rules": [
+    {
+      "family": "data_v2",
+      "prefix": "data/v2/"
+    },
+    {
+      "family": "embeddings_v2",
+      "prefix": "results/v2/embeddings/"
+    },
+    {
+      "family": "evaluation_v2",
+      "prefix": "results/v2/evaluacion/"
+    },
+    {
+      "family": "master_tables_v2",
+      "prefix": "results/v2/tablas_maestras/"
+    },
+    {
+      "family": "figures_v2",
+      "prefix": "results/v2/figuras/"
+    },
+    {
+      "family": "other_results_v2",
+      "prefix": "results/v2/"
+    },
+    {
+      "family": "config",
+      "prefix": "config/"
+    },
+    {
+      "family": "docs",
+      "prefix": "docs/"
+    },
+    {
+      "family": "scripts",
+      "prefix": "scripts/"
+    },
+    {
+      "family": "src",
+      "prefix": "src/"
+    },
+    {
+      "family": "tests",
+      "prefix": "tests/"
+    },
+    {
+      "family": "historical_figures",
+      "prefix": "figures/"
+    },
+    {
+      "family": "historical_results",
+      "prefix": "results/"
+    }
+  ],
+  "validation_contract": {
+    "existing_validators_before_delivery": 24,
+    "final_validators_expected": 25,
+    "validators": [
+      "scripts/validar_ablaciones_v2.py",
+      "scripts/validar_baselines_v2.py",
+      "scripts/validar_captions_positivos_v2.py",
+      "scripts/validar_config_ablaciones_v2.py",
+      "scripts/validar_config_baselines_v2.py",
+      "scripts/validar_config_embeddings_v2.py",
+      "scripts/validar_config_figuras_v2.py",
+      "scripts/validar_config_informe_final_v2.py",
+      "scripts/validar_config_negativos_dificiles_v2.py",
+      "scripts/validar_config_tablas_maestras_v2.py",
+      "scripts/validar_embeddings_v2.py",
+      "scripts/validar_especificacion_v2.py",
+      "scripts/validar_figuras_v2.py",
+      "scripts/validar_global_openclip_v2.py",
+      "scripts/validar_hard_negatives_openclip_v2.py",
+      "scripts/validar_imagenes_dataset_v2.py",
+      "scripts/validar_informe_final_v2.py",
+      "scripts/validar_manifiesto_entrega_v2.py",
+      "scripts/validar_metricas_retrieval_v2.py",
+      "scripts/validar_negativos_dificiles_v2.py",
+      "scripts/validar_plan_dataset_v2.py",
+      "scripts/validar_previsualizacion_patrones_v2.py",
+      "scripts/validar_readme_v2.py",
+      "scripts/validar_tablas_maestras_v2.py",
+      "scripts/validar_vocabulario_captions_v2.py"
+    ],
+    "all_validators_must_pass": true,
+    "stop_on_first_failure": true,
+    "validators_must_be_read_only": true,
+    "experimental_generators_must_not_run": true,
+    "evaluators_must_not_run": true,
+    "embedding_generator_must_not_run": true,
+    "allowed_generator_during_freeze": "scripts/generar_manifiesto_entrega_v2.py",
+    "forbidden_script_patterns": [
+      "scripts/evaluar_*.py",
+      "scripts/generar_*.py"
+    ],
+    "forbidden_script_exceptions": [
+      "scripts/generar_manifiesto_entrega_v2.py"
+    ],
+    "model_or_network_imports_forbidden": true
+  },
+  "environment_contract": {
+    "source": "results/v2/entorno_cpu_v2.json",
+    "python": "3.11.9",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu",
+    "open_clip": "3.3.0",
+    "model_architecture": "ViT-B-32",
+    "pretrained": "laion2b_s34b_b79k",
+    "canonical_device": "cpu",
+    "embedding_dimension": 512,
+    "frozen_model": true,
+    "zero_shot": true
+  },
+  "freeze_contract": {
+    "dataset_v2": true,
+    "model": true,
+    "embeddings": true,
+    "evaluation_results_e1_e4": true,
+    "master_tables": true,
+    "figures_v2": true,
+    "final_report": true,
+    "readme": true,
+    "historical_results": true,
+    "historical_figures": true,
+    "new_experimental_execution_forbidden": true
+  },
+  "protected_historical_artifacts": [
+    {
+      "path": "results/conclusion_tecnica.md",
+      "rule": "normalized_content_must_match_index"
+    },
+    {
+      "path": "results/",
+      "exclude_prefix": "results/v2/",
+      "rule": "recursive_inventory_must_remain_unchanged"
+    },
+    {
+      "path": "figures/",
+      "rule": "recursive_inventory_must_remain_unchanged"
+    }
+  ],
+  "manifest_output_contract": {
+    "path": "results/v2/manifiesto_entrega_v2.json",
+    "encoding": "utf-8",
+    "bom": false,
+    "line_endings": "lf",
+    "final_newline": true,
+    "json_indent": 2,
+    "ensure_ascii": false,
+    "sort_keys": false,
+    "self_hash_not_embedded": true,
+    "self_hash_bound_in_release_tag": true
+  },
+  "required_manifest_sections": [
+    "schema_version",
+    "contract_id",
+    "dataset_version",
+    "stage",
+    "generated_at",
+    "project",
+    "git",
+    "environment",
+    "validation",
+    "freeze",
+    "counts",
+    "artifact_families",
+    "protected_historical_artifacts",
+    "inventory",
+    "inventory_digest",
+    "manifest_valid"
+  ]
+}

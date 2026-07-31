@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "protocol_version": "2.0",
+  "name": "hard_negative_single_attribute_test_v2",
+  "scope": "synthetic_geometric_attribute_counterfactuals",
+  "language": "es",
+  "query_source": "data/v2/manifest_multimodal_v2.csv",
+  "positive_caption_source": "data/v2/captions_positivos_v2.csv",
+  "vocabulary_source": "config/vocabulario_captions_v2.json",
+  "query_order": "image_id_ascending",
+  "query_count": 56,
+  "template_id": "TPL_01",
+  "candidates_per_query": 5,
+  "positives_per_query": 1,
+  "hard_negatives_per_query": 4,
+  "chance_level": 0.2,
+  "negative_scope": "query_local",
+  "attribute_order": [
+    "palette_id",
+    "motif",
+    "orientation",
+    "composition",
+    "symmetry"
+  ],
+  "domains": {
+    "palette_id": [
+      "rojo_negro_crema",
+      "azul_crema_marron",
+      "ocre_marron_negro",
+      "blanco_negro_gris",
+      "multicolor_tierra",
+      "verde_ocre_crema",
+      "morado_gris_rosa"
+    ],
+    "motif": [
+      "bandas geométricas",
+      "rombos",
+      "grecas escalonadas",
+      "cuadrícula geométrica",
+      "motivos geométricos combinados",
+      "chevrones",
+      "círculos concéntricos"
+    ],
+    "orientation": [
+      "horizontal",
+      "vertical",
+      "diagonal",
+      "bidireccional",
+      "mixta",
+      "radial"
+    ],
+    "composition": [
+      "bandas",
+      "central",
+      "modular",
+      "reticular",
+      "mixta"
+    ],
+    "symmetry": [
+      "repetitiva",
+      "bilateral",
+      "asimétrica",
+      "radial"
+    ]
+  },
+  "omission_schedule": {
+    "type": "round_robin",
+    "index_base": 0,
+    "offset": 0,
+    "formula": "attribute_order[(query_index + offset) mod 5]",
+    "expected_omission_counts": {
+      "palette_id": 12,
+      "motif": 11,
+      "orientation": 11,
+      "composition": 11,
+      "symmetry": 11
+    },
+    "expected_change_counts": {
+      "palette_id": 44,
+      "motif": 45,
+      "orientation": 45,
+      "composition": 45,
+      "symmetry": 45
+    }
+  },
+  "positive_position_schedule": {
+    "type": "mixed_modular",
+    "index_base": 0,
+    "multiplier": 2,
+    "block_divisor": 5,
+    "block_increment": 1,
+    "offset": 1,
+    "modulus": 5,
+    "output_base": 1,
+    "formula": "((2*i + floor(i/5) + 1) mod 5) + 1",
+    "expected_position_counts": {
+      "1": 11,
+      "2": 11,
+      "3": 12,
+      "4": 11,
+      "5": 11
+    },
+    "expected_omission_position_pairs": 25
+  },
+  "negative_attribute_schedule": {
+    "type": "rotated_remaining_attributes",
+    "rotation_formula": "query_index mod 4",
+    "candidate_positions": "ascending_positions_excluding_positive"
+  },
+  "replacement_rule": {
+    "type": "cyclic_successor",
+    "offset": 1,
+    "wrap_around": true,
+    "formula": "domain[(current_index + 1) mod domain_size]"
+  },
+  "constraints": {
+    "same_template_within_query": true,
+    "exactly_one_positive_per_query": true,
+    "exactly_four_negatives_per_query": true,
+    "exactly_one_changed_attribute_per_negative": true,
+    "negative_attribute_must_differ": true,
+    "candidate_texts_unique_within_query": true,
+    "positive_position_not_fixed": true,
+    "allow_negative_positive_for_other_query": true,
+    "global_retrieval_use_prohibited": true,
+    "cultural_identification_prohibited": true
+  },
+  "interpretation": {
+    "unit": "image_to_five_candidate_captions",
+    "primary_measure": "hard_negative_accuracy",
+    "secondary_measures": [
+      "positive_margin",
+      "accuracy_by_changed_attribute",
+      "accuracy_by_pattern",
+      "accuracy_by_ambiguity",
+      "accuracy_by_split"
+    ],
+    "counterfactual_warning": "Cambiar un único atributo puede producir una combinación que no corresponde a una clase generada por el renderer.",
+    "query_local_warning": "Un candidato negativo para una imagen puede ser positivo para otra imagen. La etiqueta negativa solo es válida dentro de la consulta actual.",
+    "claim_limit": "La prueba evalúa sensibilidad a atributos visuales controlados y no reconocimiento cultural ni autenticidad textil."
+  },
+  "planned_outputs": {
+    "queries": "data/v2/consultas_negativos_dificiles_v2.csv",
+    "candidates": "data/v2/candidatos_negativos_dificiles_v2.csv",
+    "summary": "results/v2/resumen_negativos_dificiles_v2.json"
+  },
+  "validation_expectations": {
+    "expected_global_overlap_count": 50,
+    "expected_global_overlap_by_attribute": {
+      "palette_id": 44,
+      "orientation": 6
+    },
+    "expected_attributes_without_global_overlap": [
+      "motif",
+      "composition",
+      "symmetry"
+    ],
+    "expected_distinct_cyclic_transitions": 29,
+    "expected_all_cyclic_transitions_covered": true
+  }
+}

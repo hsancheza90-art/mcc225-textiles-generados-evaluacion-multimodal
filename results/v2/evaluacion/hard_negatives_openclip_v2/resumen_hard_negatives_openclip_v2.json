@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "experiment_id": "E2",
+  "experiment_name": "hard_negative_forced_choice",
+  "condition": "openclip_original_image_five_candidate_texts",
+  "protocol": {
+    "query_source": "consultas_negativos_dificiles_v2",
+    "query_count": 56,
+    "candidate_source": "candidatos_negativos_dificiles_v2",
+    "candidates_per_query": 5,
+    "positives_per_query": 1,
+    "negatives_per_query": 4,
+    "chance_level": 0.2,
+    "similarity": "dot_product_of_normalized_embeddings",
+    "tie_breaker": "candidate_id_ascending"
+  },
+  "metrics": {
+    "primary": [
+      "recall_at_1",
+      "mrr",
+      "ndcg_at_10"
+    ],
+    "supplementary": [
+      "recall_at_5",
+      "hard_negative_accuracy",
+      "positive_margin",
+      "paired_difference"
+    ]
+  },
+  "counts": {
+    "queries": 56,
+    "candidate_rows": 280,
+    "pairwise_rows": 224,
+    "splits": {
+      "id": 30,
+      "ood_both": 4,
+      "ood_palette": 12,
+      "ood_pattern": 10
+    },
+    "ambiguity_level": {
+      "alto": 7,
+      "bajo": 28,
+      "medio": 21
+    },
+    "changed_attribute": {
+      "composition": 45,
+      "motif": 45,
+      "orientation": 45,
+      "palette_id": 44,
+      "symmetry": 45
+    },
+    "negative_type": {
+      "counterfactual_only": 174,
+      "global_overlap": 50
+    }
+  },
+  "overall_metrics": {
+    "recall_at_1": 0.5178571428571429,
+    "recall_at_5": 1.0,
+    "mrr": 0.7291666666666666,
+    "ndcg_at_10": 0.798675103762764,
+    "positive_margin": -0.0018219585929598128,
+    "hard_negative_accuracy": 0.5178571428571429,
+    "query_count": 56.0,
+    "mean_paired_difference": 0.025734035431294645,
+    "pairwise_win_rate": 0.8348214285714286
+  },
+  "positive_rank_distribution": {
+    "1": 29,
+    "2": 17,
+    "3": 10
+  },
+  "input_artifacts": {
+    "experiment_config": {
+      "path": "config/experimento_v2.json",
+      "sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5"
+    },
+    "embeddings_config": {
+      "path": "config/embeddings_v2.json",
+      "sha256": "dafd4d73ba0473e2b49e2c21b919f1606c629f76687e339838a1f0c2dfe01f5b"
+    },
+    "queries": {
+      "path": "data/v2/consultas_negativos_dificiles_v2.csv",
+      "rows": 56,
+      "sha256": "8300ae617f789d8f732b74e008872a9cb9fc6f4fe779573f76f1d53d487a4800"
+    },
+    "candidates": {
+      "path": "data/v2/candidatos_negativos_dificiles_v2.csv",
+      "rows": 280,
+      "sha256": "20bef8365a10a2579c0ec8ca62d5beab70a0045a96129136c466a674a23b5116"
+    },
+    "image_index": {
+      "path": "results/v2/embeddings/index_images_v2.csv",
+      "rows": 56,
+      "sha256": "ea5fed8228c43ee2cf4816ed273ff2b168a5b2826dbfbabd87d1ea5e6e186c17"
+    },
+    "text_index": {
+      "path": "results/v2/embeddings/index_textos_unicos_v2.csv",
+      "rows": 494,
+      "sha256": "d94850e86c5d83472f989e6a6f94ec26abd22a7cf5c1fc80b91bdb75eedf992d"
+    },
+    "text_usages": {
+      "path": "results/v2/embeddings/usos_textos_v2.csv",
+      "rows": 600,
+      "sha256": "c386526e38d21f317a868b5f876495dd1c4852dc9c9a4814d406dd2f0e48a339"
+    },
+    "image_embeddings": {
+      "path": "results/v2/embeddings/embeddings_imagen_original_v2.npy",
+      "shape": [
+        56,
+        512
+      ],
+      "sha256": "1c6e11cc60523faf09431a486507c06b96a91e88b8428bce907a7ed3ee405680"
+    },
+    "text_embeddings": {
+      "path": "results/v2/embeddings/embeddings_textos_unicos_v2.npy",
+      "shape": [
+        494,
+        512
+      ],
+      "sha256": "98d22491c23c550565605d26f3426bb6d5e03b07ab71ec426ba4bc79fd9a9508"
+    }
+  },
+  "output_artifacts": {
+    "query_results": {
+      "path": "results/v2/evaluacion/hard_negatives_openclip_v2/resultados_consulta_hard_negatives_openclip_v2.csv",
+      "rows": 56,
+      "sha256": "e0d2637e3d08894f7262f42ac3fa624939fe3e0f2882abfcfcc571405995b185"
+    },
+    "ranking": {
+      "path": "results/v2/evaluacion/hard_negatives_openclip_v2/ranking_hard_negatives_openclip_v2.csv",
+      "rows": 280,
+      "sha256": "d5376e83a4230f5d145c98d8229cf3c41f3f33e835671a7e484f66097585f3fe"
+    },
+    "pairwise": {
+      "path": "results/v2/evaluacion/hard_negatives_openclip_v2/comparaciones_pareadas_hard_negatives_openclip_v2.csv",
+      "rows": 224,
+      "sha256": "2a2b70b5e20593e33e817b101f6a47eed335ef13ab522fa76c09d0b93e29f6d8"
+    },
+    "aggregates": {
+      "path": "results/v2/evaluacion/hard_negatives_openclip_v2/agregados_hard_negatives_openclip_v2.csv",
+      "rows": 8,
+      "sha256": "49f279b99b68f9db4b2515f316fd2688ad275731af16179715808533563d2b06"
+    }
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "device": "precomputed_cpu_embeddings"
+  },
+  "evaluation_valid": true
+}

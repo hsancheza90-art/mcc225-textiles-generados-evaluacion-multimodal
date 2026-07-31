@@ -1,10 +1,12 @@
-﻿pandas
-numpy
-matplotlib
-Pillow
-torch
-torchvision
-open_clip_torch
-scikit-learn
-tqdm
-ipykernel
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.9.2
+Pillow==10.4.0
+torch==2.13.0+cpu
+torchvision==0.28.0+cpu
+open-clip-torch==3.3.0
+scikit-learn==1.5.1
+tqdm==4.66.5
+ipykernel==6.29.5
