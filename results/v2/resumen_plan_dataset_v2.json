@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "stage": "record_plan",
+  "config_sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5",
+  "record_count": 56,
+  "expected_positive_captions": 280,
+  "expected_hard_negatives": 224,
+  "counts_by_split": {
+    "id": 30,
+    "ood_palette": 12,
+    "ood_pattern": 10,
+    "ood_both": 4
+  },
+  "counts_by_pattern": {
+    "bands_horizontal": 7,
+    "bands_vertical": 7,
+    "chevrons_diagonal": 7,
+    "circles_concentric": 7,
+    "diamonds_central": 7,
+    "grecas_modular": 7,
+    "grid_reticular": 7,
+    "mixed_asymmetric": 7
+  },
+  "counts_by_palette": {
+    "azul_crema_marron": 8,
+    "blanco_negro_gris": 8,
+    "morado_gris_rosa": 8,
+    "multicolor_tierra": 8,
+    "ocre_marron_negro": 8,
+    "rojo_negro_crema": 8,
+    "verde_ocre_crema": 8
+  },
+  "image_ids_unique": true,
+  "semantic_ids_unique": true,
+  "semantic_signatures_unique": true,
+  "image_paths_unique": true,
+  "seeds_unique": true,
+  "pattern_palette_pairs_unique": true,
+  "patterns_balanced": true,
+  "palettes_balanced": true,
+  "plan_csv_path": "data/v2/plan_registros_v2.csv",
+  "plan_json_path": "data/v2/plan_registros_v2.json",
+  "plan_csv_sha256": "218145444973f5b915841506bb4431621aab9e3b711267709829d973d4818ff3",
+  "plan_json_sha256": "a51676d4f699c943540a422e3d6a83cc8667ba78fcafcff16dee4cae372bde56",
+  "plan_valid": true
+}

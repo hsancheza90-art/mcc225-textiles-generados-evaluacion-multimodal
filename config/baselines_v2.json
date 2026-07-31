@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "experiment_id": "E3",
+  "experiment_name": "baseline_comparison",
+  "task": {
+    "name": "global_text_to_image_retrieval",
+    "query_source": "data/v2/captions_positivos_v2.csv",
+    "query_count": 280,
+    "gallery_source": "results/v2/embeddings/index_images_v2.csv",
+    "gallery_count": 56,
+    "relevant_images_per_query": 1,
+    "query_order": "captions_positivos_v2_source_order",
+    "gallery_order": "image_row_index_ascending",
+    "tie_breaker": "image_id_ascending"
+  },
+  "conditions": {
+    "openclip": {
+      "reuse_validated_e1": true,
+      "summary_source": "results/v2/evaluacion/global_openclip_v2/resumen_global_openclip_v2.json",
+      "query_results_source": "results/v2/evaluacion/global_openclip_v2/resultados_consulta_global_openclip_v2.csv"
+    },
+    "random": {
+      "seed": 225,
+      "library": "numpy",
+      "generator": "numpy.random.Generator",
+      "bit_generator": "PCG64",
+      "distribution": "uniform_0_1",
+      "matrix_shape": [
+        280,
+        56
+      ],
+      "scores_are_similarity": true
+    },
+    "color_histogram": {
+      "uses_only_attribute": "palette_id",
+      "color_space": "HSV",
+      "rgb_to_hsv_implementation": "colorsys.rgb_to_hsv",
+      "channel_ranges": {
+        "h": [
+          0.0,
+          1.0
+        ],
+        "s": [
+          0.0,
+          1.0
+        ],
+        "v": [
+          0.0,
+          1.0
+        ]
+      },
+      "bins": {
+        "h": 18,
+        "s": 4,
+        "v": 4
+      },
+      "descriptor_dimensions": 288,
+      "flatten_order": "h_s_v",
+      "image_descriptor": "l1_normalized_pixel_histogram",
+      "text_descriptor": "uniform_mass_over_configured_palette_colors",
+      "palette_source": "config/experimento_v2.json",
+      "similarity": "histogram_intersection",
+      "scores_are_similarity": true
+    }
+  },
+  "metrics": {
+    "primary": [
+      "recall_at_1",
+      "mrr",
+      "ndcg_at_10"
+    ],
+    "supplementary": [
+      "recall_at_5",
+      "positive_margin"
+    ]
+  },
+  "theoretical_random_expectation": {
+    "gallery_size": 56,
+    "recall_at_1": 0.017857142857142856,
+    "recall_at_5": 0.08928571428571429,
+    "mrr": 0.08234766704970055,
+    "ndcg_at_10": 0.08113498818014904
+  },
+  "interpretation_limits": [
+    "color_histogram_uses_only_palette_information",
+    "color_histogram_does_not_measure_geometric_structure",
+    "random_results_are_one_seeded_realization",
+    "theoretical_random_expectation_is_not_the_seeded_result"
+  ]
+}

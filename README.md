@@ -1,300 +1,216 @@
-﻿# MCC225 Textiles Generados Evaluación Multimodal
+# Evaluación multimodal de patrones textiles generados
 
-Este repositorio contiene el desarrollo de una actividad complementaria del curso MCC225. El trabajo se centra en la evaluación responsable de un prototipo multimodal aplicado a imágenes generadas de inspiración textil andina.
+Benchmark académico reproducible para evaluar recuperación **de texto a imagen** sobre patrones geométricos sintéticos inspirados en una estética textil.
 
-El objetivo es analizar si un modelo multimodal puede relacionar imágenes y textos descriptivos en un escenario controlado. Para ello, se evalúa una tarea de recuperación imagen texto, donde el sistema debe asociar cada imagen con la descripción más adecuada dentro de un conjunto de textos candidatos.
+> El proyecto no identifica textiles reales, no autentica procedencia y no permite inferir cultura, periodo, técnica ni significado.
 
-El proyecto no busca demostrar que el sistema funciona de manera perfecta. Se busca observar su comportamiento, identificar aciertos, revisar errores, analizar casos ambiguos y discutir límites de uso. La evaluación se plantea como un ejercicio técnico y académico, con evidencia trazable y resultados reproducibles.
+## 1. Objetivo
 
-## 1. Tarea multimodal
+Evaluar si OpenCLIP puede relacionar descripciones textuales controladas con imágenes sintéticas que varían en patrón, composición, orientación y paleta.
 
-La tarea principal es recuperación imagen texto. A partir de una imagen generada, el sistema debe recuperar la descripción textual que mejor corresponde a sus atributos visuales.
+La evidencia principal corresponde al benchmark **v2**. La evaluación cualitativa del protocolo inicial v1 se conserva únicamente como evidencia histórica claramente delimitada en el informe final.
 
-De forma complementaria, también se puede revisar la recuperación texto imagen, donde una descripción se utiliza para buscar la imagen más cercana dentro del conjunto evaluado.
+## 2. Tarea multimodal
 
-## 2. Modalidades utilizadas
+| Elemento | Configuración |
+| --- | --- |
+| Dirección principal | Texto a imagen |
+| Consulta | Caption positivo |
+| Galería | 56 imágenes sintéticas |
+| Consultas positivas | 280 |
+| Modelo | OpenCLIP ViT-B-32 |
+| Pesos | `laion2b_s34b_b79k` |
+| Régimen | Zero-shot, modelo congelado |
+| Similitud | Coseno sobre embeddings normalizados L2 |
+| Dimensión | 512 |
 
-Las modalidades consideradas son:
+## 3. Dataset v2
 
-- Imagen.
-- Texto.
+La galería contiene 56 combinaciones visuales únicas:
 
-## 3. Dataset
+| Partición sintética | Imágenes |
+| --- | ---: |
+| ID | 30 |
+| OOD por paleta | 12 |
+| OOD por patrón | 10 |
+| OOD por patrón y paleta | 4 |
+| **Total** | **56** |
 
-El dataset de trabajo se construye de forma reproducible mediante el script `scripts/generar_dataset_sintetico.py`.
+Cada imagen posee cinco captions positivos. También se definieron cuatro negativos difíciles por unidad y 40 grupos estructurales sin color.
 
-El conjunto contiene 40 imágenes generadas y 200 descripciones textuales candidatas. Cada imagen tiene cinco captions asociados. Las imágenes se almacenan en `data/images/` y el manifiesto se registra en `data/manifest_textiles_generados.csv`.
+Documentación:
 
-El dataset no representa piezas reales ni permite identificación cultural. Su finalidad es crear un escenario controlado para evaluar alineamiento imagen texto, errores, confiabilidad y límites de uso.
+- `docs/especificacion_experimental_v2.md`
+- `docs/auditoria_visual_patrones_v2.md`
+- `docs/diseno_captions_positivos_v2.md`
+- `docs/diseno_negativos_dificiles_v2.md`
 
-## 4. Modelo utilizado
+## 4. Experimentos
 
-El modelo utilizado para la evaluación es OpenCLIP ViT-B-32 con pesos preentrenados `laion2b_s34b_b79k`.
+| Experimento | Evaluación |
+| --- | --- |
+| E1 | Recuperación exacta global con OpenCLIP |
+| E2 | Discriminación ante negativos difíciles |
+| E3 | Comparación con baseline aleatorio y baseline HSV |
+| E4 | Ablaciones cromáticas exactas y estructurales |
 
-OpenCLIP permite representar imágenes y textos en un mismo espacio vectorial. A partir de estas representaciones se calcula una matriz de similitud entre cada imagen y cada descripción textual.
+Familias de comparabilidad:
 
-## 5. Evaluación experimental
+- `global_exact_retrieval`
+- `hard_negative_forced_choice`
+- `structural_multi_relevance`
 
-El cuaderno `notebooks/Cuaderno14_MCC225_resuelto.ipynb` ejecuta la evaluación principal del prototipo multimodal.
+No deben compararse como si midieran exactamente la misma tarea.
 
-El procedimiento general es el siguiente:
+## 5. Resultados principales
 
-1. Cargar el manifiesto de imágenes y captions.
-2. Validar la existencia de las imágenes.
-3. Construir la tabla de textos candidatos.
-4. Calcular embeddings de imágenes y textos con OpenCLIP.
-5. Calcular la matriz de similitud imagen texto.
-6. Evaluar recuperación imagen texto mediante Recall@1, Recall@5, Recall@10 y MRR.
-7. Comparar los resultados contra un baseline aleatorio.
-8. Exportar métricas, rankings y figuras.
+### Recuperación exacta global
 
-## 6. Métricas utilizadas
+| Método | R@1 | R@5 | MRR | nDCG@10 |
+| --- | ---: | ---: | ---: | ---: |
+| Aleatorio | 0.014 | 0.089 | 0.081 | 0.082 |
+| Histograma HSV | 0.125 | 0.625 | 0.340 | 0.494 |
+| OpenCLIP | **0.236** | **0.825** | **0.462** | **0.581** |
 
-Las métricas principales son:
+OpenCLIP supera al baseline aleatorio y al baseline basado únicamente en color. El resultado indica alineamiento multimodal útil dentro del benchmark, pero no reconocimiento cultural.
 
-- Recall@1.
-- Recall@5.
-- Recall@10.
-- MRR.
+![Recuperación exacta global](results/v2/figuras/f1_recuperacion_exacta_v2.png)
 
-Recall@1 mide si un caption correcto aparece en la primera posición del ranking.
+### Negativos difíciles
 
-Recall@5 y Recall@10 permiten revisar si un caption correcto aparece dentro de los primeros resultados.
+| Métrica | Resultado |
+| --- | ---: |
+| Exactitud | 0.518 |
+| MRR | 0.729 |
+| nDCG@10 | 0.799 |
+| Tasa de victorias pareadas | 0.835 |
 
-MRR permite evaluar qué tan arriba aparece el primer caption correcto en el ranking.
+La exactitud mide si el positivo queda primero frente a cuatro negativos simultáneos. La tasa pareada mide cuántas comparaciones individuales favorecen al positivo.
 
-## 7. Resultados cuantitativos preliminares
+### Ablaciones cromáticas
 
-La evaluación se realizó sobre 40 imágenes generadas y 200 textos candidatos.
+La escala de grises reduce el R@1 exacto de **0.236** a **0.086**. El color aporta información importante para identificar la imagen exacta.
 
-| Modelo | Recall@1 | Recall@5 | MRR |
-|---|---:|---:|---:|
-| OpenCLIP ViT-B-32 | 0.325 | 0.600 | 0.481256 |
-| Baseline aleatorio | 0.026175 | 0.119300 | 0.097035 |
+En la tarea estructural, la condición imagen gris + caption sin color alcanza Hit@1 = **0.425**. Esto no significa que sea universalmente superior: las tareas exacta y estructural responden preguntas diferentes.
 
-Los resultados muestran que OpenCLIP supera al baseline aleatorio en las métricas principales. Sin embargo, el desempeño debe interpretarse como funcionamiento parcial en condiciones controladas, no como confiabilidad para uso real.
+Figuras:
 
-## 8. Interpretación breve de resultados
+- [F1: Recuperación exacta](results/v2/figuras/f1_recuperacion_exacta_v2.png)
+- [F2: Negativos difíciles](results/v2/figuras/f2_negativos_dificiles_v2.png)
+- [F3: Ablaciones estructurales](results/v2/figuras/f3_ablaciones_estructurales_v2.png)
+- [F4: Efecto de escala de grises](results/v2/figuras/f4_efecto_grises_exacto_v2.png)
+- [F5: Compromiso entre Hit@1 y Hit@5](results/v2/figuras/f5_compromiso_hit1_hit5_v2.png)
 
-El modelo obtiene un Recall@1 de 0.325. Esto significa que logra ubicar un caption correcto en la primera posición en el 32.5 por ciento de los casos.
+## 6. Informe final
 
-El Recall@5 es 0.600. Esto indica que en el 60.0 por ciento de los casos el modelo recupera al menos un caption correcto entre los cinco primeros resultados.
+- [`reporte_evaluacion_responsable.md`](reporte_evaluacion_responsable.md)
 
-El MRR obtenido por el modelo es 0.481256, valor superior al baseline aleatorio. Esto sugiere que el primer caption correcto suele aparecer bastante más arriba en el ranking que cuando los textos se ordenan al azar.
+Incluye metodología, evolución de la versión v1 a la versión v2, resultados, casos cualitativos heredados, confiabilidad, explicabilidad, uso responsable y trazabilidad.
 
-A pesar de esta mejora frente al baseline, el resultado no debe interpretarse como un sistema confiable para uso real. El modelo muestra una señal de alineamiento imagen texto, pero todavía falla en una proporción importante de imágenes.
+## 7. Tablas maestras
 
-## 9. Estructura del repositorio
+```text
+results/v2/tablas_maestras/
+├── catalogo_experimentos_v2.csv
+├── metricas_maestras_v2.csv
+├── comparaciones_maestras_v2.csv
+└── resumen_tablas_maestras_v2.json
+```
 
-La estructura principal del repositorio es la siguiente:
+Estas tablas separan las tres familias de comparabilidad y evitan mezclar protocolos.
 
-README.md
+## 8. Estructura principal
 
-reporte_evaluacion_responsable.md
+```text
+.
+├── config/
+├── data/
+├── docs/
+├── figures/                  # artefactos históricos v1
+├── notebooks/
+├── results/
+│   └── v2/
+│       ├── evaluacion/
+│       ├── figuras/
+│       └── tablas_maestras/
+├── scripts/
+├── tests/
+├── README.md
+└── reporte_evaluacion_responsable.md
+```
 
-requirements.txt
+## 9. Entorno reproducible
 
-notebooks/
-- Cuaderno14_MCC225_resuelto.ipynb
+```text
+Python:      3.11.9
+PyTorch:     2.13.0+cpu
+Torchvision: 0.28.0+cpu
+OpenCLIP:    3.3.0
+```
 
-data/
-- manifest_textiles_generados.csv
+Documentación:
 
-data/images/
-- T001.png
-- T002.png
-- ...
-- T040.png
+- `docs/entorno_reproducible_v2.md`
+- `results/v2/entorno_cpu_pip_freeze.txt`
 
-results/
-- metricas.csv
-- comparacion_modelo_baseline.csv
-- casos_analizados.csv
-- pruebas_confiabilidad.csv
-- explicabilidad.csv
-- ficha_uso_responsable.csv
+## 10. Validación
 
-figures/
-- comparacion_metricas.png
+```powershell
+python scripts/validar_config_informe_final_v2.py
+python scripts/validar_tablas_maestras_v2.py
+python scripts/validar_figuras_v2.py
+python scripts/validar_informe_final_v2.py
+```
 
-scripts/
-- generar_dataset_sintetico.py
+Las validaciones comprueban conteos, esquemas, anclas, hashes, codificación, idempotencia y protección de artefactos históricos.
 
-## 10. Archivos principales
+## 11. Evidencia cualitativa heredada
 
-`reporte_evaluacion_responsable.md`
+El protocolo v1 produjo cinco casos cualitativos, diez registros de confiabilidad, dos casos de explicabilidad y una ficha de uso responsable. Se conservan bajo `results/` y `figures/`, pero no son resultados cuantitativos de v2.
 
-Contiene el reporte técnico de la actividad, incluyendo descripción del proyecto, adaptación del cuaderno, construcción del dataset, resultados cuantitativos, análisis de casos, confiabilidad, explicabilidad, sesgos y conclusiones.
+Estos artefactos siguen disponibles bajo `results/` y `figures/`, pero no se presentan como resultados cuantitativos de v2.
 
-`notebooks/Cuaderno14_MCC225_resuelto.ipynb`
+## 12. Limitaciones
 
-Contiene el cuaderno experimental adaptado para evaluar recuperación imagen texto con OpenCLIP.
+- El dataset está formado por imágenes generadas.
+- Las particiones ID/OOD son controles sintéticos.
+- Los captions utilizan vocabulario controlado.
+- No se demostró generalización a textiles reales.
+- No se realizaron pruebas de significancia para todas las comparaciones.
+- El modelo no autentica origen, técnica, periodo o cultura.
 
-`scripts/generar_dataset_sintetico.py`
+## 13. Uso responsable
 
-Genera de forma reproducible las imágenes sintéticas y el manifiesto del dataset.
+Uso recomendado: docencia, retrieval multimodal, análisis de baselines y prototipos académicos con supervisión humana.
 
-`data/manifest_textiles_generados.csv`
+Uso no recomendado: autenticación, atribución cultural o histórica, clasificación patrimonial e interpretación automática de significados.
 
-Contiene la relación entre imágenes, captions y atributos visuales controlados.
+## 14. Estado del proyecto
 
-`results/metricas.csv`
+| Componente | Estado |
+| --- | --- |
+| Dataset v2 | Completo y auditado |
+| Captions | Completos |
+| Negativos difíciles | Completos |
+| Embeddings | Congelados |
+| E1 a E4 | Evaluados |
+| Tablas maestras | Validadas |
+| Figuras F1 a F5 | Validadas |
+| Informe final v2 | Validado |
+| README v2 | Generado desde artefactos auditados |
 
-Contiene las métricas principales del modelo y del baseline.
+## 15. Alcance de las conclusiones
 
-`results/comparacion_modelo_baseline.csv`
+La evidencia permite afirmar que OpenCLIP supera los baselines implementados dentro del benchmark sintético y utiliza información más allá del color.
 
-Contiene la comparación entre OpenCLIP y el baseline aleatorio.
+No permite afirmar comprensión cultural, reconocimiento de textiles reales o generalización a colecciones patrimoniales.
 
-`figures/comparacion_metricas.png`
+## 16. Repositorio
 
-Contiene una figura comparativa de las métricas principales.
+Rama de desarrollo y entrega:
 
-## 11. Reproducción del experimento
+```text
+henry/examen-final-mcc225
+```
 
-Primero se recomienda crear y activar un entorno virtual.
-
-En Windows, por ejemplo:
-
-python -m venv D:\venvs\mcc225_eval
-
-D:\venvs\mcc225_eval\Scripts\activate
-
-Luego, instalar las dependencias:
-
-pip install -r requirements.txt
-
-Generar el dataset:
-
-python scripts\generar_dataset_sintetico.py
-
-Después, ejecutar el cuaderno:
-
-notebooks/Cuaderno14_MCC225_resuelto.ipynb
-
-## 12. Dependencias principales
-
-Las dependencias principales del proyecto son:
-
-- pandas.
-- numpy.
-- matplotlib.
-- Pillow.
-- torch.
-- torchvision.
-- open_clip_torch.
-- scikit-learn.
-- tqdm.
-- ipykernel.
-
-## 13. Alcance
-
-El sistema se evalúa en condiciones controladas usando imágenes generadas y descripciones textuales construidas para el experimento. Los resultados deben interpretarse como evidencia preliminar sobre alineamiento multimodal.
-
-El experimento no permite afirmar que el sistema reconozca objetos culturales reales. Tampoco permite afirmar autenticidad, procedencia histórica ni clasificación patrimonial.
-
-## 14. Limitaciones
-
-Las principales limitaciones son:
-
-- Las imágenes son generadas, no corresponden a piezas reales.
-- Los captions fueron construidos manualmente para el experimento.
-- El conjunto de evaluación es pequeño.
-- El modelo puede capturar similitud visual sin comprender el significado del patrón.
-- El buen desempeño frente al baseline no implica confiabilidad para uso real.
-- La evaluación requiere revisión cualitativa de aciertos, errores y casos ambiguos.
-
-## 15. Uso recomendado
-
-El uso recomendado del sistema es limitado. Puede utilizarse como ejercicio académico para explorar alineamiento imagen texto en un entorno controlado.
-
-No se recomienda usarlo para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
-
-## 16. Estado del proyecto
-
-El repositorio contiene el dataset generado, el cuaderno experimental, los resultados cuantitativos, el análisis cualitativo de cinco casos, las pruebas de confiabilidad, la tabla de explicabilidad, la ficha de uso responsable y la conclusión técnica.
-
-El trabajo se encuentra en estado de cierre para revisión académica.
-
-## Análisis cualitativo
-
-Además de las métricas, el proyecto incluye una revisión de cinco casos reales del experimento:
-
-- dos aciertos claros;
-- dos errores claros;
-- un caso ambiguo.
-
-La tabla se almacena en `results/casos_analizados.csv` y la figura resumen en `figures/ejemplos_evaluados.png`.
-
-Este análisis permite revisar errores de alineamiento imagen texto, casos de ambigüedad y límites de interpretación del modelo.
-
-## Pruebas de confiabilidad
-
-El proyecto incluye dos pruebas breves de confiabilidad:
-
-- sensibilidad al texto;
-- degradación visual.
-
-La primera prueba revisa si cambios en la redacción del caption modifican de forma importante el ranking. La segunda prueba revisa si el sistema mantiene su comportamiento cuando la imagen pierde calidad visual.
-
-Los resultados se almacenan en:
-
-- `results/pruebas_confiabilidad.csv`
-- `results/resumen_confiabilidad.csv`
-- `results/clasificacion_confiabilidad.json`
-
-La clasificación final adoptada es: confiable solo en condiciones controladas.
-
-## Explicabilidad
-
-El proyecto incluye una revisión de explicabilidad sobre dos casos reales del experimento. Se analiza un caso de acierto y un caso de error o ambigüedad.
-
-La explicación se basa en evidencia observable:
-
-- atributos visuales de la imagen;
-- caption recuperado por el modelo;
-- resultado esperado;
-- tipo de caso;
-- límite de la explicación.
-
-Los resultados se almacenan en:
-
-- `results/explicabilidad.csv`
-- `results/respuestas_explicabilidad.json`
-- `figures/explicabilidad_casos.png`
-
-La explicación no pretende describir el funcionamiento interno completo del modelo. Su finalidad es apoyar la revisión cualitativa de aciertos, errores y casos ambiguos.
-
-## Sesgo y uso responsable
-
-El proyecto incluye una ficha de uso responsable del sistema. Esta ficha identifica riesgos visuales, lingüísticos, culturales y de uso.
-
-Los resultados se almacenan en:
-
-- `results/ficha_uso_responsable.csv`
-- `results/uso_responsable_resumen.json`
-
-El uso recomendado del sistema es limitado. Puede utilizarse como ejercicio académico para explorar alineamiento imagen texto en condiciones controladas.
-
-No se recomienda usarlo para identificación cultural, clasificación real de objetos, validación patrimonial ni toma de decisiones sin supervisión humana.
-
-## Conclusión técnica
-
-La conclusión técnica del trabajo se encuentra en:
-
-- `results/conclusion_tecnica.md`
-- `reporte_evaluacion_responsable.md`
-
-El resultado principal es que OpenCLIP muestra una señal de alineamiento imagen texto superior al baseline aleatorio. Sin embargo, el sistema solo debe considerarse confiable en condiciones controladas. No se recomienda su uso para identificación cultural, clasificación real de objetos ni validación patrimonial.
-
-## Cumplimiento de entregables
-
-| Entregable | Archivo |
-|---|---|
-| Cuaderno adaptado | `notebooks/Cuaderno14_MCC225_resuelto.ipynb` |
-| Reporte breve | `reporte_evaluacion_responsable.md` |
-| Tabla de métricas | `results/metricas.csv` |
-| Tabla de cinco casos | `results/casos_analizados.csv` |
-| Ficha de uso responsable | `results/ficha_uso_responsable.csv` |
-| Figura de ejemplos | `figures/ejemplos_evaluados.png` |
-| Repositorio actualizado | `README.md` y archivos del proyecto |
+Los resultados oficiales están en `results/v2/` y el informe canónico es `reporte_evaluacion_responsable.md`.

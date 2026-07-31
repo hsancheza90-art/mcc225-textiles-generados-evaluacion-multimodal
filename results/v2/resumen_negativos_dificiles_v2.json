@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "stage": "hard_negative_generation",
+  "config_sha256": "733a72b2c393768955774c8da5c92ff97cbc616802c57e712dc6ede8518f8c10",
+  "vocabulary_sha256": "0d95fa5f5dea139462cc58cf6f2e7bed8e6e66c0a49e2394e45ecd28bd347fc9",
+  "multimodal_manifest_sha256": "7a93172352ed11a73369663a82f54be330c626d204038333465e5752392fcfd6",
+  "positive_captions_sha256": "eb47bbe4e1ee08aabcce018bc7b142e717134e6faef4f4d9e7ae472a1141f9ba",
+  "query_count": 56,
+  "candidate_count": 280,
+  "positive_count": 56,
+  "negative_count": 224,
+  "global_overlap_negative_count": 50,
+  "nonoverlap_negative_count": 174,
+  "candidates_per_query": 5,
+  "negatives_per_query": 4,
+  "chance_level": 0.2,
+  "omission_counts": {
+    "palette_id": 12,
+    "motif": 11,
+    "orientation": 11,
+    "composition": 11,
+    "symmetry": 11
+  },
+  "change_counts": {
+    "palette_id": 44,
+    "motif": 45,
+    "orientation": 45,
+    "composition": 45,
+    "symmetry": 45
+  },
+  "positive_position_counts": {
+    "1": 11,
+    "2": 11,
+    "3": 12,
+    "4": 11,
+    "5": 11
+  },
+  "global_overlap_by_attribute": {
+    "palette_id": 44,
+    "motif": 0,
+    "orientation": 6,
+    "composition": 0,
+    "symmetry": 0
+  },
+  "negative_type_counts": {
+    "global_overlap": 50,
+    "counterfactual_only": 174
+  },
+  "candidate_counts_by_split": {
+    "id": 150,
+    "ood_palette": 60,
+    "ood_pattern": 50,
+    "ood_both": 20
+  },
+  "omission_position_pair_count": 25,
+  "distinct_transition_count": 29,
+  "query_path": "data/v2/consultas_negativos_dificiles_v2.csv",
+  "candidate_path": "data/v2/candidatos_negativos_dificiles_v2.csv",
+  "queries_sha256": "8300ae617f789d8f732b74e008872a9cb9fc6f4fe779573f76f1d53d487a4800",
+  "candidates_sha256": "20bef8365a10a2579c0ec8ca62d5beab70a0045a96129136c466a674a23b5116",
+  "generation_valid": true
+}

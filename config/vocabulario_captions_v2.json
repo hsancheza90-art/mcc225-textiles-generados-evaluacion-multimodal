@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "vocabulary_version": "2.0",
+  "language": "es",
+  "scope": "synthetic_geometric_patterns",
+  "canonical_template_id": "TPL_01",
+  "palette_labels": {
+    "rojo_negro_crema": "rojo oscuro, negro y crema",
+    "azul_crema_marron": "azul profundo, crema y marrón",
+    "ocre_marron_negro": "ocre, marrón y negro",
+    "blanco_negro_gris": "blanco, negro y gris",
+    "multicolor_tierra": "rojo tierra, ocre, verde oscuro y azul profundo",
+    "verde_ocre_crema": "verde, ocre y crema",
+    "morado_gris_rosa": "morado, gris y rosa"
+  },
+  "attribute_labels": {
+    "motif": {
+      "bandas geométricas": "bandas geométricas",
+      "rombos": "rombos",
+      "grecas escalonadas": "grecas escalonadas",
+      "cuadrícula geométrica": "una cuadrícula geométrica",
+      "motivos geométricos combinados": "motivos geométricos combinados",
+      "chevrones": "chevrones",
+      "círculos concéntricos": "círculos concéntricos"
+    },
+    "orientation": {
+      "horizontal": "horizontal",
+      "vertical": "vertical",
+      "diagonal": "diagonal",
+      "bidireccional": "bidireccional",
+      "mixta": "mixta",
+      "radial": "radial"
+    },
+    "composition": {
+      "bandas": "en bandas",
+      "central": "central",
+      "modular": "modular",
+      "reticular": "reticular",
+      "mixta": "mixta"
+    },
+    "symmetry": {
+      "repetitiva": "repetitiva",
+      "bilateral": "bilateral",
+      "asimétrica": "asimétrica",
+      "radial": "radial"
+    }
+  },
+  "full_templates": [
+    {
+      "template_id": "TPL_01",
+      "text": "Patrón geométrico sintético con paleta {palette}; con {motif} como motivo principal; orientación {orientation}; composición {composition}; simetría {symmetry}."
+    },
+    {
+      "template_id": "TPL_02",
+      "text": "Imagen abstracta en colores {palette}, formada por {motif}, con orientación {orientation}, composición {composition} y simetría {symmetry}."
+    },
+    {
+      "template_id": "TPL_03",
+      "text": "Diseño de composición {composition} que muestra {motif}, orientación {orientation}, simetría {symmetry} y una paleta {palette}."
+    },
+    {
+      "template_id": "TPL_04",
+      "text": "Representación sintética de {motif}; la orientación es {orientation}, la composición es {composition}, la simetría es {symmetry} y los colores son {palette}."
+    },
+    {
+      "template_id": "TPL_05",
+      "text": "Textura geométrica con {motif}, orientación {orientation}, composición {composition}, simetría {symmetry} y combinación cromática {palette}."
+    }
+  ],
+  "colorless_templates": [
+    {
+      "template_id": "TPL_01",
+      "text": "Patrón geométrico sintético con {motif} como motivo principal; orientación {orientation}; composición {composition}; simetría {symmetry}."
+    },
+    {
+      "template_id": "TPL_02",
+      "text": "Imagen abstracta formada por {motif}, con orientación {orientation}, composición {composition} y simetría {symmetry}."
+    },
+    {
+      "template_id": "TPL_03",
+      "text": "Diseño de composición {composition} que muestra {motif}, orientación {orientation} y simetría {symmetry}."
+    },
+    {
+      "template_id": "TPL_04",
+      "text": "Representación sintética de {motif}; la orientación es {orientation}, la composición es {composition} y la simetría es {symmetry}."
+    },
+    {
+      "template_id": "TPL_05",
+      "text": "Textura geométrica sintética con {motif}, orientación {orientation}, composición {composition} y simetría {symmetry}."
+    }
+  ],
+  "validation": {
+    "required_full_placeholders": [
+      "palette",
+      "motif",
+      "orientation",
+      "composition",
+      "symmetry"
+    ],
+    "required_colorless_placeholders": [
+      "motif",
+      "orientation",
+      "composition",
+      "symmetry"
+    ],
+    "forbidden_terms": [
+      "andino",
+      "andina",
+      "inca",
+      "quechua",
+      "aimara",
+      "aymara",
+      "precolombino",
+      "precolombina",
+      "patrimonial",
+      "autenticidad",
+      "auténtico",
+      "auténtica",
+      "procedencia cultural",
+      "origen cultural"
+    ],
+    "minimum_words": 12,
+    "maximum_words": 40
+  }
+}

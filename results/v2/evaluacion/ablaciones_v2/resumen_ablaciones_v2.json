@@ -1,0 +1,228 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "experiment_id": "E4",
+  "experiment_name": "color_ablations",
+  "conditions": [
+    "original_image_full_caption",
+    "grayscale_image_full_caption",
+    "original_image_caption_without_color",
+    "grayscale_image_caption_without_color"
+  ],
+  "protocol": {
+    "gallery_count": 56,
+    "structural_group_count": 40,
+    "structural_relevant_count": 7,
+    "raw_structural_query_rows": 640,
+    "group_condition_rows": 160,
+    "exact_secondary_rows": 560,
+    "similarity": "dot_product_of_l2_normalized_embeddings",
+    "tie_breaker": "image_id_ascending",
+    "legacy_recall_mapping": {
+      "recall_at_1": "structural_hit_at_1",
+      "recall_at_5": "structural_hit_at_5"
+    }
+  },
+  "counts": {
+    "raw_structural_results": 640,
+    "structural_ranking_rows": 35840,
+    "structural_group_results": 160,
+    "structural_aggregate_rows": 40,
+    "paired_group_rows": 160,
+    "paired_aggregate_rows": 12,
+    "exact_results": 560,
+    "exact_aggregate_rows": 14
+  },
+  "structural_overall_metrics": {
+    "original_image_full_caption": {
+      "structural_hit_at_1": 0.239285714286,
+      "structural_hit_at_5": 0.832142857143,
+      "structural_fractional_recall_at_5": 0.143367346939,
+      "structural_mrr": 0.467428945063,
+      "structural_ndcg_at_10": 0.244898991783,
+      "best_relevant_margin": -0.019519026844,
+      "group_count": 40
+    },
+    "grayscale_image_full_caption": {
+      "structural_hit_at_1": 0.292857142857,
+      "structural_hit_at_5": 0.510714285714,
+      "structural_fractional_recall_at_5": 0.20306122449,
+      "structural_mrr": 0.411211185169,
+      "structural_ndcg_at_10": 0.327758534686,
+      "best_relevant_margin": -0.015075874462,
+      "group_count": 40
+    },
+    "original_image_caption_without_color": {
+      "structural_hit_at_1": 0.275,
+      "structural_hit_at_5": 0.5,
+      "structural_fractional_recall_at_5": 0.235714285714,
+      "structural_mrr": 0.410266386358,
+      "structural_ndcg_at_10": 0.370366867973,
+      "best_relevant_margin": -0.009797053412,
+      "group_count": 40
+    },
+    "grayscale_image_caption_without_color": {
+      "structural_hit_at_1": 0.425,
+      "structural_hit_at_5": 0.525,
+      "structural_fractional_recall_at_5": 0.242857142857,
+      "structural_mrr": 0.490930804384,
+      "structural_ndcg_at_10": 0.379457452697,
+      "best_relevant_margin": -0.007361171395,
+      "group_count": 40
+    }
+  },
+  "paired_overall_differences": {
+    "grayscale_effect_with_full_caption": {
+      "delta_structural_hit_at_1": 0.053571428571,
+      "delta_structural_hit_at_5": -0.321428571429,
+      "delta_structural_fractional_recall_at_5": 0.059693877551,
+      "delta_structural_mrr": -0.056217759894,
+      "delta_structural_ndcg_at_10": 0.082859542903,
+      "delta_best_relevant_margin": 0.004443152382,
+      "group_count": 40,
+      "minuend": "grayscale_image_full_caption",
+      "subtrahend": "original_image_full_caption"
+    },
+    "remove_text_color_with_original_image": {
+      "delta_structural_hit_at_1": 0.035714285714,
+      "delta_structural_hit_at_5": -0.332142857143,
+      "delta_structural_fractional_recall_at_5": 0.092346938776,
+      "delta_structural_mrr": -0.057162558705,
+      "delta_structural_ndcg_at_10": 0.125467876189,
+      "delta_best_relevant_margin": 0.009721973432,
+      "group_count": 40,
+      "minuend": "original_image_caption_without_color",
+      "subtrahend": "original_image_full_caption"
+    },
+    "remove_text_color_with_grayscale_image": {
+      "delta_structural_hit_at_1": 0.132142857143,
+      "delta_structural_hit_at_5": 0.014285714286,
+      "delta_structural_fractional_recall_at_5": 0.039795918367,
+      "delta_structural_mrr": 0.079719619216,
+      "delta_structural_ndcg_at_10": 0.05169891801,
+      "delta_best_relevant_margin": 0.007714703067,
+      "group_count": 40,
+      "minuend": "grayscale_image_caption_without_color",
+      "subtrahend": "grayscale_image_full_caption"
+    },
+    "remove_visual_and_text_color": {
+      "delta_structural_hit_at_1": 0.185714285714,
+      "delta_structural_hit_at_5": -0.307142857143,
+      "delta_structural_fractional_recall_at_5": 0.099489795919,
+      "delta_structural_mrr": 0.023501859322,
+      "delta_structural_ndcg_at_10": 0.134558460913,
+      "delta_best_relevant_margin": 0.012157855449,
+      "group_count": 40,
+      "minuend": "grayscale_image_caption_without_color",
+      "subtrahend": "original_image_full_caption"
+    }
+  },
+  "exact_overall_metrics": {
+    "original_image_full_caption": {
+      "recall_at_1": 0.235714285714,
+      "recall_at_5": 0.825,
+      "mrr": 0.462076240384,
+      "ndcg_at_10": 0.58130847073,
+      "positive_margin": -0.01993444365,
+      "query_count": 280
+    },
+    "grayscale_image_full_caption": {
+      "recall_at_1": 0.085714285714,
+      "recall_at_5": 0.314285714286,
+      "mrr": 0.207080297046,
+      "ndcg_at_10": 0.251120969549,
+      "positive_margin": -0.029347227727,
+      "query_count": 280
+    }
+  },
+  "input_artifacts": {
+    "contract": {
+      "path": "config/ablaciones_v2.json",
+      "sha256": "968d8e54ea45b6ebc4a9fd316fa175b0ef30d85728ae8b5fb9aefadf24edc417"
+    },
+    "full_captions": {
+      "path": "data/v2/captions_positivos_v2.csv",
+      "rows": 280,
+      "sha256": "eb47bbe4e1ee08aabcce018bc7b142e717134e6faef4f4d9e7ae472a1141f9ba"
+    },
+    "colorless_captions": {
+      "path": "data/v2/captions_sin_color_v2.csv",
+      "rows": 40,
+      "sha256": "cb6a8138c6329055623e140107fb45bc0d11bcedbe80dc9630bc6d04452e950e"
+    },
+    "image_index": {
+      "path": "results/v2/embeddings/index_images_v2.csv",
+      "rows": 56,
+      "sha256": "ea5fed8228c43ee2cf4816ed273ff2b168a5b2826dbfbabd87d1ea5e6e186c17"
+    },
+    "text_usage": {
+      "path": "results/v2/embeddings/usos_textos_v2.csv",
+      "rows": 600,
+      "sha256": "c386526e38d21f317a868b5f876495dd1c4852dc9c9a4814d406dd2f0e48a339"
+    },
+    "original_image_embeddings": {
+      "path": "results/v2/embeddings/embeddings_imagen_original_v2.npy",
+      "sha256": "1c6e11cc60523faf09431a486507c06b96a91e88b8428bce907a7ed3ee405680"
+    },
+    "grayscale_image_embeddings": {
+      "path": "results/v2/embeddings/embeddings_imagen_grayscale_v2.npy",
+      "sha256": "e2ddcd4ede730f1072d615c4d6ae3df7a2e5a5c2724832fecc09fa98cc97f6f6"
+    },
+    "text_embeddings": {
+      "path": "results/v2/embeddings/embeddings_textos_unicos_v2.npy",
+      "sha256": "98d22491c23c550565605d26f3426bb6d5e03b07ab71ec426ba4bc79fd9a9508"
+    },
+    "e1_results": {
+      "path": "results/v2/evaluacion/global_openclip_v2/resultados_consulta_global_openclip_v2.csv",
+      "rows": 280,
+      "sha256": "fb1e6e5b9f6a22f542f5336446654cf5456975f57805356105a44c956f10aec7"
+    }
+  },
+  "output_artifacts": {
+    "raw_results": {
+      "path": "results/v2/evaluacion/ablaciones_v2/resultados_consulta_estructural_ablaciones_v2.csv",
+      "rows": 640,
+      "sha256": "262d145aa0041a9c73586052db79b52c3f6e56b0511719bb71ff93c80484f15f"
+    },
+    "ranking": {
+      "path": "results/v2/evaluacion/ablaciones_v2/ranking_estructural_ablaciones_v2.csv",
+      "rows": 35840,
+      "sha256": "38216c59c64c18a01775f9ff4309eefa3008a225deb185db322bf40098df35d8"
+    },
+    "group_results": {
+      "path": "results/v2/evaluacion/ablaciones_v2/resultados_grupo_estructural_ablaciones_v2.csv",
+      "rows": 160,
+      "sha256": "726883b7104588122c0b264ed8785135a130e1087599d6b52b410b8c0f214cd8"
+    },
+    "structural_aggregates": {
+      "path": "results/v2/evaluacion/ablaciones_v2/agregados_estructurales_ablaciones_v2.csv",
+      "rows": 40,
+      "sha256": "bcb85797f42bc60d5fa5213022ab938cf2d9a91c2652c35bb1a8e172e0e9a874"
+    },
+    "paired_results": {
+      "path": "results/v2/evaluacion/ablaciones_v2/comparaciones_pareadas_estructurales_v2.csv",
+      "rows": 160,
+      "sha256": "90da04e4ccc494ad808f291d635716908fde2d49615f4440ebb8eb708880de1c"
+    },
+    "paired_aggregates": {
+      "path": "results/v2/evaluacion/ablaciones_v2/agregados_comparaciones_estructurales_v2.csv",
+      "rows": 12,
+      "sha256": "ea1eb7eaa988bc00d887a731a385502778b564328df381a27bf0feb70cb8d9c8"
+    },
+    "exact_results": {
+      "path": "results/v2/evaluacion/ablaciones_v2/resultados_exactos_ablaciones_v2.csv",
+      "rows": 560,
+      "sha256": "840bac175adeea563266f9e0b4f20081f605461849b39a1c266a148fa183c773"
+    },
+    "exact_aggregates": {
+      "path": "results/v2/evaluacion/ablaciones_v2/agregados_exactos_ablaciones_v2.csv",
+      "rows": 14,
+      "sha256": "af88d05b1192d0a8f4def73367442b13d71c39c5d9f8e087f6becb89fb8c2704"
+    }
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "numpy": "1.26.4"
+  },
+  "evaluation_valid": true
+}

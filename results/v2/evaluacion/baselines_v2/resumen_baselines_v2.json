@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "v2",
+  "experiment_id": "E3",
+  "experiment_name": "baseline_comparison",
+  "conditions": [
+    "openclip",
+    "random",
+    "color_histogram"
+  ],
+  "protocol": {
+    "task": "global_text_to_image_retrieval",
+    "query_count": 280,
+    "gallery_count": 56,
+    "relevant_images_per_query": 1,
+    "tie_breaker": "image_id_ascending",
+    "openclip_source": "validated_E1_results",
+    "random_seed": 225,
+    "random_generator": "numpy_PCG64",
+    "color_space": "HSV",
+    "color_bins": {
+      "h": 18,
+      "s": 4,
+      "v": 4
+    },
+    "color_descriptor_dimensions": 288,
+    "color_similarity": "histogram_intersection"
+  },
+  "counts": {
+    "query_rows": 840,
+    "random_ranking_rows": 15680,
+    "color_ranking_rows": 15680,
+    "aggregate_rows": 21,
+    "comparison_rows": 3,
+    "splits": {
+      "id": 150,
+      "ood_both": 20,
+      "ood_palette": 60,
+      "ood_pattern": 50
+    },
+    "is_canonical": {
+      "false": 224,
+      "true": 56
+    }
+  },
+  "overall_metrics": {
+    "openclip": {
+      "recall_at_1": 0.2357142857142857,
+      "recall_at_5": 0.825,
+      "mrr": 0.46207624038446066,
+      "ndcg_at_10": 0.5813084707302749,
+      "positive_margin": -0.019934443650496427,
+      "query_count": 280.0
+    },
+    "random": {
+      "recall_at_1": 0.014285714285714285,
+      "recall_at_5": 0.08928571428571429,
+      "mrr": 0.08140133499539569,
+      "ndcg_at_10": 0.08192347921162654,
+      "positive_margin": -0.4816636864031471,
+      "query_count": 280.0
+    },
+    "color_histogram": {
+      "recall_at_1": 0.125,
+      "recall_at_5": 0.625,
+      "mrr": 0.33973214285714287,
+      "ndcg_at_10": 0.49418306451330957,
+      "positive_margin": -0.27088819231305805,
+      "query_count": 280.0
+    }
+  },
+  "theoretical_random_expectation": {
+    "gallery_size": 56,
+    "recall_at_1": 0.017857142857142856,
+    "recall_at_5": 0.08928571428571429,
+    "mrr": 0.08234766704970055,
+    "ndcg_at_10": 0.08113498818014904
+  },
+  "realized_random_minus_theoretical": {
+    "recall_at_1": -0.003571428571428571,
+    "recall_at_5": 0.0,
+    "mrr": -0.0009463320543048603,
+    "ndcg_at_10": 0.0007884910314775034
+  },
+  "input_artifacts": {
+    "baselines_config": {
+      "path": "config/baselines_v2.json",
+      "sha256": "3d91dfdddbe66b1eb919382685b39f5fe98c4c8450369c80ee24322c6974c972"
+    },
+    "experiment_config": {
+      "path": "config/experimento_v2.json",
+      "sha256": "a87b0f6d055fb49142f3f5707601e3f507657b866657580ffab405608ba212d5"
+    },
+    "captions": {
+      "path": "data/v2/captions_positivos_v2.csv",
+      "rows": 280,
+      "sha256": "eb47bbe4e1ee08aabcce018bc7b142e717134e6faef4f4d9e7ae472a1141f9ba"
+    },
+    "image_index": {
+      "path": "results/v2/embeddings/index_images_v2.csv",
+      "rows": 56,
+      "sha256": "ea5fed8228c43ee2cf4816ed273ff2b168a5b2826dbfbabd87d1ea5e6e186c17"
+    },
+    "openclip_results": {
+      "path": "results/v2/evaluacion/global_openclip_v2/resultados_consulta_global_openclip_v2.csv",
+      "rows": 280,
+      "sha256": "fb1e6e5b9f6a22f542f5336446654cf5456975f57805356105a44c956f10aec7"
+    },
+    "openclip_summary": {
+      "path": "results/v2/evaluacion/global_openclip_v2/resumen_global_openclip_v2.json",
+      "sha256": "a37c5145ad0c474a506816a1aff92ab46963c4fe760131dd94949ebc456121c9"
+    }
+  },
+  "output_artifacts": {
+    "query_results": {
+      "path": "results/v2/evaluacion/baselines_v2/resultados_consulta_baselines_v2.csv",
+      "rows": 840,
+      "sha256": "b20652bf4f06aa34035ab21553aa60208ea3cfedf24834555a604c8e3a75a462"
+    },
+    "random_ranking": {
+      "path": "results/v2/evaluacion/baselines_v2/ranking_random_v2.csv",
+      "rows": 15680,
+      "sha256": "a56ca8f03e56e519b35e7a74dda67113fae571f62d0a18b794c0dfe7c06bd979"
+    },
+    "color_ranking": {
+      "path": "results/v2/evaluacion/baselines_v2/ranking_color_histogram_v2.csv",
+      "rows": 15680,
+      "sha256": "da93bb58e219dc5c47a2ff8e81c8464ccc04997572796dc56d90b3b82e012c06"
+    },
+    "aggregates": {
+      "path": "results/v2/evaluacion/baselines_v2/agregados_baselines_v2.csv",
+      "rows": 21,
+      "sha256": "56b6fc85175c6b9b721fbf888abdde8f886d742103f52c850cad35922d7a2829"
+    },
+    "comparison": {
+      "path": "results/v2/evaluacion/baselines_v2/comparacion_baselines_v2.csv",
+      "rows": 3,
+      "sha256": "7c9aba993540c148692fd57d6119c42ba2bf15040080f15b9e392a54d0b56e51"
+    }
+  },
+  "runtime": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "pillow": "10.4.0"
+  },
+  "evaluation_valid": true
+}
