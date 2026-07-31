@@ -286,7 +286,7 @@ def main() -> None:
     assert title_lines == [
         (
             "Evaluación responsable de "
-            "recuperación texto→imagen sobre "
+            "recuperación de texto a imagen sobre "
             "patrones textiles generados"
         )
     ]
@@ -468,7 +468,7 @@ def main() -> None:
             "v1 no es evidencia de E1-E4",
             (
                 "no constituyen evidencia "
-                "directa de E1–E4"
+                "directa de E1 a E4"
             ),
         ),
     )

@@ -1,6 +1,6 @@
 # Evaluación multimodal de patrones textiles generados
 
-Benchmark académico reproducible para evaluar recuperación **texto→imagen** sobre patrones geométricos sintéticos inspirados en una estética textil.
+Benchmark académico reproducible para evaluar recuperación **de texto a imagen** sobre patrones geométricos sintéticos inspirados en una estética textil.
 
 > El proyecto no identifica textiles reales, no autentica procedencia y no permite inferir cultura, periodo, técnica ni significado.
 
@@ -14,7 +14,7 @@ La evidencia principal corresponde al benchmark **v2**. La evaluación cualitati
 
 | Elemento | Configuración |
 | --- | --- |
-| Dirección principal | Texto→imagen |
+| Dirección principal | Texto a imagen |
 | Consulta | Caption positivo |
 | Galería | 56 imágenes sintéticas |
 | Consultas positivas | 280 |
@@ -95,17 +95,17 @@ En la tarea estructural, la condición imagen gris + caption sin color alcanza H
 
 Figuras:
 
-- [F1 — Recuperación exacta](results/v2/figuras/f1_recuperacion_exacta_v2.png)
-- [F2 — Negativos difíciles](results/v2/figuras/f2_negativos_dificiles_v2.png)
-- [F3 — Ablaciones estructurales](results/v2/figuras/f3_ablaciones_estructurales_v2.png)
-- [F4 — Efecto de escala de grises](results/v2/figuras/f4_efecto_grises_exacto_v2.png)
-- [F5 — Compromiso Hit@1/Hit@5](results/v2/figuras/f5_compromiso_hit1_hit5_v2.png)
+- [F1: Recuperación exacta](results/v2/figuras/f1_recuperacion_exacta_v2.png)
+- [F2: Negativos difíciles](results/v2/figuras/f2_negativos_dificiles_v2.png)
+- [F3: Ablaciones estructurales](results/v2/figuras/f3_ablaciones_estructurales_v2.png)
+- [F4: Efecto de escala de grises](results/v2/figuras/f4_efecto_grises_exacto_v2.png)
+- [F5: Compromiso entre Hit@1 y Hit@5](results/v2/figuras/f5_compromiso_hit1_hit5_v2.png)
 
 ## 6. Informe final
 
 - [`reporte_evaluacion_responsable.md`](reporte_evaluacion_responsable.md)
 
-Incluye metodología, evolución v1→v2, resultados, casos cualitativos heredados, confiabilidad, explicabilidad, uso responsable y trazabilidad.
+Incluye metodología, evolución de la versión v1 a la versión v2, resultados, casos cualitativos heredados, confiabilidad, explicabilidad, uso responsable y trazabilidad.
 
 ## 7. Tablas maestras
 
@@ -193,9 +193,9 @@ Uso no recomendado: autenticación, atribución cultural o histórica, clasifica
 | Captions | Completos |
 | Negativos difíciles | Completos |
 | Embeddings | Congelados |
-| E1–E4 | Evaluados |
+| E1 a E4 | Evaluados |
 | Tablas maestras | Validadas |
-| Figuras F1–F5 | Validadas |
+| Figuras F1 a F5 | Validadas |
 | Informe final v2 | Validado |
 | README v2 | Generado desde artefactos auditados |
 

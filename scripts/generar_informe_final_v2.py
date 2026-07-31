@@ -1101,20 +1101,20 @@ def main() -> None:
         ]
     )
 
-    report = f"""# Evaluación responsable de recuperación texto→imagen sobre patrones textiles generados
+    report = f"""# Evaluación responsable de recuperación de texto a imagen sobre patrones textiles generados
 
 > **Versión final v2.** La evidencia cuantitativa principal procede del benchmark v2. Las secciones cualitativas heredadas del protocolo v1 se mantienen como evidencia histórica y están identificadas explícitamente; no deben interpretarse como resultados cuantitativos de v2.
 
 ## 1. Proyecto personal y alcance
 
-Este trabajo evalúa un prototipo multimodal para relacionar descripciones textuales controladas con imágenes sintéticas de patrones geométricos inspirados en una estética textil. La tarea principal de v2 es **recuperación texto→imagen**: cada consulta textual debe ordenar una galería de 56 imágenes y situar la imagen correspondiente en una posición alta.
+Este trabajo evalúa un prototipo multimodal para relacionar descripciones textuales controladas con imágenes sintéticas de patrones geométricos inspirados en una estética textil. La tarea principal de v2 es **recuperación de texto a imagen**: cada consulta textual debe ordenar una galería de 56 imágenes y situar la imagen correspondiente en una posición alta.
 
 El objetivo no es construir un sistema de identificación cultural ni demostrar reconocimiento de textiles reales. El propósito es medir, en un entorno controlado, hasta qué punto OpenCLIP conserva una señal conjunta de composición, patrón y paleta, y dónde aparecen sus principales errores.
 
 | Elemento | Definición |
 | --- | --- |
 | Modalidades | Texto e imagen |
-| Tarea principal | Recuperación texto→imagen |
+| Tarea principal | Recuperación de texto a imagen |
 | Modelo | OpenCLIP ViT-B-32 |
 | Pesos | `laion2b_s34b_b79k` |
 | Régimen | Zero-shot, modelo congelado |
@@ -1127,14 +1127,14 @@ La parte que puede evaluarse con evidencia es el **alineamiento multimodal dentr
 
 ## 2. Evolución del prototipo y adaptación experimental
 
-La primera versión del proyecto adaptó el Cuaderno 14 para una tarea imagen→texto sobre 40 imágenes y 200 descripciones. Esa etapa permitió comprobar el flujo general, producir cinco casos cualitativos, ejecutar pruebas breves de confiabilidad y documentar riesgos de uso.
+La primera versión del proyecto adaptó el Cuaderno 14 para una tarea de imagen a texto sobre 40 imágenes y 200 descripciones. Esa etapa permitió comprobar el flujo general, producir cinco casos cualitativos, ejecutar pruebas breves de confiabilidad y documentar riesgos de uso.
 
 La auditoría posterior encontró duplicación exacta y repetición semántica en v1. Por ello se diseñó v2 como un benchmark separado, con combinaciones visuales únicas, protocolo formal y artefactos verificables.
 
 | Aspecto | Protocolo inicial v1 | Benchmark v2 |
 | --- | --- | --- |
 | Función principal | Adaptación académica inicial | Evaluación cuantitativa controlada |
-| Dirección principal | Imagen→texto | Texto→imagen |
+| Dirección principal | Imagen a texto | Texto a imagen |
 | Imágenes | 40 | 56 |
 | Consultas | 200 descripciones candidatas | 280 usos de captions positivos |
 | Baselines | Aleatorio | Aleatorio y color HSV |
@@ -1175,7 +1175,7 @@ Se compararon tres familias de métodos:
 
 1. **Baseline aleatorio:** ordenamiento reproducible sin información visual o textual.
 2. **Baseline HSV:** comparación basada en distribución de color.
-3. **OpenCLIP:** representación conjunta visión–lenguaje.
+3. **OpenCLIP:** representación conjunta de visión y lenguaje.
 
 Las métricas exactas son R@1, R@5, MRR y nDCG@10. R@1 comprueba si la imagen exacta queda primera; R@5 revisa si aparece en las cinco primeras posiciones; MRR considera la posición recíproca de la primera respuesta correcta; y nDCG@10 resume la calidad del ordenamiento temprano.
 
@@ -1247,7 +1247,7 @@ Las particiones ID y OOD del proyecto son controles sintéticos construidos medi
 
 ## 7. Evaluación cualitativa heredada del protocolo v1
 
-> **Alcance de esta sección:** los cinco casos siguientes provienen del experimento inicial v1 de recuperación imagen→texto sobre 40 imágenes. Se conservan porque responden al requisito cualitativo de la actividad, pero no constituyen evidencia directa de E1–E4 ni deben mezclarse con las métricas v2.
+> **Alcance de esta sección:** los cinco casos siguientes provienen del experimento inicial v1 de recuperación de imagen a texto sobre 40 imágenes. Se conservan porque responden al requisito cualitativo de la actividad, pero no constituyen evidencia directa de E1 a E4 ni deben mezclarse con las métricas v2.
 
 {cases_table}
 
@@ -1293,7 +1293,7 @@ El uso recomendado es académico y exploratorio, con supervisión humana. El sis
 
 ## 10. Conclusiones
 
-El benchmark v2 permitió pasar de una demostración inicial a una evaluación reproducible y auditable de recuperación texto→imagen. OpenCLIP superó al baseline aleatorio y al baseline HSV en la galería global. Su resultado principal fue R@1 = **{format_metric(openclip_r1)}**, R@5 = **{format_metric(openclip_r5)}**, MRR = **{format_metric(openclip_mrr)}** y nDCG@10 = **{format_metric(openclip_ndcg)}**.
+El benchmark v2 permitió pasar de una demostración inicial a una evaluación reproducible y auditable de recuperación de texto a imagen. OpenCLIP superó al baseline aleatorio y al baseline HSV en la galería global. Su resultado principal fue R@1 = **{format_metric(openclip_r1)}**, R@5 = **{format_metric(openclip_r5)}**, MRR = **{format_metric(openclip_mrr)}** y nDCG@10 = **{format_metric(openclip_ndcg)}**.
 
 La evaluación de negativos difíciles mostró discriminación parcial: la exactitud fue **{format_metric(hard_accuracy)}**, mientras que la tasa de victorias pareadas alcanzó **{format_metric(pairwise_win_rate)}**. Esto indica que el modelo suele preferir el caption positivo frente a un negativo individual, pero no siempre logra situarlo primero frente a cuatro alternativas simultáneas.
 

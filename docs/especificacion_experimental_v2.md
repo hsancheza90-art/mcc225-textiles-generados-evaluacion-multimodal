@@ -2,11 +2,11 @@
 
 ## 1. Identificación
 
-**Proyecto:** Evaluación controlada de OpenCLIP para recuperación imagen–texto con patrones textiles sintéticos.
+**Proyecto:** Evaluación controlada de OpenCLIP para recuperación entre imágenes y textos con patrones textiles sintéticos.
 
 **Estudiante:** Henry Sánchez Alvarado.
 
-**Curso:** MCC225 — IA Generativa y Aprendizaje Multimodal.
+**Curso:** MCC225: IA Generativa y Aprendizaje Multimodal.
 
 **Versión del protocolo:** 2.0.
 
@@ -16,7 +16,7 @@
 
 ## 2. Alcance
 
-El proyecto evalúa recuperación cruzada imagen–texto sobre patrones geométricos sintéticos de inspiración textil andina.
+El proyecto evalúa recuperación cruzada entre imágenes y textos sobre patrones geométricos sintéticos de inspiración textil andina.
 
 El objetivo no es reconocer textiles andinos reales, identificar culturas, determinar procedencias, autenticar piezas, interpretar símbolos ni realizar clasificación patrimonial.
 
@@ -33,7 +33,7 @@ El problema es multimodal porque relaciona dos representaciones diferentes:
 
 El sistema debe alinear ambas modalidades dentro de un espacio compartido de embeddings y ordenar los captions según su similitud con una imagen de consulta.
 
-La tarea principal es **retrieval cruzado imagen→texto**. No es clasificación cultural, captioning generativo, VQA ni reconocimiento de objetos patrimoniales.
+La tarea principal es **retrieval cruzado de imagen a texto**. No es clasificación cultural, captioning generativo, VQA ni reconocimiento de objetos patrimoniales.
 
 ---
 
@@ -152,7 +152,7 @@ La condición OOD se refiere únicamente a la construcción del benchmark. No im
 
 No se generarán combinaciones mediante dos ciclos modulares independientes. Se construirá explícitamente el producto cartesiano de patrones y paletas correspondiente a cada split.
 
-Cada combinación patrón–paleta aparecerá una sola vez.
+Cada combinación de patrón y paleta aparecerá una sola vez.
 
 ---
 

@@ -23,7 +23,7 @@ $$
 56 \times 5 = 280
 $$
 
-relaciones imagen–caption candidatas.
+relaciones candidatas entre imagen y caption.
 
 El nivel de azar de la selección entre cinco candidatos es:
 

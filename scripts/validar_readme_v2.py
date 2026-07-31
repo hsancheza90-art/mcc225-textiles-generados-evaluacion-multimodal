@@ -194,6 +194,29 @@ def git_path_has_diff(relative_path: str) -> bool:
 
 
 def main() -> None:
+    # Evita signos que no se usarán en la redacción del README.
+    readme_style_text = Path(README_PATH).read_text(
+        encoding="utf-8"
+    )
+    forbidden_readme_characters = {
+        chr(0x2192): "flecha derecha",
+        chr(0x2013): "guion mediano",
+        chr(0x2014): "guion largo",
+    }
+    forbidden_readme_counts = {}
+
+    for character, label in forbidden_readme_characters.items():
+        count = readme_style_text.count(character)
+
+        if count > 0:
+            forbidden_readme_counts[label] = count
+
+    assert not forbidden_readme_counts, (
+        "El README contiene signos de estilo "
+        "no permitidos: "
+        f"{forbidden_readme_counts}"
+    )
+
     contract = load_json(CONTRACT_PATH)
     metric_rows = load_csv(METRICS_PATH)
     metrics = build_metric_index(metric_rows)
@@ -391,7 +414,7 @@ def main() -> None:
     ) in text
 
     required_markers = (
-        "recuperación **texto→imagen**",
+        "recuperación **de texto a imagen**",
         "56 imágenes sintéticas",
         "Consultas positivas | 280",
         "protocolo inicial v1",
@@ -482,9 +505,9 @@ def main() -> None:
     status_rows = (
         "| Dataset v2 | Completo y auditado |",
         "| Embeddings | Congelados |",
-        "| E1–E4 | Evaluados |",
+        "| E1 a E4 | Evaluados |",
         "| Tablas maestras | Validadas |",
-        "| Figuras F1–F5 | Validadas |",
+        "| Figuras F1 a F5 | Validadas |",
         "| Informe final v2 | Validado |",
     )
 

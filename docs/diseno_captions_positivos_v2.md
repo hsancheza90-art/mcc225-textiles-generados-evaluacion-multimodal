@@ -2,7 +2,7 @@
 
 ## 1. Objetivo
 
-El dataset v2 utilizará captions controlados para evaluar recuperación imagen–texto sobre atributos geométricos y cromáticos observables.
+El dataset v2 utilizará captions controlados para evaluar recuperación multimodal entre imágenes y textos sobre atributos geométricos y cromáticos observables.
 
 Los captions no describen culturas, procedencias, periodos históricos, significados simbólicos ni autenticidad patrimonial.
 
