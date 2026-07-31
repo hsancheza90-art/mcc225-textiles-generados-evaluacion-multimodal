@@ -16,7 +16,7 @@
     "branch": "henry/examen-final-mcc225",
     "upstream": "origin/henry/examen-final-mcc225",
     "origin_url": "https://github.com/hsancheza90-art/mcc225-textiles-generados-evaluacion-multimodal.git",
-    "expected_release_tag": "mcc225-examen-final-v2",
+    "expected_release_tag": "mcc225-examen-final-v2.1",
     "release_tag_type": "annotated",
     "source_head_recorded_in_manifest": true,
     "final_commit_recorded_by_tag": true,
@@ -30,27 +30,22 @@
     "validator": "scripts/validar_manifiesto_entrega_v2.py",
     "manifest": "results/v2/manifiesto_entrega_v2.json",
     "preexisting_modified_paths": [
-      "scripts/validar_ablaciones_v2.py",
-      "scripts/validar_global_openclip_v2.py",
-      "scripts/validar_readme_v2.py"
-    ],
-    "delivery_source_paths": [
       "config/entrega_final_v2.json",
       "scripts/generar_manifiesto_entrega_v2.py",
-      "scripts/validar_manifiesto_entrega_v2.py"
+      "scripts/validar_manifiesto_entrega_v2.py",
+      "scripts/validar_readme_v2.py"
     ],
+    "delivery_source_paths": [],
     "allowed_final_worktree_paths": [
       "config/entrega_final_v2.json",
       "results/v2/manifiesto_entrega_v2.json",
       "scripts/generar_manifiesto_entrega_v2.py",
-      "scripts/validar_ablaciones_v2.py",
-      "scripts/validar_global_openclip_v2.py",
       "scripts/validar_manifiesto_entrega_v2.py",
       "scripts/validar_readme_v2.py"
     ]
   },
   "inventory_contract": {
-    "input_mode": "git_index_plus_untracked_delivery",
+    "input_mode": "git_worktree_tracked_revision",
     "self_excluded": true,
     "self_excluded_path": "results/v2/manifiesto_entrega_v2.json",
     "expected_final_tracked_files": 259,

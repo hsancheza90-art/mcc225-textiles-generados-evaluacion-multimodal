@@ -428,17 +428,14 @@ def main() -> None:
     assert MANIFEST_PATH == PROJECT_ROOT / manifest_relative_path
 
     git_paths = current_git_paths()
-    expected_unstaged = sorted(
+    expected_unstaged_before_manifest = sorted(
         delivery_paths[
             "preexisting_modified_paths"
         ]
     )
-    expected_untracked = sorted(
-        [
-            *delivery_paths[
-                "delivery_source_paths"
-            ],
-            manifest_relative_path,
+    expected_untracked_before_manifest = sorted(
+        delivery_paths[
+            "delivery_source_paths"
         ]
     )
     allowed_final_worktree_paths = sorted(
@@ -548,10 +545,32 @@ def main() -> None:
         )
     )
 
-    assert len(source_tracked_paths) == 255
-    assert len(
-        set(source_tracked_paths)
-    ) == 255
+    expected_source_tracked_files = (
+        contract["inventory_contract"][
+            "expected_final_tracked_files"
+        ]
+    )
+
+    assert len(source_tracked_paths) == (
+        expected_source_tracked_files
+    )
+    assert len(set(source_tracked_paths)) == (
+        expected_source_tracked_files
+    )
+
+    source_tracked_path_set = set(
+        source_tracked_paths
+    )
+    expected_unstaged_after_manifest = sorted(
+        path
+        for path in allowed_final_worktree_paths
+        if path in source_tracked_path_set
+    )
+    expected_untracked_after_manifest = sorted(
+        path
+        for path in allowed_final_worktree_paths
+        if path not in source_tracked_path_set
+    )
 
     current_tracked_paths = sorted(
         line.strip()
@@ -603,10 +622,10 @@ def main() -> None:
                 source_tracked_paths
             ),
             expected_unstaged=(
-                expected_unstaged
+                expected_unstaged_after_manifest
             ),
             expected_untracked=(
-                expected_untracked
+                expected_untracked_after_manifest
             ),
             allowed_final_worktree_paths=(
                 allowed_final_worktree_paths
@@ -711,7 +730,7 @@ def main() -> None:
         "expected_release_tag": release_tag,
         "staged_paths": [],
         "unstaged_paths": (
-            expected_unstaged
+            expected_unstaged_before_manifest
         ),
         "untracked_paths_before_manifest": (
             sorted(
@@ -738,6 +757,7 @@ def main() -> None:
                 "delivery_source_paths"
             ],
         }
+        - {manifest_relative_path}
     )
 
     assert (
@@ -848,11 +868,38 @@ def main() -> None:
         for row in expected_inventory
     )
 
+    inventory_path_set = set(
+        inventory_paths
+    )
+    expected_tracked_modified = len(
+        set(
+            expected_unstaged_before_manifest
+        )
+        & inventory_path_set
+    )
+    expected_untracked_delivery = len(
+        set(
+            expected_untracked_before_manifest
+        )
+        & inventory_path_set
+    )
+    expected_tracked_clean = (
+        len(inventory_paths)
+        - expected_tracked_modified
+        - expected_untracked_delivery
+    )
+
     assert state_counts == Counter(
         {
-            "tracked_clean": 252,
-            "tracked_modified": 3,
-            "untracked_delivery": 3,
+            "tracked_clean": (
+                expected_tracked_clean
+            ),
+            "tracked_modified": (
+                expected_tracked_modified
+            ),
+            "untracked_delivery": (
+                expected_untracked_delivery
+            ),
         }
     )
 

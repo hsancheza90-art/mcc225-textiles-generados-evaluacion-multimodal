@@ -378,10 +378,46 @@ def main() -> None:
         / manifest_relative_path
     )
 
-    assert not OUTPUT_PATH.exists(), (
-        "El manifiesto ya existe. "
-        "No se sobrescribirá."
-    )
+    manifest_input_mode = contract[
+        "inventory_contract"
+    ]["input_mode"]
+
+    if (
+        manifest_input_mode
+        == "git_worktree_tracked_revision"
+    ):
+        assert OUTPUT_PATH.exists(), (
+            "La revisión requiere un manifiesto "
+            "rastreado preexistente."
+        )
+        assert OUTPUT_PATH.is_file(), (
+            "La ruta del manifiesto preexistente "
+            "no es un archivo."
+        )
+
+        manifest_tracking = run_git(
+            [
+                "ls-files",
+                "--error-unmatch",
+                manifest_relative_path,
+            ],
+            check=False,
+        )
+
+        assert manifest_tracking.returncode == 0, (
+            "El manifiesto de la revisión debe "
+            "estar rastreado por Git."
+        )
+        assert (
+            manifest_tracking.stdout.strip()
+            == manifest_relative_path
+        )
+
+    else:
+        assert not OUTPUT_PATH.exists(), (
+            "El manifiesto ya existe. "
+            "No se sobrescribirá."
+        )
 
     expected_before_generation = sorted(
         path
@@ -502,8 +538,16 @@ def main() -> None:
         if line.strip()
     )
 
-    assert len(tracked_paths) == 255
-    assert len(set(tracked_paths)) == 255
+    expected_tracked_files = contract[
+        "inventory_contract"
+    ]["expected_final_tracked_files"]
+
+    assert len(tracked_paths) == (
+        expected_tracked_files
+    )
+    assert len(set(tracked_paths)) == (
+        expected_tracked_files
+    )
 
     delivery_source_paths = delivery_paths[
         "delivery_source_paths"
@@ -514,6 +558,7 @@ def main() -> None:
             *tracked_paths,
             *delivery_source_paths,
         }
+        - {manifest_relative_path}
     )
 
     assert manifest_relative_path not in (
@@ -637,17 +682,34 @@ def main() -> None:
         for row in inventory
     )
 
-    assert state_counts[
-        "tracked_modified"
-    ] == 3
+    inventory_path_set = set(
+        all_inventory_paths
+    )
+    expected_tracked_modified = len(
+        unstaged_set & inventory_path_set
+    )
+    expected_untracked_delivery = len(
+        untracked_set & inventory_path_set
+    )
+    expected_tracked_clean = (
+        len(all_inventory_paths)
+        - expected_tracked_modified
+        - expected_untracked_delivery
+    )
 
-    assert state_counts[
-        "untracked_delivery"
-    ] == 3
-
-    assert state_counts[
-        "tracked_clean"
-    ] == 252
+    assert state_counts == Counter(
+        {
+            "tracked_clean": (
+                expected_tracked_clean
+            ),
+            "tracked_modified": (
+                expected_tracked_modified
+            ),
+            "untracked_delivery": (
+                expected_untracked_delivery
+            ),
+        }
+    )
 
     family_counts = Counter(
         row["family"]

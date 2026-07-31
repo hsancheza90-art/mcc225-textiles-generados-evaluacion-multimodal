@@ -62,6 +62,23 @@ ALLOWED_CHANGED_PATH_SETS = (
     AUDIT_HITO_CHANGED_PATHS,
     DELIVERY_HITO_CHANGED_PATHS,
     CLEAN_DELIVERY_CHANGED_PATHS,
+    frozenset(
+        {
+            "config/entrega_final_v2.json",
+            "scripts/generar_manifiesto_entrega_v2.py",
+            "scripts/validar_manifiesto_entrega_v2.py",
+            "scripts/validar_readme_v2.py",
+        }
+    ),
+    frozenset(
+        {
+            "config/entrega_final_v2.json",
+            "results/v2/manifiesto_entrega_v2.json",
+            "scripts/generar_manifiesto_entrega_v2.py",
+            "scripts/validar_manifiesto_entrega_v2.py",
+            "scripts/validar_readme_v2.py",
+        }
+    ),
 )
 
 
